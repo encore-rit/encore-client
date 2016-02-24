@@ -11,7 +11,7 @@
 				video = document.getElementById("video"),
 				videoObj = { "video": true },
 				errBack = function(error) {
-					console.log("Video capture error: ", error.code); 
+					console.log("Video capture error: ", error.code);
 				};
 
 			// Put video listeners into place
@@ -42,8 +42,8 @@
 	</head>
 	<body>
 		<!--
-			Ideally these elements aren't created until it's confirmed that the 
-			client supports video/camera, but for the sake of illustrating the 
+			Ideally these elements aren't created until it's confirmed that the
+			client supports video/camera, but for the sake of illustrating the
 			elements involved, they are created with markup (not JavaScript)
 		-->
 		<video id="video" width="640" height="480" autoplay></video>
