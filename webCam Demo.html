@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Display Webcam</title>
+
+<style>
+#container {
+    margin: 0px auto;
+    width: 640px;
+    height: 480px;
+    border: 10px #333 solid;
+}
+#videoElement {
+    width: 640px;
+    height: 480px;
+    background-color: #666;
+}
+#snapCanvas{
+	background-color: #666;
+	width: 640px;
+    height: 480px;
+}
+</style>
+</head>
+
+<body>
+<div id="container">
+    <video autoplay="true" id="videoElement">
+
+    </video>
+	<button id="snap">SNAP!</button>
+	<canvas id="snapCanvas" width="640" height="480" style="border:1px solid #d3d3d3;">
+	
+	</canvas>
+</div>
+
+<script>
+	 var video = document.querySelector("#videoElement");
+	 var c = document.getElementById("snapCanvas");
+	 var ctx = c.getContext("2d");
+	 
+	 document.getElementById("snap").onclick = snapPhoto;
+
+
+	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+
+	if (navigator.getUserMedia) {
+		navigator.getUserMedia({video: true}, handleVideo, videoError);
+	}
+
+	function handleVideo(stream) {
+		video.src = window.URL.createObjectURL(stream);
+	}
+
+	function videoError(e) {
+		// do something
+	}
+	
+	function snapPhoto(){
+		 ctx.drawImage(video,0,0);
+	}
+</script>
+</body>
+</html>
