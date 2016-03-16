@@ -26,7 +26,7 @@
 		z-index:1;
 		cursor: pointer;
 	  }
-
+	  	  
        #controls {
          position: absolute;
           z-index: 2;
@@ -38,6 +38,8 @@
       	font-size: 12px;
       	margin-right:0.75em;
       }
+	  
+	  
 
     </style>
 
@@ -292,20 +294,37 @@
 
 		// restore the drawing state
 		ctx.restore();
+		
+		function addPicture(){
+			ctx.drawImg(img,0,0);
+		}
+		
 	}
 
+
+	function draw(e) {
+	console.log(e);
+	  ctx.canvas.width  = window.innerWidth - 30;
+	  ctx.canvas.height = window.innerHeight - 30;
+	  topCtx.canvas.width  = window.innerWidth - 30;
+	  topCtx.canvas.height = window.innerHeight - 30;
+	  drawGrid(ctx,'lightgray', 10, 10);
+	  //...drawing code...
+	}
+
+  window.onresize = draw;
 
 	</script>
 </head>
 <body>
-	<canvas id="mainCanvas" width="700" height="500">
+	<canvas id="mainCanvas">
 	Get a real browser!
 	</canvas>
 
-	<canvas id="topCanvas" width="700" height="500">
+	<canvas id="topCanvas">
 	Get a real browser!
 	</canvas>
-
+	
 	<div id="controls">
 		<label>Tool:
 			<select id="toolChooser">
