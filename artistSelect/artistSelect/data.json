@@ -1,0 +1,17 @@
+{"artists":[
+  {
+    "name": "David Bowie",
+    "dob": 1947,
+    "dod": 2016,
+    "bio": "David Bowie was born in South London's Brixton neighborhood on January 8, 1947. His first hit was the song 'Space Oddity' in 1969. The original pop chameleon, Bowie became a fantastical sci-fi character for his breakout Ziggy Stardust album. He later co-wrote 'Fame' with Carlos Alomar and John Lennon which became his first American No. 1 single in 1975. An accomplished actor, Bowie starred in The Man Who Fell to Earth in 1976. He was inducted into the Rock and Roll Hall of Fame in 1996.",
+    "sigUrl": "http://www.davidbowie.com/sites/g/files/g2000002506/f/bo_signature_2001_small.jpg",
+    "photoUrl": ["http://home.bt.com/images/performance-of-david-bowie-musical-in-nyc-becomes-a-memorial-136403337600303901-160113084130.jpg"],
+    "artifacts": [
+      {
+        "name": "Bowie's guitar",
+        "description": "Used to record Ziggy Stardust",
+        "location": "Main exhibit floor"
+      }
+    ]
+  }
+]}

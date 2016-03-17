@@ -1,0 +1,115 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title></title>
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- Global CSS for the page and tiles -->
+  <link rel="stylesheet" href="../css/main.css">
+
+</head>
+
+<body>
+
+  <div id="container">
+    <header>
+      <h1>Artist Selection</h1>
+      <p></p>
+    </header>
+    <div id="main" role="main">
+
+      <div id="loader">
+        <div id="loaderCircle"></div>
+      </div>
+
+      <select id="artistSelect">
+        <option>--Choose Artist--</option>
+      </select>
+
+    </div>
+
+    <footer>
+
+    </footer>
+  </div>
+
+  <!-- include jQuery -->
+  <script src="../libs/jquery.min.js"></script>
+
+  <!-- Once the page is loaded, initalize the plug-in. -->
+  <script type="text/javascript">
+    (function ($) {
+      var handler = null,
+          isLoading = false,
+          fullData;
+
+      /**
+       * Loads data from the API.
+       */
+      function loadData() {
+        isLoading = true;
+        $('#loaderCircle').show();
+
+        $.ajax({
+          url: "data.json",
+          dataType: 'json',
+          success: function(result){
+            onLoadData(result);
+            fullData = result;
+          }
+        });
+      };
+
+      /**
+       * Receives data from the API, creates HTML for images and updates the layout
+       */
+      function onLoadData(data) {
+        isLoading = false;
+        $('#loaderCircle').hide();
+
+        $.each(data.artists, function(i, value) {
+            $('#artistSelect').append($('<option>').text(value.name).attr('value', value.name));
+        });
+      
+      };
+
+      $('select').on('change', function() {
+        isLoading = true;
+        $('#loaderCircle').show();
+
+        var name = this.value;
+
+        $.each(fullData.artists, function(i, value) {
+          if(value.name == name){
+            $('#main').append($('<p>').text(value.dob +"-"+ value.dod));
+            $('#main').append($('<p>').text(value.bio));
+            $('#main').append($('<img>').attr("src", value.sigUrl));
+            $('#main').append($('<img>').attr("src", value.photoUrl));
+
+            $.each(value.artifacts, function(i, v) {
+              $('#main').append($('<div>').attr("id", "artifacts"));
+              $('#artifacts').append($('<h4>').text("Artifacts:"));
+              $('#artifacts').append($('<p>').text("Name: " + v.name));
+              $('#artifacts').append($('<p>').text("Description: " + v.description));
+              $('#artifacts').append($('<p>').text("Location: " + v.location));
+            });
+            return;
+          }
+        });
+
+      });
+
+      // Load first data from the API.
+      loadData();
+    })(jQuery);
+  </script>
+
+</body>
+</html>
