@@ -8,9 +8,11 @@
          background: #eeeeee;
          font-family: tahoma, verdana, sans serif;
       }
-
+			img{
+				position: absolute;
+				bottom: 10px;
+			}
       #mainCanvas {
-         background: #ffffff;
          position:absolute;
          z-index: 0;
          left: 10px;
@@ -18,15 +20,21 @@
          box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
       }
 
-	  #topCanvas{
-		background: rgba(0,0,0,0);
-		position:absolute;
-		left:10px;
-		top:10px;
-		z-index:1;
-		cursor: pointer;
-	  }
-	  	  
+	  	#topCanvas{
+				position:absolute;
+				left:10px;
+				top:10px;
+				z-index:1;
+				cursor: pointer;
+	  	}
+
+	  	#pictureCanvas {
+         position:absolute;
+         z-index: -1;
+         left: 10px;
+         top: 10px;
+      }
+
        #controls {
          position: absolute;
           z-index: 2;
@@ -38,10 +46,89 @@
       	font-size: 12px;
       	margin-right:0.75em;
       }
-	  
-	  
+
+
 
     </style>
+
+
+</head>
+<body>
+	<canvas id="mainCanvas">
+	Get a real browser!
+	</canvas>
+
+	<canvas id="topCanvas">
+	Get a real browser!
+	</canvas>
+
+	<canvas id="pictureCanvas">
+	Get a real browser!
+	</canvas>
+
+	<img id="img" src="http://www.keenthemes.com/preview/metronic/theme/assets/global/plugins/jcrop/demos/demo_files/image1.jpg">
+
+	<div id="controls">
+		<label>Tool:
+			<select id="toolChooser">
+				<option value="toolPencil" selected>Pencil</option>
+				<option value="toolLine">Line</option>
+				<option value="toolRectangle">Rectangle</option>
+				<option value="toolCircle">Circle</option>
+    		</select>
+    	</label>
+
+		<label>Stroke Color:
+			<select id="strokeStyleChooser">
+				<option value="red">red</option>
+				<option value="orange">orange</option>
+        		<option value="yellow">yellow</option>
+        		<option value="green">green</option>
+				<option value="blue">blue</option>
+        		<option value="purple">purple</option>
+        		<option value="pink">pink</option>
+				<option value="white">white</option>
+        		<option value="black">black</option>
+        		<option value="grey">grey</option>
+    		</select>
+    	</label>
+
+    	<label>Line Width:
+			<select id="lineWidthChooser">
+				<option value="1">1</option>
+				<option value="2">2</option>
+        		<option value="3" selected>3</option>
+        		<option value="4">4</option>
+				<option value="5">5</option>
+        		<option value="6">6</option>
+        		<option value="7">7</option>
+				<option value="8">8</option>
+        		<option value="9">9</option>
+        		<option value="10">10</option>
+    		</select>
+    	</label>
+
+
+		<label>Fill Color:
+			<select id="fillColorChooser">
+				<option value="red">red</option>
+				<option value="orange">orange</option>
+        		<option value="yellow">yellow</option>
+        		<option value="green">green</option>
+				<option value="blue" selected>blue</option>
+        		<option value="purple">purple</option>
+        		<option value="pink">pink</option>
+				<option value="white">white</option>
+        		<option value="black">black</option>
+        		<option value="grey">grey</option>
+    		</select>
+    	</label>
+
+
+    	<span><input id="clearButton" type="button" value="Clear"/></span>
+    	<span><input id="exportButton" type="button" value="Export"/></span>
+			<span><input id="addPicture" type="button" value="Add Picture"/></span>
+    </div>
 
 	<script>
 	"use strict";
@@ -51,9 +138,12 @@
 	var canvas,ctx,dragging=false,lineWidth,strokeStyle;
 	var currentTool, fillStyle, origin;
 	var topCanvas, topCtx;
+	var picCanvas, picCtx;
+	var img;
 
 	// CONSTANTS
 	var DEFAULT_LINE_WIDTH = 3;
+	var DEFAULT_STROKE_STYLE = "red";
 	var DEFAULT_STROKE_STYLE = "red";
 	var DEFAULT_FILL_STYLE = "blue";
 	var TOOL_PENCIL = "toolPencil";
@@ -68,6 +158,9 @@
 		ctx = canvas.getContext('2d');
 		topCanvas = document.querySelector('#topCanvas');
 		topCtx = topCanvas.getContext('2d');
+		picCanvas = document.querySelector('#pictureCanvas');
+		picCtx = picCanvas.getContext('2d');
+		img = document.querySelector('#img');
 
 		lineWidth = DEFAULT_LINE_WIDTH;
 		strokeStyle = DEFAULT_STROKE_STYLE;
@@ -83,6 +176,7 @@
 
 
 		drawGrid(ctx,'lightgray', 10, 10);
+
 
 		topCanvas.onmousedown = doMousedown;
 		topCanvas.onmousemove = doMousemove;
@@ -100,6 +194,7 @@
 
 		document.querySelector('#exportButton').onclick = doExport;
 		document.querySelector('#clearButton').onclick = doClear;
+		document.querySelector('#addPicture').onclick = addPicture;
 	}
 
 
@@ -271,7 +366,7 @@
 
 		// set some drawing state variables
 		ctx.strokeStyle = color;
-		ctx.fillStyle = '#ffffff';
+		ctx.fillStyle = 'rgba(0,0,0,0.0)';
 		ctx.lineWidth = 0.5;
 		ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
@@ -294,97 +389,27 @@
 
 		// restore the drawing state
 		ctx.restore();
-		
-		function addPicture(){
-			ctx.drawImg(img,0,0);
-		}
-		
 	}
 
+	function addPicture(){
+		picCtx.drawImage(img,0,0);
+		console.log("add pic called");
+	}
 
-	function draw(e) {
-	console.log(e);
+	function resizeCanvas() {
 	  ctx.canvas.width  = window.innerWidth - 30;
 	  ctx.canvas.height = window.innerHeight - 30;
 	  topCtx.canvas.width  = window.innerWidth - 30;
 	  topCtx.canvas.height = window.innerHeight - 30;
+		picCtx.canvas.height = window.innerHeight - 30;
+		picCtx.canvas.width  = window.innerWidth - 30;
 	  drawGrid(ctx,'lightgray', 10, 10);
 	  //...drawing code...
+
 	}
 
-  window.onresize = draw;
+	window.onresize = resizeCanvas;
 
 	</script>
-</head>
-<body>
-	<canvas id="mainCanvas">
-	Get a real browser!
-	</canvas>
-
-	<canvas id="topCanvas">
-	Get a real browser!
-	</canvas>
-	
-	<div id="controls">
-		<label>Tool:
-			<select id="toolChooser">
-				<option value="toolPencil" selected>Pencil</option>
-				<option value="toolLine">Line</option>
-				<option value="toolRectangle">Rectangle</option>
-				<option value="toolCircle">Circle</option>
-    		</select>
-    	</label>
-
-		<label>Stroke Color:
-			<select id="strokeStyleChooser">
-				<option value="red">red</option>
-				<option value="orange">orange</option>
-        		<option value="yellow">yellow</option>
-        		<option value="green">green</option>
-				<option value="blue">blue</option>
-        		<option value="purple">purple</option>
-        		<option value="pink">pink</option>
-				<option value="white">white</option>
-        		<option value="black">black</option>
-        		<option value="grey">grey</option>
-    		</select>
-    	</label>
-
-    	<label>Line Width:
-			<select id="lineWidthChooser">
-				<option value="1">1</option>
-				<option value="2">2</option>
-        		<option value="3" selected>3</option>
-        		<option value="4">4</option>
-				<option value="5">5</option>
-        		<option value="6">6</option>
-        		<option value="7">7</option>
-				<option value="8">8</option>
-        		<option value="9">9</option>
-        		<option value="10">10</option>
-    		</select>
-    	</label>
-
-
-		<label>Fill Color:
-			<select id="fillColorChooser">
-				<option value="red">red</option>
-				<option value="orange">orange</option>
-        		<option value="yellow">yellow</option>
-        		<option value="green">green</option>
-				<option value="blue" selected>blue</option>
-        		<option value="purple">purple</option>
-        		<option value="pink">pink</option>
-				<option value="white">white</option>
-        		<option value="black">black</option>
-        		<option value="grey">grey</option>
-    		</select>
-    	</label>
-
-
-    	<span><input id="clearButton" type="button" value="Clear"/></span>
-    	<span><input id="exportButton" type="button" value="Export"/></span>
-    </div>
-
 </body>
 </html>
