@@ -12,17 +12,18 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
   <!-- Global CSS for the page and tiles -->
-  <link rel="stylesheet" href="../css/main.css">
-
+  <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body>
 
   <div id="container">
+
     <header>
       <h1>Artist Selection</h1>
       <p></p>
     </header>
+
     <div id="main" role="main">
 
       <div id="loader">
@@ -35,13 +36,10 @@
 
     </div>
 
-    <footer>
-
-    </footer>
   </div>
 
   <!-- include jQuery -->
-  <script src="../libs/jquery.min.js"></script>
+  <script src="./libs/jquery.min.js"></script>
 
   <!-- Once the page is loaded, initalize the plug-in. -->
   <script type="text/javascript">
@@ -58,11 +56,16 @@
         $('#loaderCircle').show();
 
         $.ajax({
-          url: "data.json",
+          // url: "data.json",
+          url: "http://localhost:1339/artists",
+          method: 'GET',
           dataType: 'json',
           success: function(result){
             onLoadData(result);
             fullData = result;
+          },
+          error: function(err) {
+            console.log('err', err)
           }
         });
       };
@@ -74,10 +77,9 @@
         isLoading = false;
         $('#loaderCircle').hide();
 
-        $.each(data.artists, function(i, value) {
-            $('#artistSelect').append($('<option>').text(value.name).attr('value', value.name));
+        $.each(data, function(i, value) {
+          $('#artistSelect').append($('<option>').text(value.name).attr('value', value.name));
         });
-      
       };
 
       $('select').on('change', function() {
@@ -86,7 +88,7 @@
 
         var name = this.value;
 
-        $.each(fullData.artists, function(i, value) {
+        $.each(fullData, function(i, value) {
           if(value.name == name){
             $('#main').append($('<p>').text(value.dob +"-"+ value.dod));
             $('#main').append($('<p>').text(value.bio));
@@ -103,7 +105,6 @@
             return;
           }
         });
-
       });
 
       // Load first data from the API.
