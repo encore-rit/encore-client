@@ -66,7 +66,7 @@
 	Get a real browser!
 	</canvas>
 
-	<img id="img" src="http://www.keenthemes.com/preview/metronic/theme/assets/global/plugins/jcrop/demos/demo_files/image1.jpg">
+	<img id="img" src="../image/leaf.jpg">
 
 	<div id="controls">
 		<label>Tool:
@@ -162,6 +162,9 @@
 		picCtx = picCanvas.getContext('2d');
 		img = document.querySelector('#img');
 
+		img.setAttribute('crossOrigin','anonymous'); //http://stackoverflow.com/questions/2390232/why-does-canvas-todataurl-throw-a-security-exception
+		picCanvas.setAttribute('crossOrigin','anonymous');
+
 		lineWidth = DEFAULT_LINE_WIDTH;
 		strokeStyle = DEFAULT_STROKE_STYLE;
 		fillStyle = DEFAULT_FILL_STYLE;
@@ -173,10 +176,6 @@
 		topCtx.fillStyle = ctx.fillStyle = fillStyle;
 		topCtx.lineCap = ctx.lineCap = "round"
 		topCtx.lineJoin = ctx.lineJoin = "round";
-
-
-		drawGrid(ctx,'lightgray', 10, 10);
-
 
 		topCanvas.onmousedown = doMousedown;
 		topCanvas.onmousemove = doMousemove;
@@ -331,13 +330,17 @@
 
 	function doClear(){
 		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-		drawGrid(ctx,'lightgray', 10, 10);
 	}
 
 	function doExport(){
 		// open a new window and load the image in it
 		// http://www.w3schools.com/jsref/met_win_open.asp
-		var data = canvas.toDataURL();
+		var imageData = picCanvas.toDataURL;
+		picCtx.drawImage(canvas,0,0);
+		var data = picCanvas.toDataURL();
+		alert(data);
+
+		console.log(data);
 		var windowName = "canvasImage";
 		var windowOptions = "left=0,top=0,width=" + canvas.width + ",height=" + canvas.height +",toolbar=0,resizable=0";
 		var myWindow = window.open(data,windowName,windowOptions);
@@ -356,40 +359,7 @@
 		return mouse;
 	}
 
-	/*
-	Function Name: drawGrid()
-	Description: Fills the entire canvas with a grid
-	*/
-	function drawGrid(ctx, color, cellWidth, cellHeight){
-		// save the current drawing state as it existed before this function was called
-		ctx.save()
 
-		// set some drawing state variables
-		ctx.strokeStyle = color;
-		ctx.fillStyle = 'rgba(0,0,0,0.0)';
-		ctx.lineWidth = 0.5;
-		ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
-		// vertical lines
-		for (var x = cellWidth + 0.5; x < ctx.canvas.width; x += cellWidth) {
-			ctx.beginPath();
-			ctx.moveTo(x, 0);
-			ctx.lineTo(x, ctx.canvas.height);
-			ctx.stroke();
-		}
-
-		// horizontal lines
-		for (var y = cellHeight + 0.5; y < ctx.canvas.height; y += cellHeight) {
-			ctx.beginPath();
-			ctx.moveTo(0, y);
-			ctx.lineTo(ctx.canvas.width, y);
-			ctx.stroke();
-		}
-
-
-		// restore the drawing state
-		ctx.restore();
-	}
 
 	function addPicture(){
 		picCtx.drawImage(img,0,0);
@@ -403,7 +373,6 @@
 	  topCtx.canvas.height = window.innerHeight - 30;
 		picCtx.canvas.height = window.innerHeight - 30;
 		picCtx.canvas.width  = window.innerWidth - 30;
-	  drawGrid(ctx,'lightgray', 10, 10);
 	  //...drawing code...
 
 	}
