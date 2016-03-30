@@ -162,9 +162,6 @@
 		picCtx = picCanvas.getContext('2d');
 		img = document.querySelector('#img');
 
-		img.setAttribute('crossOrigin','anonymous'); //http://stackoverflow.com/questions/2390232/why-does-canvas-todataurl-throw-a-security-exception
-		picCanvas.setAttribute('crossOrigin','anonymous');
-
 		lineWidth = DEFAULT_LINE_WIDTH;
 		strokeStyle = DEFAULT_STROKE_STYLE;
 		fillStyle = DEFAULT_FILL_STYLE;
@@ -335,10 +332,10 @@
 	function doExport(){
 		// open a new window and load the image in it
 		// http://www.w3schools.com/jsref/met_win_open.asp
-		var imageData = picCanvas.toDataURL;
 		picCtx.drawImage(canvas,0,0);
 		var data = picCanvas.toDataURL();
-		alert(data);
+
+		//add code here to sent final picture to the server
 
 		console.log(data);
 		var windowName = "canvasImage";
