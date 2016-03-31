@@ -2,10 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!--<meta name="viewport" content="user-scalable=1.0,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="format-detection" content="telephone=no">-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Photo Paint</title>
 	 <style>
       body {
@@ -32,13 +29,6 @@
 				cursor: pointer;
 	  	}
 
-	  	#pictureCanvas {
-         position:absolute;
-         z-index: -1;
-         left: 10px;
-         top: 10px;
-      }
-
        #controls {
          position: absolute;
           z-index: 2;
@@ -63,10 +53,6 @@
 	</canvas>
 
 	<canvas id="topCanvas">
-	Get a real browser!
-	</canvas>
-
-	<canvas id="pictureCanvas">
 	Get a real browser!
 	</canvas>
 
@@ -131,7 +117,6 @@
 
     	<span><input id="clearButton" type="button" value="Clear"/></span>
     	<span><input id="exportButton" type="button" value="Export"/></span>
-			<span><input id="addPicture" type="button" value="Add Picture"/></span>
     </div>
 
 	<script>
@@ -142,7 +127,6 @@
 	var canvas,ctx,dragging=false,lineWidth,strokeStyle;
 	var currentTool, fillStyle, origin;
 	var topCanvas, topCtx;
-	var picCanvas, picCtx;
 	var img;
 
 	// CONSTANTS
@@ -162,8 +146,6 @@
 		ctx = canvas.getContext('2d');
 		topCanvas = document.querySelector('#topCanvas');
 		topCtx = topCanvas.getContext('2d');
-		picCanvas = document.querySelector('#pictureCanvas');
-		picCtx = picCanvas.getContext('2d');
 		img = document.querySelector('#img');
 
 		lineWidth = DEFAULT_LINE_WIDTH;
@@ -178,21 +160,10 @@
 		topCtx.lineCap = ctx.lineCap = "round"
 		topCtx.lineJoin = ctx.lineJoin = "round";
 
-		// topCanvas.onmousedown = doMousedown;
-		// topCanvas.onmousemove = doMousemove;
-		// topCanvas.onmouseup = doMouseup;
-
-		// topCanvas.ontouchstart = doMousedown;
-		// topCanvas.ontouchmove = doMousemove;
-		// topCanvas.ontouchend = doMouseup;
-		// topCanvas.ontouchcancel = doMouseout;
-
-		//topCanvas.onmouseout = doMouseout;
-
-		topCanvas.addEventListener('touchstart', doMousedown);
-		topCanvas.addEventListener('touchmove', doMousemove);
-		topCanvas.addEventListener('touchend', doMouseup);
-		topCanvas.addEventListener('touchcancel', doMouseout);
+		topCanvas.onmousedown = doMousedown;
+		topCanvas.onmousemove = doMousemove;
+		topCanvas.onmouseup = doMouseup;
+		topCanvas.onmouseout = doMouseout;
 
 		document.querySelector('#lineWidthChooser').onchange = doLineWidthChange;
 		document.querySelector('#strokeStyleChooser').onchange = doStrokeColorChange;
@@ -205,7 +176,6 @@
 
 		document.querySelector('#exportButton').onclick = doExport;
 		document.querySelector('#clearButton').onclick = doClear;
-		document.querySelector('#addPicture').onclick = addPicture(img);
 	}
 
 
@@ -228,9 +198,8 @@
 
 	function doMousedown(e){
 		dragging = true;
-		//var mouse = getMouse(e);
-		var mouse = getTouchCoords(e, topCanvas);
-		console.log('mouse down', mouse, e, topCanvas.offsetTop)
+		var mouse = getMouse(e);
+
 		switch(currentTool){
 			case TOOL_PENCIL:
 				ctx.beginPath();
@@ -248,9 +217,8 @@
 
  	function doMousemove(e) {
  		if(!dragging) return;
-		// var mouse = getMouse(e);
-		var mouse = getTouchCoords(e, topCanvas);
-		console.log('mouse move')
+		var mouse = getMouse(e);
+
 		switch(currentTool){
 			case TOOL_PENCIL:
 				ctx.strokeStyle = strokeStyle;
@@ -307,7 +275,6 @@
 	}
 
 	function doMouseup(e) {
-		console.log('mouse up')
 		switch(currentTool){
 			case TOOL_PENCIL:
 				ctx.closePath();
@@ -350,10 +317,9 @@
 	function doExport(){
 		// open a new window and load the image in it
 		// http://www.w3schools.com/jsref/met_win_open.asp
-		picCtx.drawImage(canvas,0,0);
-		var data = picCanvas.toDataURL();
+		var data = Canvas.toDataURL();
 
-		//add code here to sent final picture to the server
+		//add code here to sent final memory to the server
 
 		console.log(data);
 		var windowName = "canvasImage";
@@ -374,31 +340,16 @@
 		return mouse;
 	}
 
-	function getTouchCoords(e, canvas){
-		var mouse = {}
-		mouse.x = e.touches[0].pageX - canvas.offsetLeft;
-		mouse.y = e.touches[0].pageY - canvas.offsetTop;
-		return mouse;
-	}
-
-	function addPicture(image){
-		picCtx.drawImage(img,0,0);
-		console.log(image);
-		resizeCanvas(image);
-		console.log("add pic called");
+	function resizeCanvas() {
+	  ctx.canvas.width  = window.innerWidth - 30;
+	  ctx.canvas.height = window.innerHeight - 30;
+	  topCtx.canvas.width  = window.innerWidth - 30;
+	  topCtx.canvas.height = window.innerHeight - 30;
+	  //...drawing code...
 
 	}
 
-	function resizeCanvas(size) {
-	  ctx.canvas.width  = size.width;
-	  ctx.canvas.height = size.height;
-	  topCtx.canvas.width  = size.width;
-	  topCtx.canvas.height = size.height;
-		picCtx.canvas.height = size.height;
-		picCtx.canvas.width  = size.width;
-	}
-
-	//window.onresize = resizeCanvas(win);
+	window.onresize = resizeCanvas;
 
 	</script>
 </body>
