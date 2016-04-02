@@ -178,21 +178,10 @@
 		topCtx.lineCap = ctx.lineCap = "round"
 		topCtx.lineJoin = ctx.lineJoin = "round";
 
-		// topCanvas.onmousedown = doMousedown;
-		// topCanvas.onmousemove = doMousemove;
-		// topCanvas.onmouseup = doMouseup;
-
-		// topCanvas.ontouchstart = doMousedown;
-		// topCanvas.ontouchmove = doMousemove;
-		// topCanvas.ontouchend = doMouseup;
-		// topCanvas.ontouchcancel = doMouseout;
-
-		//topCanvas.onmouseout = doMouseout;
-
-		topCanvas.addEventListener('touchstart', doMousedown);
-		topCanvas.addEventListener('touchmove', doMousemove);
-		topCanvas.addEventListener('touchend', doMouseup);
-		topCanvas.addEventListener('touchcancel', doMouseout);
+		topCanvas.addEventListener('touchstart', dotouchdown);
+		topCanvas.addEventListener('touchmove', dotouchmove);
+		topCanvas.addEventListener('touchend', dotouchup);
+		topCanvas.addEventListener('touchcancel', dotouchout);
 
 		document.querySelector('#lineWidthChooser').onchange = doLineWidthChange;
 		document.querySelector('#strokeStyleChooser').onchange = doStrokeColorChange;
@@ -205,7 +194,7 @@
 
 		document.querySelector('#exportButton').onclick = doExport;
 		document.querySelector('#clearButton').onclick = doClear;
-		document.querySelector('#addPicture').onclick = addPicture(img);
+		document.querySelector('#addPicture').onclick = addPicture;
 	}
 
 
@@ -226,44 +215,44 @@
 		fillStyle = e.target.value;
 	}
 
-	function doMousedown(e){
+	function dotouchdown(e){
 		dragging = true;
-		//var mouse = getMouse(e);
-		var mouse = getTouchCoords(e, topCanvas);
-		console.log('mouse down', mouse, e, topCanvas.offsetTop)
+		//var touch = gettouch(e);
+		var touch = getTouchCoords(e, topCanvas);
+		console.log('touch down', touch, e, topCanvas.offsetTop)
 		switch(currentTool){
 			case TOOL_PENCIL:
 				ctx.beginPath();
-				ctx.moveTo(mouse.x, mouse.y);
+				ctx.moveTo(touch.x, touch.y);
 				break;
 
 			case TOOL_RECTANGLE:
 			case TOOL_LINE:
 			case TOOL_CIRCLE:
-				origin.x = mouse.x;
-				origin.y = mouse.y;
+				origin.x = touch.x;
+				origin.y = touch.y;
 				break;
 		}
 	}
 
- 	function doMousemove(e) {
+ 	function dotouchmove(e) {
  		if(!dragging) return;
-		// var mouse = getMouse(e);
-		var mouse = getTouchCoords(e, topCanvas);
-		console.log('mouse move')
+		// var touch = gettouch(e);
+		var touch = getTouchCoords(e, topCanvas);
+		console.log('touch move')
 		switch(currentTool){
 			case TOOL_PENCIL:
 				ctx.strokeStyle = strokeStyle;
 				ctx.lineWidth = lineWidth;
-				ctx.lineTo(mouse.x, mouse.y);
+				ctx.lineTo(touch.x, touch.y);
 				ctx.stroke();
 				break;
 
 			case TOOL_RECTANGLE:
-				var x = Math.min(mouse.x,origin.x);
-				var y = Math.min(mouse.y,origin.y);
-				var w = Math.abs(mouse.x - origin.x);
-				var h = Math.abs(mouse.y - origin.y);
+				var x = Math.min(touch.x,origin.x);
+				var y = Math.min(touch.y,origin.y);
+				var w = Math.abs(touch.x - origin.x);
+				var h = Math.abs(touch.y - origin.y);
 
 				topCtx.strokeStyle = strokeStyle;
 				topCtx.fillStyle = fillStyle;
@@ -278,7 +267,7 @@
 			case TOOL_LINE:
 				topCtx.beginPath();
 				topCtx.moveTo(origin.x,origin.y);
-				topCtx.lineTo(mouse.x,mouse.y);
+				topCtx.lineTo(touch.x,touch.y);
 
 				topCtx.strokeStyle = strokeStyle;
 				topCtx.lineWidth = lineWidth;
@@ -289,7 +278,7 @@
 				break;
 
 			case TOOL_CIRCLE:
-				var radius = Math.abs(mouse.x-origin.x);
+				var radius = Math.abs(touch.x-origin.x);
 
 				topCtx.beginPath();
 				topCtx.arc(origin.x, origin.y, radius,0,2*Math.PI, false);
@@ -306,8 +295,8 @@
 		}
 	}
 
-	function doMouseup(e) {
-		console.log('mouse up')
+	function dotouchup(e) {
+		console.log('touch up')
 		switch(currentTool){
 			case TOOL_PENCIL:
 				ctx.closePath();
@@ -326,7 +315,7 @@
 	}
 
 	// if the user drags out of the canvas
-	function doMouseout(e) {
+	function dotouchout(e) {
 		switch(currentTool){
 			case TOOL_PENCIL:
 				ctx.closePath();
@@ -365,40 +354,36 @@
 
 	// UTILITY FUNCTIONS
 
-	// Function Name: getMouse()
-	// returns mouse position in local coordinate system of element
-	function getMouse(e){
-		var mouse = {}
-		mouse.x = e.pageX - e.target.offsetLeft;
-		mouse.y = e.pageY - e.target.offsetTop;
-		return mouse;
+	// Function Name: gettouch()
+	// returns touch position in local coordinate system of element
+	function gettouch(e){
+		var touch = {}
+		touch.x = e.pageX - e.target.offsetLeft;
+		touch.y = e.pageY - e.target.offsetTop;
+		return touch;
 	}
 
 	function getTouchCoords(e, canvas){
-		var mouse = {}
-		mouse.x = e.touches[0].pageX - canvas.offsetLeft;
-		mouse.y = e.touches[0].pageY - canvas.offsetTop;
-		return mouse;
+		var touch = {}
+		touch.x = e.touches[0].pageX - canvas.offsetLeft;
+		touch.y = e.touches[0].pageY - canvas.offsetTop;
+		return touch;
 	}
 
-	function addPicture(image){
+	function addPicture(){
 		picCtx.drawImage(img,0,0);
-		console.log(image);
-		resizeCanvas(image);
-		console.log("add pic called");
-
 	}
 
-	function resizeCanvas(size) {
-	  ctx.canvas.width  = size.width;
-	  ctx.canvas.height = size.height;
-	  topCtx.canvas.width  = size.width;
-	  topCtx.canvas.height = size.height;
-		picCtx.canvas.height = size.height;
-		picCtx.canvas.width  = size.width;
+	function resizeCanvas() {
+	  ctx.canvas.width  = window.innerWidth - 30;
+	  ctx.canvas.height = window.innerHeight - 30;
+	  topCtx.canvas.width  = window.innerWidth - 30;
+	  topCtx.canvas.height = window.innerHeight - 30;
+		picCtx.canvas.width  = window.innerWidth - 30;
+		picCtx.canvas.height = window.innerHeight - 30;
 	}
 
-	//window.onresize = resizeCanvas(win);
+	window.onresize = resizeCanvas;
 
 	</script>
 </body>

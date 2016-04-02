@@ -11,18 +11,29 @@
         height: 100%;
         background-color: #666;
     }
+    #countdown{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      color:white;
+      font-size: 100px;
+      margin: 0;
+    }
   </style>
   </head>
 
   <body>
+    <p id="countdown">Number<p>
     <video autoplay="true" id="webcamVideo">
 
     </video>
+    <button type="button" id="startCountdownButton">countdown!</button>
     <button type="button" id="snapPhoto">Snap!</button>
     <button type="button" id="sentPhoto">Sent a photo to the server</button>
     <canvas id="snapCanvas" width="700" height="500">
     Get a real browser!
     </canvas>
+
 
 
     <script>
@@ -33,6 +44,7 @@
 
     document.querySelector('#snapPhoto').onclick = snapPhoto;
     document.querySelector('#sentPhoto').onclick = sentPhoto;
+    document.querySelector('#startCountdownButton').onclick = countdown;
 
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
 
@@ -70,6 +82,23 @@
                alert("Done, Picture Uploaded.");
            }
        });
+    }
+
+    //countdown and snap a photo from webcam once the countdown is finish
+    function countdown(){
+      var countdown = document.getElementById('countdown'),
+        seconds = 4,
+        second = 0,
+        interval;
+
+      interval = setInterval(function() {
+          countdown.firstChild.data = (seconds - second);
+          if (second >= seconds) {
+              snapPhoto();
+              clearInterval(interval);
+          }
+          second++;
+      }, 1000);
     }
     </script>
 
