@@ -30,9 +30,14 @@
         <div id="loaderCircle"></div>
       </div>
 
+      <input type="text" id="stageName" placeholder="Stage Name Here">
+      <input type="button" id="stageNameBtn" value="Rock!">
+
       <select id="artistSelect">
         <option>--Choose Artist--</option>
       </select>
+
+      <div id="chosen"></div>
 
     </div>
 
@@ -46,7 +51,8 @@
     (function ($) {
       var handler = null,
           isLoading = false,
-          fullData;
+          fullData,
+          userData={};
 
       /**
        * Loads data from the API.
@@ -82,21 +88,27 @@
         });
       };
 
+      $('#stageNameBtn').on('click', function(){
+        userData.name = $('#stageName').val();
+      });
+
       $('select').on('change', function() {
         isLoading = true;
         $('#loaderCircle').show();
+
+        $("#chosen").empty();
 
         var name = this.value;
 
         $.each(fullData, function(i, value) {
           if(value.name == name){
-            $('#main').append($('<p>').text(value.dob +"-"+ value.dod));
-            $('#main').append($('<p>').text(value.bio));
-            $('#main').append($('<img>').attr("src", value.sigUrl));
-            $('#main').append($('<img>').attr("src", value.photoUrl));
+            $('#chosen').append($('<p>').text(value.dob +"-"+ value.dod));
+            $('#chosen').append($('<p>').text(value.bio));
+            $('#chosen').append($('<img>').attr("src", value.sigUrl));
+            $('#chosen').append($('<img>').attr("src", value.photoUrl));
 
             $.each(value.artifacts, function(i, v) {
-              $('#main').append($('<div>').attr("id", "artifacts"));
+              $('#chosen').append($('<div>').attr("id", "artifacts"));
               $('#artifacts').append($('<h4>').text("Artifacts:"));
               $('#artifacts').append($('<p>').text("Name: " + v.name));
               $('#artifacts').append($('<p>').text("Description: " + v.description));
@@ -105,7 +117,28 @@
             return;
           }
         });
+
+        $('#chosen').append($('<input>').attr("type","button").attr("value","Choose Artist").attr("id","chooseBtn"));
+
+        $('#chooseBtn').on('click', function(){
+            userData.artistId = name;
+  
+            $.ajax({
+              url: "http://localhost:1339/users",
+              method: 'POST',
+              dataType: 'json',
+              data: userData,
+              success: showResult,
+              error: function(err) {
+                console.log('err', err)
+              }
+            });
+        });
       });
+
+      function showResult(){
+
+      }
 
       // Load first data from the API.
       loadData();
