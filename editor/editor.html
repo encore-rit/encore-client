@@ -1,390 +1,385 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!--<meta name="viewport" content="user-scalable=1.0,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="format-detection" content="telephone=no">-->
-	<title>Photo Paint</title>
-	 <style>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="user-scalable=1.0,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+
+    <title>Photo Paint</title>
+    <style>
       body {
-         background: #eeeeee;
-         font-family: tahoma, verdana, sans serif;
+        background: #eeeeee;
+        font-family: tahoma, verdana, sans serif;
       }
-			img{
-				position: absolute;
-				bottom: 10px;
-			}
+      img{
+        position: absolute;
+        bottom: 10px;
+      }
       #mainCanvas {
-         position:absolute;
-         z-index: 0;
-         left: 10px;
-         top: 10px;
-         box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+        position:absolute;
+        z-index: 0;
+        left: 10px;
+        top: 10px;
+        box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
       }
 
-	  	#topCanvas{
-				position:absolute;
-				left:10px;
-				top:10px;
-				z-index:1;
-				cursor: pointer;
-	  	}
-
-	  	#pictureCanvas {
-         position:absolute;
-         z-index: -1;
-         left: 10px;
-         top: 10px;
+      #topCanvas{
+        position:absolute;
+        left:10px;
+        top:10px;
+        z-index:1;
+        cursor: pointer;
       }
 
-       #controls {
-         position: absolute;
-          z-index: 2;
-         left: 25px;
-         top: 25px;
+      #pictureCanvas {
+        position:absolute;
+        z-index: -1;
+        left: 10px;
+        top: 10px;
+      }
+
+      #controls {
+        position: absolute;
+        z-index: 2;
+        left: 25px;
+        top: 25px;
       }
 
       label{
-      	font-size: 12px;
-      	margin-right:0.75em;
+        font-size: 12px;
+        margin-right:0.75em;
       }
-
-
-
     </style>
+  </head>
+
+  <body>
+    <canvas id="mainCanvas">
+      Get a real browser!
+    </canvas>
+
+    <canvas id="topCanvas">
+      Get a real browser!
+    </canvas>
+
+    <canvas id="pictureCanvas">
+      Get a real browser!
+    </canvas>
+
+    <img id="img" src="../image/leaf.jpg">
+
+    <div id="controls">
+      <label>Tool:
+        <select id="toolChooser">
+          <option value="toolPencil" selected>Pencil</option>
+          <option value="toolLine">Line</option>
+          <option value="toolRectangle">Rectangle</option>
+          <option value="toolCircle">Circle</option>
+        </select>
+      </label>
+
+      <label>Stroke Color:
+        <select id="strokeStyleChooser">
+          <option value="red">red</option>
+          <option value="orange">orange</option>
+          <option value="yellow">yellow</option>
+          <option value="green">green</option>
+          <option value="blue">blue</option>
+          <option value="purple">purple</option>
+          <option value="pink">pink</option>
+          <option value="white">white</option>
+          <option value="black">black</option>
+          <option value="grey">grey</option>
+        </select>
+      </label>
+
+      <label>Line Width:
+        <select id="lineWidthChooser">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3" selected>3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+      </label>
 
 
-</head>
-<body>
-	<canvas id="mainCanvas">
-	Get a real browser!
-	</canvas>
-
-	<canvas id="topCanvas">
-	Get a real browser!
-	</canvas>
-
-	<canvas id="pictureCanvas">
-	Get a real browser!
-	</canvas>
-
-	<img id="img" src="../image/leaf.jpg">
-
-	<div id="controls">
-		<label>Tool:
-			<select id="toolChooser">
-				<option value="toolPencil" selected>Pencil</option>
-				<option value="toolLine">Line</option>
-				<option value="toolRectangle">Rectangle</option>
-				<option value="toolCircle">Circle</option>
-    		</select>
-    	</label>
-
-		<label>Stroke Color:
-			<select id="strokeStyleChooser">
-				<option value="red">red</option>
-				<option value="orange">orange</option>
-        		<option value="yellow">yellow</option>
-        		<option value="green">green</option>
-				<option value="blue">blue</option>
-        		<option value="purple">purple</option>
-        		<option value="pink">pink</option>
-				<option value="white">white</option>
-        		<option value="black">black</option>
-        		<option value="grey">grey</option>
-    		</select>
-    	</label>
-
-    	<label>Line Width:
-			<select id="lineWidthChooser">
-				<option value="1">1</option>
-				<option value="2">2</option>
-        		<option value="3" selected>3</option>
-        		<option value="4">4</option>
-				<option value="5">5</option>
-        		<option value="6">6</option>
-        		<option value="7">7</option>
-				<option value="8">8</option>
-        		<option value="9">9</option>
-        		<option value="10">10</option>
-    		</select>
-    	</label>
+      <label>Fill Color:
+        <select id="fillColorChooser">
+          <option value="red">red</option>
+          <option value="orange">orange</option>
+          <option value="yellow">yellow</option>
+          <option value="green">green</option>
+          <option value="blue" selected>blue</option>
+          <option value="purple">purple</option>
+          <option value="pink">pink</option>
+          <option value="white">white</option>
+          <option value="black">black</option>
+          <option value="grey">grey</option>
+        </select>
+      </label>
 
 
-		<label>Fill Color:
-			<select id="fillColorChooser">
-				<option value="red">red</option>
-				<option value="orange">orange</option>
-        		<option value="yellow">yellow</option>
-        		<option value="green">green</option>
-				<option value="blue" selected>blue</option>
-        		<option value="purple">purple</option>
-        		<option value="pink">pink</option>
-				<option value="white">white</option>
-        		<option value="black">black</option>
-        		<option value="grey">grey</option>
-    		</select>
-    	</label>
-
-
-    	<span><input id="clearButton" type="button" value="Clear"/></span>
-    	<span><input id="exportButton" type="button" value="Export"/></span>
-			<span><input id="addPicture" type="button" value="Add Picture"/></span>
+      <span><input id="clearButton" type="button" value="Clear"/></span>
+      <span><input id="exportButton" type="button" value="Export"/></span>
+      <span><input id="addPicture" type="button" value="Add Picture"/></span>
     </div>
 
-	<script>
-	"use strict";
-	window.onload = init;
+    <script>
+      "use strict";
+      window.onload = init;
 
-	// GLOBALS
-	var canvas,ctx,dragging=false,lineWidth,strokeStyle;
-	var currentTool, fillStyle, origin;
-	var topCanvas, topCtx;
-	var picCanvas, picCtx;
-	var img;
+      // GLOBALS
+      var canvas,ctx,dragging=false,lineWidth,strokeStyle;
+      var currentTool, fillStyle, origin;
+      var topCanvas, topCtx;
+      var picCanvas, picCtx;
+      var img;
 
-	// CONSTANTS
-	var DEFAULT_LINE_WIDTH = 3;
-	var DEFAULT_STROKE_STYLE = "red";
-	var DEFAULT_STROKE_STYLE = "red";
-	var DEFAULT_FILL_STYLE = "blue";
-	var TOOL_PENCIL = "toolPencil";
-	var TOOL_RECTANGLE = "toolRectangle";
-	var TOOL_CIRCLE = "toolCircle";
-	var TOOL_LINE = "toolLine";
+      // CONSTANTS
+      var DEFAULT_LINE_WIDTH = 3;
+      var DEFAULT_STROKE_STYLE = "red";
+      var DEFAULT_STROKE_STYLE = "red";
+      var DEFAULT_FILL_STYLE = "blue";
+      var TOOL_PENCIL = "toolPencil";
+      var TOOL_RECTANGLE = "toolRectangle";
+      var TOOL_CIRCLE = "toolCircle";
+      var TOOL_LINE = "toolLine";
 
-	// FUNCTIONS
-	function init(){
-		// initialize some globals
-		canvas = document.querySelector('#mainCanvas');
-		ctx = canvas.getContext('2d');
-		topCanvas = document.querySelector('#topCanvas');
-		topCtx = topCanvas.getContext('2d');
-		picCanvas = document.querySelector('#pictureCanvas');
-		picCtx = picCanvas.getContext('2d');
-		img = document.querySelector('#img');
+      // FUNCTIONS
+      function init(){
+        // initialize some globals
+        canvas = document.querySelector('#mainCanvas');
+        ctx = canvas.getContext('2d');
+        topCanvas = document.querySelector('#topCanvas');
+        topCtx = topCanvas.getContext('2d');
+        picCanvas = document.querySelector('#pictureCanvas');
+        picCtx = picCanvas.getContext('2d');
+        img = document.querySelector('#img');
 
-		lineWidth = DEFAULT_LINE_WIDTH;
-		strokeStyle = DEFAULT_STROKE_STYLE;
-		fillStyle = DEFAULT_FILL_STYLE;
-		currentTool = TOOL_PENCIL;
-		origin = {};
+        lineWidth = DEFAULT_LINE_WIDTH;
+        strokeStyle = DEFAULT_STROKE_STYLE;
+        fillStyle = DEFAULT_FILL_STYLE;
+        currentTool = TOOL_PENCIL;
+        origin = {};
 
-		topCtx.lineWidth = ctx.lineWidth = lineWidth;
-		topCtx.strokeStyle = ctx.strokeStyle = strokeStyle;
-		topCtx.fillStyle = ctx.fillStyle = fillStyle;
-		topCtx.lineCap = ctx.lineCap = "round"
-		topCtx.lineJoin = ctx.lineJoin = "round";
+        topCtx.lineWidth = ctx.lineWidth = lineWidth;
+        topCtx.strokeStyle = ctx.strokeStyle = strokeStyle;
+        topCtx.fillStyle = ctx.fillStyle = fillStyle;
+        topCtx.lineCap = ctx.lineCap = "round"
+          topCtx.lineJoin = ctx.lineJoin = "round";
 
-		topCanvas.addEventListener('touchstart', dotouchdown);
-		topCanvas.addEventListener('touchmove', dotouchmove);
-		topCanvas.addEventListener('touchend', dotouchup);
-		topCanvas.addEventListener('touchcancel', dotouchout);
+        topCanvas.addEventListener('touchstart', dotouchdown);
+        topCanvas.addEventListener('touchmove', dotouchmove);
+        topCanvas.addEventListener('touchend', dotouchup);
+        topCanvas.addEventListener('touchcancel', dotouchout);
 
-		document.querySelector('#lineWidthChooser').onchange = doLineWidthChange;
-		document.querySelector('#strokeStyleChooser').onchange = doStrokeColorChange;
-		document.querySelector('#fillColorChooser').onchange = doFillColorChange;
+        document.querySelector('#lineWidthChooser').onchange = doLineWidthChange;
+        document.querySelector('#strokeStyleChooser').onchange = doStrokeColorChange;
+        document.querySelector('#fillColorChooser').onchange = doFillColorChange;
 
-		document.querySelector('#toolChooser').onchange = function(e){
-			currentTool = e.target.value;
-			console.log("currentTool="+currentTool);
-		};
+        document.querySelector('#toolChooser').onchange = function(e){
+          currentTool = e.target.value;
+          console.log("currentTool="+currentTool);
+        };
 
-		document.querySelector('#exportButton').onclick = doExport;
-		document.querySelector('#clearButton').onclick = doClear;
-		document.querySelector('#addPicture').onclick = addPicture;
-	}
+        document.querySelector('#exportButton').onclick = doExport;
+        document.querySelector('#clearButton').onclick = doClear;
+        document.querySelector('#addPicture').onclick = addPicture;
+      }
 
+      // EVENT CALLBACK FUNCTIONS
+      function clearTopCanvas(){
+        topCtx.clearRect(0,0,topCtx.canvas.width,topCtx.canvas.height);
+      }
 
-	// EVENT CALLBACK FUNCTIONS
-	function clearTopCanvas(){
-		topCtx.clearRect(0,0,topCtx.canvas.width,topCtx.canvas.height);
-	}
+      function doLineWidthChange(e){
+        lineWidth = e.target.value;
+      }
 
-	function doLineWidthChange(e){
-		lineWidth = e.target.value;
-	}
+      function doStrokeColorChange(e){
+        strokeStyle = e.target.value;
+      }
 
-	function doStrokeColorChange(e){
-		strokeStyle = e.target.value;
-	}
+      function doFillColorChange(e){
+        fillStyle = e.target.value;
+      }
 
-	function doFillColorChange(e){
-		fillStyle = e.target.value;
-	}
+      function dotouchdown(e){
+        dragging = true;
+        //var touch = gettouch(e);
+        var touch = getTouchCoords(e, topCanvas);
+        console.log('touch down', touch, e, topCanvas.offsetTop)
+          switch(currentTool){
+            case TOOL_PENCIL:
+              ctx.beginPath();
+              ctx.moveTo(touch.x, touch.y);
+              break;
 
-	function dotouchdown(e){
-		dragging = true;
-		//var touch = gettouch(e);
-		var touch = getTouchCoords(e, topCanvas);
-		console.log('touch down', touch, e, topCanvas.offsetTop)
-		switch(currentTool){
-			case TOOL_PENCIL:
-				ctx.beginPath();
-				ctx.moveTo(touch.x, touch.y);
-				break;
+            case TOOL_RECTANGLE:
+            case TOOL_LINE:
+            case TOOL_CIRCLE:
+              origin.x = touch.x;
+              origin.y = touch.y;
+              break;
+          }
+      }
 
-			case TOOL_RECTANGLE:
-			case TOOL_LINE:
-			case TOOL_CIRCLE:
-				origin.x = touch.x;
-				origin.y = touch.y;
-				break;
-		}
-	}
+      function dotouchmove(e) {
+        if(!dragging) return;
+        // var touch = gettouch(e);
+        var touch = getTouchCoords(e, topCanvas);
+        console.log('touch move')
 
- 	function dotouchmove(e) {
- 		if(!dragging) return;
-		// var touch = gettouch(e);
-		var touch = getTouchCoords(e, topCanvas);
-		console.log('touch move')
-		switch(currentTool){
-			case TOOL_PENCIL:
-				ctx.strokeStyle = strokeStyle;
-				ctx.lineWidth = lineWidth;
-				ctx.lineTo(touch.x, touch.y);
-				ctx.stroke();
-				break;
+        switch(currentTool) {
+          case TOOL_PENCIL:
+            ctx.strokeStyle = strokeStyle;
+            ctx.lineWidth = lineWidth;
+            ctx.lineTo(touch.x, touch.y);
+            ctx.stroke();
+            break;
 
-			case TOOL_RECTANGLE:
-				var x = Math.min(touch.x,origin.x);
-				var y = Math.min(touch.y,origin.y);
-				var w = Math.abs(touch.x - origin.x);
-				var h = Math.abs(touch.y - origin.y);
+          case TOOL_RECTANGLE:
+            var x = Math.min(touch.x,origin.x);
+            var y = Math.min(touch.y,origin.y);
+            var w = Math.abs(touch.x - origin.x);
+            var h = Math.abs(touch.y - origin.y);
 
-				topCtx.strokeStyle = strokeStyle;
-				topCtx.fillStyle = fillStyle;
-				topCtx.lineWidth = lineWidth;
+            topCtx.strokeStyle = strokeStyle;
+            topCtx.fillStyle = fillStyle;
+            topCtx.lineWidth = lineWidth;
 
-				clearTopCanvas();
+            clearTopCanvas();
 
-				topCtx.fillRect(x,y,w,h);
-				topCtx.strokeRect(x,y,w,h);
-				break;
+            topCtx.fillRect(x,y,w,h);
+            topCtx.strokeRect(x,y,w,h);
+            break;
 
-			case TOOL_LINE:
-				topCtx.beginPath();
-				topCtx.moveTo(origin.x,origin.y);
-				topCtx.lineTo(touch.x,touch.y);
+          case TOOL_LINE:
+            topCtx.beginPath();
+            topCtx.moveTo(origin.x,origin.y);
+            topCtx.lineTo(touch.x,touch.y);
 
-				topCtx.strokeStyle = strokeStyle;
-				topCtx.lineWidth = lineWidth;
+            topCtx.strokeStyle = strokeStyle;
+            topCtx.lineWidth = lineWidth;
 
-				clearTopCanvas();
+            clearTopCanvas();
 
-				topCtx.stroke();
-				break;
+            topCtx.stroke();
+            break;
 
-			case TOOL_CIRCLE:
-				var radius = Math.abs(touch.x-origin.x);
+          case TOOL_CIRCLE:
+            var radius = Math.abs(touch.x-origin.x);
 
-				topCtx.beginPath();
-				topCtx.arc(origin.x, origin.y, radius,0,2*Math.PI, false);
+            topCtx.beginPath();
+            topCtx.arc(origin.x, origin.y, radius,0,2*Math.PI, false);
 
-				topCtx.strokeStyle = strokeStyle;
-				topCtx.fillStyle = fillStyle;
-				topCtx.lineWidth = lineWidth;
+            topCtx.strokeStyle = strokeStyle;
+            topCtx.fillStyle = fillStyle;
+            topCtx.lineWidth = lineWidth;
 
-				clearTopCanvas();
+            clearTopCanvas();
 
-				topCtx.fill();
-				topCtx.stroke();
-				break;
-		}
-	}
+            topCtx.fill();
+            topCtx.stroke();
+            break;
+        }
+      }
 
-	function dotouchup(e) {
-		console.log('touch up')
-		switch(currentTool){
-			case TOOL_PENCIL:
-				ctx.closePath();
-				break;
+      function dotouchup(e) {
+        console.log('touch up')
+          switch(currentTool){
+            case TOOL_PENCIL:
+              ctx.closePath();
+              break;
 
-			case TOOL_RECTANGLE:
-			case TOOL_LINE:
-			case TOOL_CIRCLE:
-				if(dragging){
-					ctx.drawImage(topCanvas,0,0);
-					clearTopCanvas();
-				}
-				break;
-		}
-		dragging = false;
-	}
+            case TOOL_RECTANGLE:
+            case TOOL_LINE:
+            case TOOL_CIRCLE:
+              if(dragging){
+                ctx.drawImage(topCanvas,0,0);
+                clearTopCanvas();
+              }
+              break;
+          }
+        dragging = false;
+      }
 
-	// if the user drags out of the canvas
-	function dotouchout(e) {
-		switch(currentTool){
-			case TOOL_PENCIL:
-				ctx.closePath();
-				break;
+      // if the user drags out of the canvas
+      function dotouchout(e) {
+        switch(currentTool){
+          case TOOL_PENCIL:
+            ctx.closePath();
+            break;
 
-			case TOOL_RECTANGLE:
-			case TOOL_LINE:
-			case TOOL_CIRCLE:
-				if(dragging){
-					clearTopCanvas();
-					break;
-				}
-		}
-		dragging = false;
-	}
+          case TOOL_RECTANGLE:
+          case TOOL_LINE:
+          case TOOL_CIRCLE:
+            if(dragging){
+              clearTopCanvas();
+              break;
+            }
+        }
+        dragging = false;
+      }
 
-	function doClear(){
-		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-	}
+      function doClear(){
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+      }
 
-	function doExport(){
-		// open a new window and load the image in it
-		// http://www.w3schools.com/jsref/met_win_open.asp
-		picCtx.drawImage(canvas,0,0);
-		var data = picCanvas.toDataURL();
+      function doExport(){
+        // open a new window and load the image in it
+        // http://www.w3schools.com/jsref/met_win_open.asp
+        picCtx.drawImage(canvas,0,0);
+        var data = picCanvas.toDataURL();
 
-		//add code here to sent final picture to the server
+        //add code here to sent final picture to the server
 
-		console.log(data);
-		var windowName = "canvasImage";
-		var windowOptions = "left=0,top=0,width=" + canvas.width + ",height=" + canvas.height +",toolbar=0,resizable=0";
-		var myWindow = window.open(data,windowName,windowOptions);
-		myWindow.resizeTo(canvas.width,canvas.height); // needed so Chrome would display image
-	 }
+        console.log(data);
+        var windowName = "canvasImage";
+        var windowOptions = "left=0,top=0,width=" + canvas.width + ",height=" + canvas.height +",toolbar=0,resizable=0";
+        var myWindow = window.open(data,windowName,windowOptions);
+        myWindow.resizeTo(canvas.width,canvas.height); // needed so Chrome would display image
+      }
 
+      // UTILITY FUNCTIONS
 
-	// UTILITY FUNCTIONS
+      // Function Name: gettouch()
+      // returns touch position in local coordinate system of element
+      function gettouch(e){
+        var touch = {}
+        touch.x = e.pageX - e.target.offsetLeft;
+        touch.y = e.pageY - e.target.offsetTop;
+        return touch;
+      }
 
-	// Function Name: gettouch()
-	// returns touch position in local coordinate system of element
-	function gettouch(e){
-		var touch = {}
-		touch.x = e.pageX - e.target.offsetLeft;
-		touch.y = e.pageY - e.target.offsetTop;
-		return touch;
-	}
+      function getTouchCoords(e, canvas){
+        var touch = {}
+        touch.x = e.touches[0].pageX - canvas.offsetLeft;
+        touch.y = e.touches[0].pageY - canvas.offsetTop;
+        return touch;
+      }
 
-	function getTouchCoords(e, canvas){
-		var touch = {}
-		touch.x = e.touches[0].pageX - canvas.offsetLeft;
-		touch.y = e.touches[0].pageY - canvas.offsetTop;
-		return touch;
-	}
+      function addPicture(){
+        picCtx.drawImage(img,0,0);
+      }
 
-	function addPicture(){
-		picCtx.drawImage(img,0,0);
-	}
+      function resizeCanvas() {
+        ctx.canvas.width  = window.innerWidth - 30;
+        ctx.canvas.height = window.innerHeight - 30;
+        topCtx.canvas.width  = window.innerWidth - 30;
+        topCtx.canvas.height = window.innerHeight - 30;
+        picCtx.canvas.width  = window.innerWidth - 30;
+        picCtx.canvas.height = window.innerHeight - 30;
+      }
 
-	function resizeCanvas() {
-	  ctx.canvas.width  = window.innerWidth - 30;
-	  ctx.canvas.height = window.innerHeight - 30;
-	  topCtx.canvas.width  = window.innerWidth - 30;
-	  topCtx.canvas.height = window.innerHeight - 30;
-		picCtx.canvas.width  = window.innerWidth - 30;
-		picCtx.canvas.height = window.innerHeight - 30;
-	}
-
-	window.onresize = resizeCanvas;
-
-	</script>
-</body>
+      window.onresize = resizeCanvas;
+    </script>
+  </body>
 </html>
