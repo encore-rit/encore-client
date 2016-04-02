@@ -12,6 +12,10 @@
       body {
         background: #eeeeee;
         font-family: tahoma, verdana, sans serif;
+
+        height: 100%;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
       }
       img{
         position: absolute;
@@ -67,7 +71,7 @@
       Get a real browser!
     </canvas>
 
-    <img id="img" src="../image/leaf.jpg">
+    <img id="img" src="./images/leaf.jpg">
 
     <div id="controls">
       <label>Tool:
@@ -381,5 +385,6 @@
 
       window.onresize = resizeCanvas;
     </script>
+    <script src="./libs/inobounce.min.js"></script>
   </body>
 </html>
