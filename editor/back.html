@@ -12,10 +12,6 @@
       body {
         background: #eeeeee;
         font-family: tahoma, verdana, sans serif;
-
-        height: 100%;
-        overflow: auto;
-        -webkit-overflow-scrolling: touch;
       }
       img{
         position: absolute;
@@ -66,12 +62,6 @@
     <canvas id="topCanvas">
       Get a real browser!
     </canvas>
-
-    <canvas id="pictureCanvas">
-      Get a real browser!
-    </canvas>
-
-    <img id="img" src="./images/leaf.jpg">
 
     <div id="controls">
       <label>Tool:
@@ -163,9 +153,6 @@
         ctx = canvas.getContext('2d');
         topCanvas = document.querySelector('#topCanvas');
         topCtx = topCanvas.getContext('2d');
-        picCanvas = document.querySelector('#pictureCanvas');
-        picCtx = picCanvas.getContext('2d');
-        img = document.querySelector('#img');
 
         lineWidth = DEFAULT_LINE_WIDTH;
         strokeStyle = DEFAULT_STROKE_STYLE;
@@ -197,6 +184,7 @@
         document.querySelector('#clearButton').onclick = doClear;
         document.querySelector('#addPicture').onclick = addPicture;
       }
+
 
       // EVENT CALLBACK FUNCTIONS
       function clearTopCanvas(){
@@ -240,60 +228,59 @@
         // var touch = gettouch(e);
         var touch = getTouchCoords(e, topCanvas);
         console.log('touch move')
+          switch(currentTool){
+            case TOOL_PENCIL:
+              ctx.strokeStyle = strokeStyle;
+              ctx.lineWidth = lineWidth;
+              ctx.lineTo(touch.x, touch.y);
+              ctx.stroke();
+              break;
 
-        switch(currentTool) {
-          case TOOL_PENCIL:
-            ctx.strokeStyle = strokeStyle;
-            ctx.lineWidth = lineWidth;
-            ctx.lineTo(touch.x, touch.y);
-            ctx.stroke();
-            break;
+            case TOOL_RECTANGLE:
+              var x = Math.min(touch.x,origin.x);
+              var y = Math.min(touch.y,origin.y);
+              var w = Math.abs(touch.x - origin.x);
+              var h = Math.abs(touch.y - origin.y);
 
-          case TOOL_RECTANGLE:
-            var x = Math.min(touch.x,origin.x);
-            var y = Math.min(touch.y,origin.y);
-            var w = Math.abs(touch.x - origin.x);
-            var h = Math.abs(touch.y - origin.y);
+              topCtx.strokeStyle = strokeStyle;
+              topCtx.fillStyle = fillStyle;
+              topCtx.lineWidth = lineWidth;
 
-            topCtx.strokeStyle = strokeStyle;
-            topCtx.fillStyle = fillStyle;
-            topCtx.lineWidth = lineWidth;
+              clearTopCanvas();
 
-            clearTopCanvas();
+              topCtx.fillRect(x,y,w,h);
+              topCtx.strokeRect(x,y,w,h);
+              break;
 
-            topCtx.fillRect(x,y,w,h);
-            topCtx.strokeRect(x,y,w,h);
-            break;
+            case TOOL_LINE:
+              topCtx.beginPath();
+              topCtx.moveTo(origin.x,origin.y);
+              topCtx.lineTo(touch.x,touch.y);
 
-          case TOOL_LINE:
-            topCtx.beginPath();
-            topCtx.moveTo(origin.x,origin.y);
-            topCtx.lineTo(touch.x,touch.y);
+              topCtx.strokeStyle = strokeStyle;
+              topCtx.lineWidth = lineWidth;
 
-            topCtx.strokeStyle = strokeStyle;
-            topCtx.lineWidth = lineWidth;
+              clearTopCanvas();
 
-            clearTopCanvas();
+              topCtx.stroke();
+              break;
 
-            topCtx.stroke();
-            break;
+            case TOOL_CIRCLE:
+              var radius = Math.abs(touch.x-origin.x);
 
-          case TOOL_CIRCLE:
-            var radius = Math.abs(touch.x-origin.x);
+              topCtx.beginPath();
+              topCtx.arc(origin.x, origin.y, radius,0,2*Math.PI, false);
 
-            topCtx.beginPath();
-            topCtx.arc(origin.x, origin.y, radius,0,2*Math.PI, false);
+              topCtx.strokeStyle = strokeStyle;
+              topCtx.fillStyle = fillStyle;
+              topCtx.lineWidth = lineWidth;
 
-            topCtx.strokeStyle = strokeStyle;
-            topCtx.fillStyle = fillStyle;
-            topCtx.lineWidth = lineWidth;
+              clearTopCanvas();
 
-            clearTopCanvas();
-
-            topCtx.fill();
-            topCtx.stroke();
-            break;
-        }
+              topCtx.fill();
+              topCtx.stroke();
+              break;
+          }
       }
 
       function dotouchup(e) {
@@ -340,10 +327,9 @@
       function doExport(){
         // open a new window and load the image in it
         // http://www.w3schools.com/jsref/met_win_open.asp
-        picCtx.drawImage(canvas,0,0);
-        var data = picCanvas.toDataURL();
+        var data = canvas.toDataURL();
 
-        //add code here to sent final picture to the server
+        //add code here to sent final back picture to the server
 
         console.log(data);
         var windowName = "canvasImage";
@@ -351,6 +337,7 @@
         var myWindow = window.open(data,windowName,windowOptions);
         myWindow.resizeTo(canvas.width,canvas.height); // needed so Chrome would display image
       }
+
 
       // UTILITY FUNCTIONS
 
@@ -370,21 +357,15 @@
         return touch;
       }
 
-      function addPicture(){
-        picCtx.drawImage(img,0,0);
-      }
 
       function resizeCanvas() {
         ctx.canvas.width  = window.innerWidth - 30;
         ctx.canvas.height = window.innerHeight - 30;
         topCtx.canvas.width  = window.innerWidth - 30;
         topCtx.canvas.height = window.innerHeight - 30;
-        picCtx.canvas.width  = window.innerWidth - 30;
-        picCtx.canvas.height = window.innerHeight - 30;
       }
 
       window.onresize = resizeCanvas;
     </script>
-    <script src="./libs/inobounce.min.js"></script>
   </body>
 </html>

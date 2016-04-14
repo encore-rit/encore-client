@@ -20,7 +20,7 @@
   <div id="container">
 
     <header>
-      <h1>Artist Selection</h1>
+      <h1>Choose A Rock Icon</h1>
       <p></p>
     </header>
 
@@ -30,23 +30,25 @@
         <div id="loaderCircle"></div>
       </div>
 
-      <select id="artistSelect">
-        <option>--Choose Artist--</option>
-      </select>
+      <input type="text" id="stageName" placeholder="Stage Name Here">
+      <input type="button" id="stageNameBtn" value="Rock!">
+
+      <div class="grid"></div>
 
     </div>
 
   </div>
 
-  <!-- include jQuery -->
+  <!-- include jQuery  and packery-->
   <script src="./libs/jquery.min.js"></script>
+  <script src="./libs/packery.pkgd.min.js"></script>
 
   <!-- Once the page is loaded, initalize the plug-in. -->
   <script type="text/javascript">
     (function ($) {
       var handler = null,
           isLoading = false,
-          fullData;
+          userData={};
 
       /**
        * Loads data from the API.
@@ -78,34 +80,62 @@
         $('#loaderCircle').hide();
 
         $.each(data, function(i, value) {
-          $('#artistSelect').append($('<option>').text(value.name).attr('value', value.name));
+          $('.grid').append($('<div>').attr('class','grid-item').attr('data-artist',value.name).append($('<img>').attr('src',value.photoUrl)).append($('<h2>').append($('<span>').text(value.name))).append($('<span>').attr('class','artistInfo').append($('<span>').append($('<h3>').text(value.name)).append($('<p>').text(value.dob +"-"+ value.dod))).append($('<img>').attr("src", value.sigUrl)).append($('<p>').text(value.bio)).append($('<div>').attr('class','artifacts').attr('id',value.name.replace(/\s/g, '')))));
+          
+          $.each(value.artifacts, function(i, v) {
+            $('#'+value.name.replace(/\s/g, '')+".artifacts").append($('<h4>').text("Rock Hall Artifacts:")).append($('<ul>').append($('<li>').text("Name: " + v.name)).append($('<li>').text("Description: " + v.description)).append($('<li>').text("Location: " + v.location))).append($('<input>').attr("type","button").attr("value","Choose Artist").attr("id","chooseBtn"));
+          });
+        });
+
+        $('.artistInfo').hide();
+
+        var $grid = $('.grid').packery({
+          itemSelector: '.grid-item',
+          gutter: 10
         });
       };
 
-      $('select').on('change', function() {
+      $('#stageNameBtn').on('click', function(){
+        userData.name = $('#stageName').val();
+      });
+
+      $('.grid').on('click', '.grid-item', function(event) {
         isLoading = true;
         $('#loaderCircle').show();
 
-        var name = this.value;
+        $('.artistInfo').not($(this).children('.artistInfo')).hide();
+        $($(this).children('.artistInfo')).fadeToggle(110);
 
-        $.each(fullData, function(i, value) {
-          if(value.name == name){
-            $('#main').append($('<p>').text(value.dob +"-"+ value.dod));
-            $('#main').append($('<p>').text(value.bio));
-            $('#main').append($('<img>').attr("src", value.sigUrl));
-            $('#main').append($('<img>').attr("src", value.photoUrl));
+        $('.grid-item h2').not($(this).children('h2')).fadeIn(200);
+        $($(this).children('h2')).fadeToggle(200);
 
-            $.each(value.artifacts, function(i, v) {
-              $('#main').append($('<div>').attr("id", "artifacts"));
-              $('#artifacts').append($('<h4>').text("Artifacts:"));
-              $('#artifacts').append($('<p>').text("Name: " + v.name));
-              $('#artifacts').append($('<p>').text("Description: " + v.description));
-              $('#artifacts').append($('<p>').text("Location: " + v.location));
+        $('.grid-item').not(event.currentTarget).removeClass('grid-item--large');
+        $(event.currentTarget).toggleClass('grid-item--large');
+
+        $('.grid-item').css('zIndex',1);
+        $(this).css('zIndex', 9999);
+
+        var name = this.dataset.artist;
+
+        $('#chooseBtn').on('click', function(){
+            userData.artistId = name;
+
+            $.ajax({
+              url: "http://localhost:1339/users",
+              method: 'POST',
+              dataType: 'json',
+              data: userData,
+              success: showResult,
+              error: function(err) {
+                console.log('err', err)
+              }
             });
-            return;
-          }
         });
       });
+
+      function showResult(){
+
+      }
 
       // Load first data from the API.
       loadData();
