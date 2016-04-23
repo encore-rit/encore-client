@@ -11,13 +11,14 @@
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="../colorSlider/colorSlider.js"></script>
+	<script src="js/filter.js"></script>
 	<link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css' rel='stylesheet' type='text/css'>
 	<link href='../colorSlider/colorSlider.css' rel='stylesheet' type='text/css'>
 
 
 	 <style>
       body {
-         background: #eeeeee;
+         background: black;
          font-family: tahoma, verdana, sans serif;
 				 height: 100%;
 				 overflow: auto;
@@ -88,6 +89,12 @@
 			<span><input id="addPicture" type="button" value="Add Picture"/></span>
 			<span><input id="undoButton" type="button" value="Undo"/></span>
 			<span><input id="redoButton" type="button" value="Redo"/></span>
+			<span><input id="grayscaleFilter" type="button" value="Black and White"/></span>
+			<span><input id="invertFilter" type="button" value="Invert"/></span>
+			<span><input id="redFilter" type="button" value="Red"/></span>
+			<span><input id="blueFilter" type="button" value="Blue"/></span>
+			<span><input id="greenFilter" type="button" value="Green"/></span>
+			<span><input id="noFilter" type="button" value="No Filter"/></span>
     </div>
 
 		<script>
@@ -129,7 +136,15 @@
 			document.querySelector('#addPicture').onclick = addPicture;
 			document.querySelector('#undoButton').onclick = canvasUndo;
 			document.querySelector('#redoButton').onclick = canvasRedo;
-			resizeCanvas;
+			document.querySelector('#invertFilter').onclick = invertFilter;
+			document.querySelector('#grayscaleFilter').onclick = grayscaleFilter;
+			document.querySelector('#redFilter').onclick = redFilter;
+			document.querySelector('#blueFilter').onclick = blueFilter;
+			document.querySelector('#greenFilter').onclick = greenFilter;
+			document.querySelector('#noFilter').onclick = noFilter;
+
+
+			window.onload = resizeCanvas;
 		}
 		// EVENT CALLBACK FUNCTIONS
 		function doLineWidthChange(e){
