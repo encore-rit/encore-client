@@ -28,19 +28,26 @@ body {
   width: 650px;
   height: 400px;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 140px;
   text-align: center; }
 
-.stageName span {
-  position: absolute;
-  left: 330px;
-  top: 100px; }
+.stageName p:first-of-type {
+  margin: -7px;
+  font-size: 20px; }
 
+.stageName p {
+  margin: 110px 0 10px 0; }
+
+/*.stageName span{
+  position: absolute;
+  left: 32%;
+  top: 140px;
+}*/
 .stageName h1 {
   font-family: 'edoregular';
   font-weight: 100;
-  font-size: 150px;
-  margin: 50px 0px; }
+  font-size: 125px;
+  margin: 0px; }
 
 .stageName input[type="button"] {
   background: #eee;
@@ -58,14 +65,15 @@ body {
 
 .stageName input[type="text"] {
   background-color: transparent;
-  margin-right: 15px;
+  /*margin-right:15px;*/
   border: 2px solid #eee;
   border-radius: 3px;
   color: white;
   padding: 5px;
-  width: 200px;
+  width: 154px;
   font-size: 12px;
-  text-align: center; }
+  text-align: center;
+  text-transform: uppercase; }
 
 header h1 {
   font-family: 'edoregular';
@@ -95,8 +103,8 @@ header p {
 
 .grid-item {
   float: left;
-  height: 220px;
-  width: 220px; }
+  height: 170px;
+  width: 170px; }
 
 .grid-item img {
   position: relative;
@@ -108,8 +116,8 @@ header p {
   transition: .5s; }
 
 .grid-item--large {
-  width: 450px;
-  height: 450px; }
+  width: 350px;
+  height: 350px; }
 
 .grid-item--large img {
   -webkit-filter: grayscale(0%);
@@ -119,9 +127,9 @@ header p {
 h2 {
   position: absolute;
   text-align: center;
-  top: 73.33333px;
+  top: 56.66667px;
   left: 0;
-  width: 220px; }
+  width: 170px; }
 
 h2 span {
   color: white;
@@ -136,20 +144,20 @@ h2 span {
  **/
 .artistInfo {
   color: #333;
-  font: bold 14px Helvetica, Sans-Serif;
+  font: bold 10px Helvetica, Sans-Serif;
   font-weight: 400;
   letter-spacing: -.5px;
   background: rgba(255, 255, 255, 0.8);
-  padding: 27.5px;
+  padding: 21.25px;
   vertical-align: bottom;
   position: absolute;
   bottom: 0;
   left: 0;
-  max-height: 440px; }
+  max-height: 340px; }
 
 .artistInfo img {
   width: auto;
-  height: 44px;
+  height: 34px;
   display: inline-block;
   float: right; }
 
@@ -170,7 +178,7 @@ h2 span {
   padding: 5px;
   border: 2px solid black;
   font-weight: bold;
-  font-size: 9.33333px;
+  font-size: 6.66667px;
   text-transform: uppercase; }
 
 .artistInfo input[type="button"]:hover {
@@ -180,7 +188,7 @@ h2 span {
   text-transform: uppercase;
   margin: 0;
   color: #F26395;
-  font-size: 28px; }
+  font-size: 20px; }
 
 .artistInfo h4 {
   margin: 0;
@@ -215,19 +223,19 @@ h2 span {
   color: black;
   position: absolute;
   width: 90%;
-  top: 22%;
+  top: 15%;
   margin: 0 auto;
-  font-size: 50px;
+  font-size: 40px;
   text-align: center; }
 
 .bubble p {
   margin: -10px 0;
-  max-width: 350px; }
+  max-width: 325px; }
 
 .bubble span {
   position: absolute;
-  left: 36%;
-  top: 100px;
+  left: 33%;
+  top: 105px;
   width: 320px;
   height: 220px; }
 
@@ -243,7 +251,7 @@ h2 span {
   font-weight: 400;
   margin: 0 12px;
   width: 110px;
-  font-size: 14px;
+  font-size: 10px;
   text-transform: uppercase;
   -webkit-font-smoothing: antialiased; }
 

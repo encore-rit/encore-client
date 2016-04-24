@@ -99,16 +99,16 @@
         userData.artistId = chosenArtist;
         resetPage();
 
-        // $.ajax({
-        //   url: "http://localhost:1339/users",
-        //   method: 'POST',
-        //   dataType: 'json',
-        //   data: userData,
-        //   success: resetPage,
-        //   error: function(err) {
-        //     console.log('err', err)
-        //   }
-        // });
+        $.ajax({
+          url: "http://localhost:1339/users",
+          method: 'POST',
+          dataType: 'json',
+          data: userData,
+          success: resetPage,
+          error: function(err) {
+            console.log('err', err)
+          }
+        });
       });
   });
 
