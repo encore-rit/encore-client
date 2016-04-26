@@ -29,6 +29,7 @@
 			img{
 				position: absolute;
 				bottom: 10px;
+				display: none;
 			}
       #mainCanvas {
          position:absolute;
@@ -37,6 +38,13 @@
          top: 10px;
          box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
       }
+			#tmpCanvas {
+				 position:absolute;
+				 z-index: -2;
+				 left: 10px;
+				 top: 10px;
+				 cursor: crosshair;
+			}
 			#pictureCanvas {
 				position:absolute;
 				z-index: -1;
@@ -57,6 +65,9 @@
 </head>
 <body>
 	<canvas id="mainCanvas" width="700" height="500">
+	Get a real browser!
+	</canvas>
+	<canvas id="tmpCanvas" width="700" height="500">
 	Get a real browser!
 	</canvas>
 
@@ -104,8 +115,13 @@
 		window.onload = init;
 		// GLOBALS
 		var canvas,ctx,dragging=false,lineWidth,strokeStyle;
+		var tmpCanvas, tmpCtx;
 		var picCanvas, picCtx;
 		var img;
+
+		// Pencil Points
+		var ppts = [];
+
 		//making array for undo button. Picture the canvas everytime when the touch is release.
 		var canvasPushArray = new Array();
 		var canvasStep = -1;
@@ -117,6 +133,8 @@
 			// initialize some globals
 			canvas = document.querySelector('#mainCanvas');
 			ctx = canvas.getContext('2d');
+			tmpCanvas = document.querySelector('#tmpCanvas');
+			tmpCtx = canvas.getContext('2d');
 			picCanvas = document.querySelector('#pictureCanvas');
 			picCtx = picCanvas.getContext('2d');
 			img = document.querySelector('#img');
@@ -146,6 +164,13 @@
 			document.querySelector('#noFilter').onclick = noFilter;
 
 
+			//FIX THIS PAINTING COLOR
+			tmpCtx.lineWidth = 5;
+			tmpCtx.lineJoin = 'round';
+			tmpCtx.lineCap = 'round';
+			tmpCtx.strokeStyle = 'blue';
+			tmpCtx.fillStyle = 'blue';
+
 			window.onload = resizeCanvas;
 		}
 		// EVENT CALLBACK FUNCTIONS
@@ -158,37 +183,92 @@
 			// get location of mouse in canvas coordinates
 			var touch = getTouch(e);
 			// PENCIL TOOL
-			ctx.beginPath();
+			//ctx.beginPath();
 			// move pen to x,y of mouse
-			ctx.moveTo(touch.x, touch.y);
+			//ctx.moveTo(touch.x, touch.y);
 		}
 		function doTouchmove(e) {
 			// bail out if the mouse button is not down
 			if(!dragging) return;
 			// get location of touch in canvas coordinates
-			  var touch = getTouchCoords(e, canvas);
+			var touch = getTouchCoords(e, canvas);
 			// PENCIL TOOL
 			// set ctx.strokeStyle and ctx.lineWidth to correct global values
-			ctx.strokeStyle = strokeStyle;
-			ctx.lineWidth = lineWidth;
+			//ctx.strokeStyle = strokeStyle;
+			//ctx.lineWidth = lineWidth;
 			// draw a line to x,y of mouse
-			ctx.lineTo(touch.x,touch.y);
+			//ctx.lineTo(touch.x,touch.y);
 			// stroke the line
-			ctx.stroke();
+			//ctx.stroke();
+
+			//touch.x = typeof e.offsetX !== 'undefined' ? e.offsetX: e.layerX;
+			//touch.y = typeof e.offsetY !== 'undefined' ? e.offsetY: e.layerY;
+
+			ppts.push({x:touch.x, y:touch.y});
+			console.log(ppts);
+			onPaint(e);
+
 		}
 		//when the touch is up, push the canvas to the canvasPushArray and stop dragging
 		function doTouchup(e) {
 			console.log(e.type);
-			ctx.closePath();
+			//ctx.closePath();
+			//drawing tmp Canvas to the main canvas
+			ctx.drawImage(tmpCanvas, 0, 0);
+			console.log(tmpCanvas);
+			//clearing tmp canvas
+			//tmpCtx.clearRect(0, 0, tmpCanvas.width, tmpCanvas.height);
+			//emptying the pencil points
+			ppts = [];
+
 			dragging = false;
 			canvasPush();
 		}
 		// if the user drags out of the canvas
 		function doTouchout(e) {
 			console.log(e.type);
-			ctx.closePath();
+			//ctx.closePath();
 			dragging = false;
 		}
+
+		var onPaint = function(e) {
+			var touch = getTouchCoords(e, canvas);
+			ppts.push({x:touch.x, y:touch.y});
+
+			if (ppts.length < 3){
+				var b = ppts[0];
+				tmpCtx.beginPath();
+				tmpCtx.arc(b.x, b.y, tmpCtx.lineWidth / 2, 0, Math.PI * 2, !0);
+				tmpCtx.fill();
+				tmpCtx.closePath();
+
+				return;
+			}
+
+			// tmp canvas need to clear canvas before drawing
+			tmpCtx.clearRect(0, 0, tmpCanvas.width, tmpCanvas.height);
+
+			tmpCtx.beginPath();
+			tmpCtx.moveTo(ppts[0].x, ppts[0].y);
+
+			for (var i = 1; i < ppts.length -2; i++) {
+				var c = (ppts[i].x + ppts[i + 1].x) / 2;
+				var d = (ppts[i].y + ppts[i + 1].y) / 2;
+
+				tmpCtx.quadraticCurveTo(ppts[i].x, ppts[i].y, c, d);
+			}
+
+			// For the last 2 points
+			tmpCtx.quadraticCurveTo(
+				ppts[i].x,
+				ppts[i].y,
+				ppts[i + 1].x,
+				ppts[i + 1].y
+			);
+			tmpCtx.stroke();
+			console.log("paint as been call");
+		};
+
 		function doClear(){
 			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 		}
@@ -225,6 +305,8 @@
 		function resizeCanvas() {
 			ctx.canvas.width  = window.innerWidth - 30;
 			ctx.canvas.height = window.innerHeight - 30;
+			tmpCtx.canvas.height = window.innerHeight -30;
+			tmpCtx.canvas.width = window.innerWidth -30;
 			picCtx.canvas.width  = window.innerWidth - 30;
 			picCtx.canvas.height = window.innerHeight - 30;
 		}
