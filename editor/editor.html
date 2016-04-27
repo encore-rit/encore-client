@@ -145,6 +145,12 @@
 			ctx.strokeStyle = strokeStyle;
 			ctx.lineCap = "round"; // "butt", "round", "square" (default "butt")
 			ctx.lineJoin = "round"; // "round", "bevel", "miter" (default "miter")
+			//FIX THIS PAINTING COLOR
+			tmpCtx.lineWidth = lineWidth;
+			tmpCtx.lineJoin = 'round';
+			tmpCtx.lineCap = 'round';
+			tmpCtx.strokeStyle = strokeStyle;
+
 			// Hook up event listeners
 			canvas.addEventListener('touchstart', doTouchdown);
 			canvas.addEventListener('touchmove', doTouchmove);
@@ -164,14 +170,9 @@
 			document.querySelector('#noFilter').onclick = noFilter;
 
 
-			//FIX THIS PAINTING COLOR
-			tmpCtx.lineWidth = 5;
-			tmpCtx.lineJoin = 'round';
-			tmpCtx.lineCap = 'round';
-			tmpCtx.strokeStyle = 'blue';
-			tmpCtx.fillStyle = 'blue';
-
 			window.onload = resizeCanvas;
+			//push a blank canvas
+			canvasPush();
 		}
 		// EVENT CALLBACK FUNCTIONS
 		function doLineWidthChange(e){
@@ -182,40 +183,24 @@
 			dragging = true;
 			// get location of mouse in canvas coordinates
 			var touch = getTouch(e);
-			// PENCIL TOOL
-			//ctx.beginPath();
-			// move pen to x,y of mouse
-			//ctx.moveTo(touch.x, touch.y);
-		}
-		function doTouchmove(e) {
-			// bail out if the mouse button is not down
-			if(!dragging) return;
-			// get location of touch in canvas coordinates
-			var touch = getTouchCoords(e, canvas);
-			// PENCIL TOOL
-			// set ctx.strokeStyle and ctx.lineWidth to correct global values
-			//ctx.strokeStyle = strokeStyle;
-			//ctx.lineWidth = lineWidth;
-			// draw a line to x,y of mouse
-			//ctx.lineTo(touch.x,touch.y);
-			// stroke the line
-			//ctx.stroke();
-
-			//touch.x = typeof e.offsetX !== 'undefined' ? e.offsetX: e.layerX;
-			//touch.y = typeof e.offsetY !== 'undefined' ? e.offsetY: e.layerY;
-
 			ppts.push({x:touch.x, y:touch.y});
 			console.log(ppts);
 			onPaint(e);
-
+		}
+		function doTouchmove(e) {
+			// bail out if the touch button is not down
+			if(!dragging) return;
+			// get location of touch in canvas coordinates
+			var touch = getTouchCoords(e, canvas);
+			ppts.push({x:touch.x, y:touch.y});
+			console.log(ppts);
+			onPaint(e);
 		}
 		//when the touch is up, push the canvas to the canvasPushArray and stop dragging
 		function doTouchup(e) {
 			console.log(e.type);
-			//ctx.closePath();
 			//drawing tmp Canvas to the main canvas
 			ctx.drawImage(tmpCanvas, 0, 0);
-			console.log(tmpCanvas);
 			//clearing tmp canvas
 			//tmpCtx.clearRect(0, 0, tmpCanvas.width, tmpCanvas.height);
 			//emptying the pencil points
@@ -233,7 +218,7 @@
 
 		var onPaint = function(e) {
 			var touch = getTouchCoords(e, canvas);
-			ppts.push({x:touch.x, y:touch.y});
+			//ppts.push({x:touch.x, y:touch.y});
 
 			if (ppts.length < 3){
 				var b = ppts[0];
@@ -265,6 +250,9 @@
 				ppts[i + 1].x,
 				ppts[i + 1].y
 			);
+			// set ctx.strokeStyle and ctx.lineWidth to correct global values
+			tmpCtx.strokeStyle = strokeStyle;
+			tmpCtx.lineWidth = lineWidth;
 			tmpCtx.stroke();
 			console.log("paint as been call");
 		};
