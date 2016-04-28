@@ -10,13 +10,16 @@
 	<title>Photo Paint</title>
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-
+	
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    
 	<script src="../colorSlider/colorSlider.js"></script>
 	<script src="js/filter.js"></script>
 
 	<link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css' rel='stylesheet' type='text/css'>
 	<link href='../colorSlider/colorSlider.css' rel='stylesheet' type='text/css'>
+	
+	<script src="js/jquery.ui.touch-punch.min.js"></script>
 
 	 <style>
       body {
@@ -80,6 +83,7 @@
 	<div id="controls">
 
 			<div id="coloredSlider"></div>
+			<script>$('#coloredSlider').draggable();</script>
 
 			<label>Line Width:
         <select id="lineWidthChooser">
@@ -134,7 +138,7 @@
 			canvas = document.querySelector('#mainCanvas');
 			ctx = canvas.getContext('2d');
 			tmpCanvas = document.querySelector('#tmpCanvas');
-			tmpCtx = canvas.getContext('2d');
+			tmpCtx = tmpCanvas.getContext('2d');
 			picCanvas = document.querySelector('#pictureCanvas');
 			picCtx = picCanvas.getContext('2d');
 			img = document.querySelector('#img');
