@@ -20,7 +20,9 @@
 	<link href='../colorSlider/colorSlider.css' rel='stylesheet' type='text/css'>
 	
 	<script src="js/jquery.ui.touch-punch.min.js"></script>
-
+	<script>
+	$('.ui-widget-content').draggable();
+	</script>
 	 <style>
       body {
          background: black;
@@ -43,14 +45,14 @@
       }
 			#tmpCanvas {
 				 position:absolute;
-				 z-index: -2;
+				 z-index: -1;
 				 left: 10px;
 				 top: 10px;
 				 cursor: crosshair;
 			}
 			#pictureCanvas {
 				position:absolute;
-				z-index: -1;
+				z-index: -2;
 				left: 10px;
 				top: 10px;
 			}
@@ -63,6 +65,9 @@
       label{
       	font-size: 12px;
       	margin-right:0.75em;
+      }
+      span{
+      	background: white;
       }
     </style>
 </head>
@@ -83,7 +88,6 @@
 	<div id="controls">
 
 			<div id="coloredSlider"></div>
-			<script>$('#coloredSlider').draggable();</script>
 
 			<label>Line Width:
         <select id="lineWidthChooser">
