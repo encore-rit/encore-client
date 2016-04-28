@@ -100,7 +100,6 @@
         </select>
       </label>
 
-
     	<span><input id="clearButton" type="button" value="Clear"/></span>
     	<span><input id="exportButton" type="button" value="Export"/></span>
 			<span><input id="addPicture" type="button" value="Add Picture"/></span>
@@ -116,6 +115,14 @@
 
 		<script>
 		"use strict";
+
+		// Enable fastclick library
+    if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function() {
+            FastClick.attach(document.body);
+        }, false);
+    }
+
 		window.onload = init;
 		// GLOBALS
 		var canvas,ctx,dragging=false,lineWidth,strokeStyle;
@@ -132,6 +139,7 @@
 		// CONSTANTS
 		var DEFAULT_LINE_WIDTH = 3;
 		var DEFAULT_STROKE_STYLE = "red";
+
 		// FUNCTIONS
 		function init(){
 			// initialize some globals
@@ -149,12 +157,14 @@
 			ctx.strokeStyle = strokeStyle;
 			ctx.lineCap = "round"; // "butt", "round", "square" (default "butt")
 			ctx.lineJoin = "round"; // "round", "bevel", "miter" (default "miter")
+
 			//FIX THIS PAINTING COLOR
 			tmpCtx.lineWidth = lineWidth;
 			tmpCtx.lineJoin = 'round';
 			tmpCtx.lineCap = 'round';
 			tmpCtx.strokeStyle = strokeStyle;
 
+			resizeCanvas();
 			// Hook up event listeners
 			canvas.addEventListener('touchstart', doTouchdown);
 			canvas.addEventListener('touchmove', doTouchmove);
@@ -173,8 +183,6 @@
 			document.querySelector('#greenFilter').onclick = greenFilter;
 			document.querySelector('#noFilter').onclick = noFilter;
 
-
-			window.onload = resizeCanvas;
 			//push a blank canvas
 			canvasPush();
 		}
@@ -334,5 +342,8 @@
 			}
 		}
 		</script>
+
+<script src="./libs/inobounce.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
 </body>
 </html>
