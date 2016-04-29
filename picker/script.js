@@ -7,7 +7,7 @@
    */
    function loadData() {
     $.ajax({
-      url: "data.json",
+      url: './data.json',
       method: 'GET',
       dataType: 'json',
       success: function(result){
@@ -23,15 +23,16 @@
   * Receives data from the API, creates HTML for images and updates the layout
   */
   function onLoadData(data) {
+    console.log(data);
     $.each(data, function(i, value) {
       $('.grid')
-      .append($('<div>').attr('class','grid-item').attr('data-artist',value.name)
-        .append($('<img>').attr('src', value.photoUrl))
+      .append($('<div>').attr('class','grid-item').attr('data-artist', value.artistName)
+                                .append($('<img>').attr('src', 'imgs/' + value.artistKey + '.png'))
         .append($('<div>').attr('class','closeBtn fa fa-times'))
         .append($('<h2>')
-          .append($('<span>').text(value.name)))
+          .append($('<span>').text(value.artistName)))
         .append($('<div>').attr('class','artistInfo')
-          .append($('<div>').append($('<h3>').text(value.name))
+          .append($('<div>').append($('<h3>').text(value.artistName))
           .append($('<p>').text(value.dob +" - "+ value.dod)))
           .append($('<br>'))
           .append($('<br>'))
@@ -65,7 +66,7 @@
   });
 
   $('.grid').on('click', '.grid-item', function(event) {
-    
+
     $('.grid-item h2').not($(this).children('h2')).fadeIn(200);
     $($(this).children('h2')).fadeToggle(200);
 
@@ -85,18 +86,17 @@
       });
     }
 
-    console.log(this.dataset)
-    chosenArtist = this.dataset.artist;  
+    chosenArtist = this.dataset.artist;
   });
 
-  $(document).on('click','.chooseBtn',function(e){
+  $(document).on('click','.chooseBtn', function(e){
     $('.main').addClass('chooseScreen');
     $('.bubble')
       .append($('<span>')
         .append($('<p>').html('You chose<br>' + chosenArtist + '!'))
         .append($('<input>').attr("type","button").attr("value","Go Back").attr("class","backBtn"))
         .append($('<input>').attr("type","button").attr("value","Continue").attr("class","contBtn")));
-      
+
       $('.bubble').show();
 
       $('.backBtn').on('click',function(){
@@ -109,6 +109,8 @@
       $('.contBtn').on('click', function(){
         userData.artistId = chosenArtist;
         resetPage();
+
+        console.log(userData);
 
         $.ajax({
           url: "http://localhost:1339/users",
@@ -129,7 +131,7 @@
       .append($('<span>')
         .append($('<p>').html('Head into the <br><i>recording studio</i><br> to take your photo')));
 
-    setTimeout(function(){ 
+    setTimeout(function(){
       location.reload();
     }, 5000);
   }

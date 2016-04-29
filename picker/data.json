@@ -1,92 +1,169 @@
 [
   {
-    "name": "David Bowie",
-    "dob": 1947,
-    "dod": 2016,
-    "bio": "David Bowie was born in South London's Brixton neighborhood on January 8, 1947. His first hit was the song 'Space Oddity' in 1969. The original pop chameleon, Bowie became a fantastical sci-fi character for his breakout Ziggy Stardust album. He later co-wrote 'Fame' with Carlos Alomar and John Lennon which became his first American No. 1 single in 1975. An accomplished actor, Bowie starred in The Man Who Fell to Earth in 1976. He was inducted into the Rock and Roll Hall of Fame in 1996.",
-    "sigUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/David_Bowie_signature.svg/1280px-David_Bowie_signature.svg.png",
-    "photoUrl": ["http://home.bt.com/images/performance-of-david-bowie-musical-in-nyc-becomes-a-memorial-136403337600303901-160113084130.jpg"],
-    "artifacts": [
-      {
-        "name": "Bowie's guitar",
-        "description": "Used to record Ziggy Stardust",
-        "location": "Main exhibit floor"
-      }
-    ]
+    "artistName": "David Bowie",
+    "artistKey": "david-bowie",
+    "dob": "1947",
+    "dod": "2016",
+    "bio": "David Bowie was born in South London's Brixton neighborhood on January 8, 1947. His first hit was the song 'Space Oddity' in 1969. The original pop chameleon, Bowie became a fantastical sci-fi character for his breakout Ziggy Stardust album. He later co-wrote 'Fame' with Carlos Alomar and John Lennon which became his first American No. 1 single in 1975. An accomplished actor, Bowie starred in The Man Who Fell to Earth in 1976."
   },
+
   {
-    "name": "Twenty one pilots",
-    "dob": 1947,
-    "dod": 2016,
-    "bio": "David Bowie was born in South London's Brixton neighborhood on January 8, 1947. His first hit was the song 'Space Oddity' in 1969. The original pop chameleon, Bowie became a fantastical sci-fi character for his breakout Ziggy Stardust album. He later co-wrote 'Fame' with Carlos Alomar and John Lennon which became his first American No. 1 single in 1975. An accomplished actor, Bowie starred in The Man Who Fell to Earth in 1976. He was inducted into the Rock and Roll Hall of Fame in 1996.",
-    "sigUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/David_Bowie_signature.svg/1280px-David_Bowie_signature.svg.png",
-    "photoUrl": ["http://img2-ak.lst.fm/i/u/arO/fbc39c88bf79db8835b6d3c8cc429179"],
-    "artifacts": [
-      {
-        "name": "Bowie's guitar",
-        "description": "Used to record Ziggy Stardust",
-        "location": "Main exhibit floor"
-      }
-    ]
+    "artistName": "Sex Pistols",
+    "artistKey": "sex-pistols",
+    "dob": "1975",
+    "dod": "2008",
+    "bio": "Rock and roll was never the same after the Sex Pistols. They ignited the punk-rock revolution in Britain, and the reverberations carried to all corners of the rock and roll world. Expressing the cynical, restive mood of youthful Britons, the Sex Pistols restored a sense of danger to rock music. This wasn’t the theatrical danger of Alice Cooper’s onstage guillotine but the very real possibility of injury to the body and a jolt to the senses. At Sex Pistols concerts during their two-year British heyday - from their first show on November 6, 1975, through the end of 1977 - there was gobbing (spitting), fistfights, flying bottles and insults hurled in both directions."
   },
+
   {
-    "name": "Foster The People",
-    "dob": 1947,
-    "dod": 2016,
-    "bio": "David Bowie was born in South London's Brixton neighborhood on January 8, 1947. His first hit was the song 'Space Oddity' in 1969. The original pop chameleon, Bowie became a fantastical sci-fi character for his breakout Ziggy Stardust album. He later co-wrote 'Fame' with Carlos Alomar and John Lennon which became his first American No. 1 single in 1975. An accomplished actor, Bowie starred in The Man Who Fell to Earth in 1976. He was inducted into the Rock and Roll Hall of Fame in 1996.",
-    "sigUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/David_Bowie_signature.svg/1280px-David_Bowie_signature.svg.png",
-    "photoUrl": ["http://static.tumblr.com/ejj6bf6/2Gplomj1i/tumblr_loiw8llt8u1qkq9cy.jpg"],
-    "artifacts": [
-      {
-        "name": "Bowie's guitar",
-        "description": "Used to record Ziggy Stardust",
-        "location": "Main exhibit floor"
-      }
-    ]
+    "artistName": "Kiss",
+    "artistKey": "kiss",
+    "dob": "1973",
+    "dod": "present",
+    "bio": "Fueled by ambition, an unrelenting will, a prodigious work ethic and innate musical gifts, the members of KISS made no bones about their goals. They wanted to play music, have a good time and make lots of money. They were perhaps the first bandmates to see themselves as a brand, marketing their image in often funny and outrageous ways, licensing products as weird as KISS bowling balls, KISS condoms, KISS caskets and thousands of other products that sold worldwide and made them millionaires. It would be tempting to think that the band was all  show and no substance, but there was a clear artistic point of view, with music and lyrics that were upbeat, direct, populist and unambiguous."
   },
+
   {
-    "name": "Local Natives",
-    "dob": 1947,
-    "dod": 2016,
-    "bio": "David Bowie was born in South London's Brixton neighborhood on January 8, 1947. His first hit was the song 'Space Oddity' in 1969. The original pop chameleon, Bowie became a fantastical sci-fi character for his breakout Ziggy Stardust album. He later co-wrote 'Fame' with Carlos Alomar and John Lennon which became his first American No. 1 single in 1975. An accomplished actor, Bowie starred in The Man Who Fell to Earth in 1976. He was inducted into the Rock and Roll Hall of Fame in 1996.",
-    "sigUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/David_Bowie_signature.svg/1280px-David_Bowie_signature.svg.png",
-    "photoUrl": ["http://www.interviewmagazine.com/files/2013/01/30/img-local-natives-2_115250317400.jpg"],
-    "artifacts": [
-      {
-        "name": "Bowie's guitar",
-        "description": "Used to record Ziggy Stardust",
-        "location": "Main exhibit floor"
-      }
-    ]
+    "artistName": "Katy Perry",
+    "artistKey": "katy-perry",
+    "dob": "1984",
+    "dod": "present",
+    "bio": "Pop music singing sensation Katy Perry has become known for her over-the-top fashions, quirky stage props and catchy songs like 'I Kissed a Girl'. Katy Perry was born October 25, 1984, in Santa Barbara, California. After having three record deals fall apart, she signed with Capitol in 2007. Later that year, she released her first single, 'Ur So Gay.' Still, her career did not fully take off until the release of her next single, 'I Kissed a Girl'. Her album Teenage Dreams was released in August 2010."
   },
+
   {
-    "name": "Alt-j",
-    "dob": 1947,
-    "dod": 2016,
-    "bio": "David Bowie was born in South London's Brixton neighborhood on January 8, 1947. His first hit was the song 'Space Oddity' in 1969. The original pop chameleon, Bowie became a fantastical sci-fi character for his breakout Ziggy Stardust album. He later co-wrote 'Fame' with Carlos Alomar and John Lennon which became his first American No. 1 single in 1975. An accomplished actor, Bowie starred in The Man Who Fell to Earth in 1976. He was inducted into the Rock and Roll Hall of Fame in 1996.",
-    "sigUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/David_Bowie_signature.svg/1280px-David_Bowie_signature.svg.png",
-    "photoUrl": ["http://bighassle.com/wp-content/files_mf/1402459895altJTIAY01creditGabrielGreen.jpg"],
-    "artifacts": [
-      {
-        "name": "Bowie's guitar",
-        "description": "Used to record Ziggy Stardust",
-        "location": "Main exhibit floor"
-      }
-    ]
+    "artistName": "The Who",
+    "artistKey": "the-who",
+    "dob": "1964",
+    "dod": "present",
+    "bio": "The Who didn’t just play rock and roll, they attacked their music and their instruments with raw power fueled by teenage rage. The Who evolved in London in 1964 from a group called the Detours (and, later, the High Numbers), which included Roger Daltrey, Pete Townshend and John Entwistle. They were joined by Keith Moon, who had played in a surf group called the Beachcombers. The newly charged-up band came on as equipment-smashing Mods, declaring 'I hope I die before I get old' in their stuttering anthem 'My Generation.' The early Who demonstrated a mastery of the three-minute single, articulating in explosive bursts the frustrations of adolescence. By the late Sixties, the group had begun crafting conceptual works, such as Tommy and Quadrophenia. At all stages of their career, the Who were one of rock’s most dynamic live acts."
   },
+
   {
-    "name": "Gorillaz",
-    "dob": 1947,
-    "dod": 2016,
-    "bio": "David Bowie was born in South London's Brixton neighborhood on January 8, 1947. His first hit was the song 'Space Oddity' in 1969. The original pop chameleon, Bowie became a fantastical sci-fi character for his breakout Ziggy Stardust album. He later co-wrote 'Fame' with Carlos Alomar and John Lennon which became his first American No. 1 single in 1975. An accomplished actor, Bowie starred in The Man Who Fell to Earth in 1976. He was inducted into the Rock and Roll Hall of Fame in 1996.",
-    "sigUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/David_Bowie_signature.svg/1280px-David_Bowie_signature.svg.png",
-    "photoUrl": ["http://cdn4.pitchfork.com/news/44651/01bff2a9.jpg"],
-    "artifacts": [
-      {
-        "name": "Bowie's guitar",
-        "description": "Used to record Ziggy Stardust",
-        "location": "Main exhibit floor"
-      }
-    ]
+    "artistName": "Aerosmith",
+    "artistKey": "aerosmith",
+    "dob": "1970",
+    "dod": "present",
+    "bio": "Aerosmith were America’s feisty retort to hard-rocking British groups like the Rolling Stones, the Yardbirds, the Who, Cream, Deep Purple and Led Zeppelin. Almost alone among American bands, Aerosmith matched those British legends in power, intensity, and notoriety. Moreover, they’ve long since surpassed many of their influences in terms of longevity and popularity. In the words of vocalist Steven Tyler, 'We weren’t too ambitious when we started out. We just wanted to be the biggest thing that ever walked the planet, the greatest rock band that ever was.'"
+  },
+
+  {
+    "artistName": "Queen",
+    "artistKey": "queen",
+    "dob": "1970",
+    "dod": "present",
+    "bio": "Queen represented rock’s bombastic pinnacle. Melding glam-rock with hard-rock, the group’s ornate, multi-tracked recordings and in-your-face songs resulted to worldwide sales of more than 130 million records. Queen took flight in the Seventies, embodying the thrills and excesses of that decade. “We’re the Cecil B. DeMille of rock and roll, always wanting to do things bigger and better,” said vocalist Freddie Mercury. Exhibiting a keen intelligence and capacity for reinvention, Queen drew from contemporary music, visual media and pop culture, blowing it all up into a multimedia spectacle grounded in solid rock."
+  },
+
+  {
+    "artistName": "Bruce Springsteen",
+    "artistKey": "bruce-springsteen",
+    "dob": "1949",
+    "dod": "present",
+    "bio": "Bruce Springsteen is an arena rock star and a well-regarded singer-songwriter. His best known songs chronicle Springsteen's working-class roots in New Jersey. Born on September 23, 1949, in the town of Long Branch, New Jersey, Bruce Springsteen played the bar circuit while assembling his famous E Street Band. His breakout record 'Born to Run' united arena rock with human-size tales of working-class America. Springsteen consistently sells out his tours and has long been associated with left-leaning political causes; supporting John Kerry in the 2004 election."
+  },
+
+  {
+    "artistName": "Joan Jett",
+    "artistKey": "joan-jett",
+    "dob": "1958",
+    "dod": "present",
+    "bio": "As frontwoman for The Runaways, Joan Jett became a female pioneer in the male-dominated world of rock music. She is also a songwriter and producer. Joan Jett entered the music business at age 15 in the punk-pop band The Runaways. She went on to become one of the most influential women in rock; recording hits like 'I Love Rock n Roll'; founding Blackheart Records and producing Riot Grrrl acts Bikini Kill and L7. Her early career was portrayed in the biopic The Runaways. In 2013, Jett released the album Unvarnished."
+  },
+
+  {
+    "artistName": "Nirvana",
+    "artistKey": "nirvana",
+    "dob": "1987",
+    "dod": "1994",
+    "bio": "This is what Nirvana singer-guitarist Kurt Cobain thought of institutional honors in rock and roll: When his band was photographed for the cover of Rolling Stone for the first time, in early 1992, he arrived wearing a white T-shirt on which he'd written, CORPORATE MAGAZINES STILL SUCK in black marker. The slogan was his twist on one coined by the punk-rock label SST: Corporate Rock Still Sucks. Despite releasing only three full-length studio albums in their seven-year career, Nirvana has come to be regarded as one of the most influential and important rock bands of the modern era."
+  },
+
+  {
+    "artistName": "Metallica",
+    "artistKey": "metallica",
+    "dob": "1981",
+    "dod": "present",
+    "bio": "Black Sabbath invented heavy metal in the Seventies, and Metallica redefined it in the Eighties. Since erupting on the scene with their debut album, Kill ‘Em All, in 1983, Metallica has been a cutting-edge band – the standard by which metal’s vitality and virtuosity are measured. No band has loomed larger, rocked heavier, raged more angrily or pushed the limits further than Metallica. Metallica ranks as one of the most commercially successful bands of all time, having sold over 110 million records worldwide."
+  },
+
+  {
+    "artistName": "Elvis Presley",
+    "artistKey": "elvis-presley",
+    "dob": "1935",
+    "dod": "1977",
+    "bio": "Musician and actor Elvis Presley endured rapid fame in the mid-1950s—on the radio, TV and the silver screen—and continues to be one of the biggest names in rock 'n' roll. Elvis Presley came from very humble beginnings and grew up to become one of the biggest names in rock 'n' roll. By the mid-1950s, he appeared on the radio, television and the silver screen. On August 16, 1977, at age 42, he died of heart failure, which was related to his drug addiction. Since his death, Presley has remained one of the world's most popular music icons."
+  },
+
+  {
+    "artistName": "Michael Jackson",
+    "artistKey": "michael-jackson",
+    "dob": "1958",
+    "dod": "2009",
+    "bio": "Michael Jackson enjoyed a chart-topping career both with the Jackson 5 and as a solo artist. He released the best-selling album in history, 'Thriller,' in 1982. Michael Jackson became the lead singer of his family's popular Motown group, the Jackson 5. He went on to a solo career of astonishing success, delivering No. 1 hits from the albums Off the Wall, Thriller and Bad. The 'King of Pop' was dogged by allegations of child molestation in his later years, and died just before launching a comeback tour in 2009."
+  },
+
+  {
+    "artistName": "Taylor Swift",
+    "artistKey": "taylor-swift",
+    "dob": "1989",
+    "dod": "present",
+    "bio": "Grammy-winning singer/songwriter Taylor Swift is one of pop's top recording artists, having had roots in the world of country music. She started crafting songs at age 5, and at age 16, released her debut album. Hits like 'Love Story' and 'You Belong With Me' appealed to country and pop fans alike and helped fuel the multiplatinum success of her albums, with Fearless the 2009 top-seller. Swift later became a pop juggernaut with the 2014 album 1989. She has won many awards, including several Grammys, and modeled for Cover Girl."
+  },
+
+  {
+    "artistName": "Beatles",
+    "artistKey": "beatles",
+    "dob": "1960",
+    "dod": "1970",
+    "bio": "The impact of the Beatles has often been noted but cannot be overstated. The 'Fab Four' from Liverpool, England, startled the ears and energized the lives of virtually all who heard them. Their arrival triggered the musical revolution of the Sixties, introducing a modern sound and viewpoint that parted ways with the world of the previous decade. The pleasurable jolt at hearing 'She Loves You” and 'I Want to Hold Your Hand' - given the doldrums into which rock and roll had fallen in recent years - was comparable to the collective fever induced by Presley's 'That’s All Right' and 'Heartbreak Hotel' nearly 10 years earlier."
+  },
+
+  {
+    "artistName": "ACDC",
+    "artistKey": "acdc",
+    "dob": "1973",
+    "dod": "present",
+    "bio": "For three decades AC/DC has reigned as one of the best-loved and hardest-rocking bands in the world. Featuring guitarist Angus Young as their visual symbol and musical firebrand, they grew from humble origins in Australia to become an arena-filling phenomenon with worldwide popularity. They did so without gimmickry, except for Angus’s schoolboy uniform, which became mandatory stage attire. From the beginning they have been a straight-ahead, no-frills rock and roll band that aimed for the gut. 'We’ve never pulled any punches,' vocalist Brian Johnson has said. 'We just play music that’s fun and simple--the way our audience likes it.'"
+  },
+
+  {
+    "artistName": "Jimi Hendrix",
+    "artistKey": "jimi-hendrix",
+    "dob": "1942",
+    "dod": "1970",
+    "bio": "Guitarist, singer, and songwriter Jimi Hendrix delighted audiences in the 1960s with his outrageous electric guitar playing skills and his experimental sound. One of his most memorable performances was at Woodstock in 1969, where he performed 'The Star Spangled Banner.' Hendrix died in 1970 from drug-related complications, leaving his mark on the world of rock music and remaining popular to this day."
+  },
+
+  {
+    "artistName": "Beyoncé",
+    "artistKey": "beyonce",
+    "dob": "1981",
+    "dod": "present",
+    "bio": "Beyoncé Knowles is a multi-platinum, Grammy Award-winning recording artist who's acclaimed for her thrilling vocals, videos and live shows. She first captured the public's eye as lead vocalist of the R&B group Destiny's Child. She later established a solo career with her debut album Dangerously in Love, becoming one of music's top-selling artists with sold-out tours and a slew of awards. Beyoncé has also starred in several films, including Dream Girls. She married hip-hop recording artist Jay-Z in 2008. In December 2013, she surprised audiences by releasing her fifth studio album, self-titled Beyoncé, and has twice performed at the Super Bowl."
+  },
+
+  {
+    "artistName": "Green Day",
+    "artistKey": "green-day",
+    "dob": "1986",
+    "dod": "present",
+    "bio": "Part of the northern Californian underground punk rock scene, Green Day was formed by childhood friends Billie Joe Armstrong (lead guitar, lead vocals) and Mike Dirnt (bass guitar, backing vocals). They built a cult following during the early 1990s and are credited, along with bands The Offspring and Rancid, for reviving mainstream interest in the punk rock scene."
+  },
+
+  {
+    "artistName": "Prince",
+    "artistKey": "prince",
+    "dob": "1958",
+    "dod": "2016",
+    "bio": "American musician Prince achieved wide fame in the 1980s with '1999' and 'Purple Rain,' the latter album also serving as the soundtrack for the popular film of the same name. Later Prince albums included 'Sign 'O' the Times,' 'Diamonds and Pearls' and 'Musicology.' Prince's early music career created controversy due to their fusion of religious and sexual themes. He then released the albums 1999 and Purple Rain, cementing his superstar status with No. 1 hits like 'When Doves Cry' and 'Let's Go Crazy.' A seven-time Grammy winner, Prince had a prodigious output that included later albums like Diamonds and Pearls, The Gold Experience and Musicology. He died on April 21, 2016."
+  },
+
+  {
+    "artistName": "Madonna",
+    "artistKey": "madonna",
+    "dob": "1958",
+    "dod": "present",
+    "bio": "Pop legend Madonna is known for her constant reinvention as a performer. Her biggest hits include 'Papa Don't Preach,' 'Like a Prayer,' 'Vogue,' 'Secret' and 'Ray of Light,' among many others. In 1981, she went solo as a pop singer and became a sensation on the then male-dominated '80s music scene. By 1991, she had achieved 21 Top 10 hits in the United States and sold more than 70 million albums internationally. In January 2008, she was named the world's wealthiest female musician by Forbes magazine."
   }
 ]
