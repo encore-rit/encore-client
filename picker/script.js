@@ -1,6 +1,6 @@
 (function ($) {
   var chosenArtist,
-  userData={};
+  userData = {};
 
   /**
    * Loads data from the API.
@@ -8,7 +8,6 @@
    function loadData() {
     $.ajax({
       url: "data.json",
-      // url: "http://localhost:1339/artists",
       method: 'GET',
       dataType: 'json',
       success: function(result){
@@ -25,11 +24,20 @@
   */
   function onLoadData(data) {
     $.each(data, function(i, value) {
-      $('.grid').append($('<div>').attr('class','grid-item').attr('data-artist',value.name).append($('<img>').attr('src',value.photoUrl)).append($('<div>').attr('class','closeBtn fa fa-times')).append($('<h2>').append($('<span>').text(value.name))).append($('<div>').attr('class','artistInfo').append($('<div>').append($('<h3>').text(value.name)).append($('<p>').text(value.dob +" - "+ value.dod))).append($('<img>').attr("src", value.sigUrl)).append($('<br>')).append($('<br>')).append($('<div>').text(value.bio)).append($('<div>').attr('class','artifacts').attr('id',value.name.replace(/\s/g, '')))));
-      
-      $.each(value.artifacts, function(i, v) {
-        $('#'+value.name.replace(/\s/g, '')+".artifacts").append($('<br>')).append($('<h4>').text("Rock Hall Artifacts:")).append($('<ul>').append($('<li>').text("Name: " + v.name)).append($('<li>').text("Description: " + v.description)).append($('<li>').text("Location: " + v.location))).append($('<input>').attr("type","button").attr("value","Choose Artist").attr("class","chooseBtn"));
-      });
+      $('.grid')
+      .append($('<div>').attr('class','grid-item').attr('data-artist',value.name)
+        .append($('<img>').attr('src', value.photoUrl))
+        .append($('<div>').attr('class','closeBtn fa fa-times'))
+        .append($('<h2>')
+          .append($('<span>').text(value.name)))
+        .append($('<div>').attr('class','artistInfo')
+          .append($('<div>').append($('<h3>').text(value.name))
+          .append($('<p>').text(value.dob +" - "+ value.dod)))
+          .append($('<br>'))
+          .append($('<br>'))
+          .append($('<div>').text(value.bio))
+        .append($('<input>').attr("type","button").attr("value","Choose Artist").attr("class","chooseBtn"))
+       ));
     });
 
     $('.artistInfo, .closeBtn').hide();
@@ -70,21 +78,24 @@
         $('.grid').packery('layout');
       });
     }
-    else{
+    else {
       $(event.currentTarget).addClass('grid-item--large').promise().done(function(){
         $($(this).children('.artistInfo, .closeBtn')).fadeIn(600);
         $('.grid').packery('layout');
       });
-
     }
 
+    console.log(this.dataset)
     chosenArtist = this.dataset.artist;  
-
   });
 
   $(document).on('click','.chooseBtn',function(e){
     $('.main').addClass('chooseScreen');
-      $('.bubble').append($('<span>').append($('<p>').html('You chose<br>' + chosenArtist + '!')).append($('<input>').attr("type","button").attr("value","Go Back").attr("class","backBtn")).append($('<input>').attr("type","button").attr("value","Continue").attr("class","contBtn")));
+    $('.bubble')
+      .append($('<span>')
+        .append($('<p>').html('You chose<br>' + chosenArtist + '!'))
+        .append($('<input>').attr("type","button").attr("value","Go Back").attr("class","backBtn"))
+        .append($('<input>').attr("type","button").attr("value","Continue").attr("class","contBtn")));
       
       $('.bubble').show();
 
@@ -114,7 +125,10 @@
 
   function resetPage(){
     $('.bubble>span').remove();
-    $('.bubble').append($('<span>').append($('<p>').html('Head into the <br><i>recording studio</i><br> to take your photo')));
+    $('.bubble')
+      .append($('<span>')
+        .append($('<p>').html('Head into the <br><i>recording studio</i><br> to take your photo')));
+
     setTimeout(function(){ 
       location.reload();
     }, 5000);
