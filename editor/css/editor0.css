@@ -1,0 +1,52 @@
+body {
+   background: black;
+   font-family: tahoma, verdana, sans serif;
+   height: 100%;
+   overflow: auto;
+   -webkit-overflow-scrolling: touch;
+}
+img{
+  position: absolute;
+  bottom: 10px;
+  display: none;
+}
+#mainCanvas {
+   position:absolute;
+   z-index: 0;
+   left: 10px;
+   top: 10px;
+   box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+}
+#tmpCanvas {
+   position:absolute;
+   z-index: 1;
+   left: 10px;
+   top: 10px;
+   cursor: pointer;
+   pointer-events:none;
+}
+#pictureCanvas {
+  position:absolute;
+  z-index: -2;
+  left: 10px;
+  top: 10px;
+}
+ #controls {
+   position: absolute;
+   z-index: 2;
+   left: 25px;
+   top: 25px;
+}
+label{
+  font-size: 12px;
+  margin-right:0.75em;
+}
+span{
+  background: white;
+}
+
+#undoAndRedo{
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+}
