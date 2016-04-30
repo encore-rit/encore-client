@@ -38,9 +38,9 @@
         // create an array with the single object
 
         // If there is an array of results, loop through them
-        var allPicture = obj.picture;
-        console.log("allPeople.length = " + allPicture.length);
-        var bigString = "<p><b>There are " + allPicture.length + " people for Next Up flex-items </b></p>";
+        var allPicture = obj.User.photos;
+        console.log("allPicture.length = " + allPicture.length);
+        var bigString = "<p><b>There are " + allPicture.length + " photos for the " + obj.User.name + "</b></p>";
         bigString += "<hr />";
 
         // loop through events here
@@ -52,7 +52,7 @@
             bigString += "<div id='" + flex-item +  "'>";
               bigString += "<lable>"
                 bigString += "<input type="radio" name="picture" value ='"+ i + "' />";
-                bigString += "<img src=" + picture.image + " alt=" + picture.name + " />";
+                bigString += "<img src=" + picture + " alt=" + picture.name + " />";
               bigString += "<lable>"
             bigString += "</div>";
           }
