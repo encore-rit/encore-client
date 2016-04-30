@@ -11,15 +11,7 @@
     <h1>NEXT UP IS...</h1>
     <p>Remind me, what was your stage name again</p>
 
-    <div class = "container">
-      <div class="flex-item">
-        <div class="image">
-          <h3>Title</h3>
-          <img src="" alt="myimage" />
-        </div>
-      </div>
-      <div id="dynamicContent"></div>
-    </div>
+    <div class = "container"></div>
 
     <script>
       // window.onload = getData();
@@ -38,26 +30,20 @@
         if (obj.error){
           var status = obj.status;
           var description = obj.description;
-          document.querySelector("#dynamicContent").innerHTML = "<h3><b>Error!</b></h3>" + "<p><i>" + status + "</i></p>" + "<p><i>" + description + "</i></p>";
+          document.querySelector("#container").innerHTML = "<h3><b>Error!</b></h3>" + "<p><i>" + status + "</i></p>" + "<p><i>" + description + "</i></p>";
           return; // Bail out
         }
 
         // if there are no results, print a message and return
         if(obj.people.length == 0){
           var status = "No results found";
-          document.querySelector("#dynamicContent").innerHTML = "<p>" + status + "</p>";
+          document.querySelector("#container").innerHTML = "<p>" + status + "</p>";
           return; // Bail out
         }
 
-        // TO DO
-        // if there is only one result, Eventful returns an object instead of an array
         // create an array with the single object
-
         // If there is an array of results, loop through them
         var allPeople = obj.people;
-        // console.log("allPeople.length = " + allPeople.length);
-        // var bigString = "<p><b>There are " + allPeople.length + " people for Next Up flex-items </b></p>";
-        // bigString += "<hr />";
         var bigString = ''
 
         // loop through events here
@@ -75,7 +61,7 @@
           }
         }
 
-        document.querySelector("#dynamicContent").innerHTML = bigString;
+        document.querySelector(".container").innerHTML = bigString;
       }
 
 jsonLoaded({
