@@ -1,0 +1,299 @@
+$grid-item-size:220px;
+$font-size:14px;
+
+@font-face {
+    font-family: 'edoregular';
+    src: url('fonts/edo-webfont.eot');
+    src: url('fonts/edo-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/edo-webfont.woff') format('woff'),
+         url('fonts/edo-webfont.ttf') format('truetype'),
+         url('fonts/edo-webfont.svg#edoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/** General page styling **/
+html {
+  background-color: #333;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 200;
+  color: #fff;
+
+  background: url("images/background.png") no-repeat center top fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body{
+  padding: 60px;
+  padding-top: 30px;
+  margin: 0;
+}
+
+.main {
+  position: relative;
+}
+
+.stageName{
+  width: 650px;
+  height: 400px;
+  margin: 0 auto;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.stageName span{
+  position: absolute;
+  left: 330px;
+  top: 100px;
+}
+
+.stageName h1{
+  font-family: 'edoregular';
+  font-weight: 100;
+  font-size: 150px;
+  margin: 50px 0px;
+}
+
+.stageName input[type="button"]{
+  background: #eee;
+  font-size: 12px;
+  padding: 6px;
+  width: 70px;
+  border: 1px solid #eee;
+  border-radius: 2px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.stageName input[type="button"]:hover{
+  background: #ccc;
+  border: 1px solid #ccc;
+}
+
+.stageName input[type="text"]{
+  background-color: rgba(0, 0, 0, 0);
+  margin-right:15px;
+  border: 2px solid #eee;
+  border-radius: 3px;
+  color: white;
+  padding: 5px;
+  width: 200px;
+  font-size: 12px;
+  text-align: center;
+}
+
+header h1 {
+  font-family: 'edoregular';
+  text-align: center;
+  font-size: 50px;
+  font-weight: 200;
+  margin: 10px 0;
+}
+
+header p {
+  text-align: center;
+  font-size: 14px;
+  color: #666666;
+  margin: 0;
+  font-weight: 200;
+}
+
+/**
+ * Grid container
+ **/
+.grid {
+  max-width: 1400px;
+  margin-top: 30px;
+}
+
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.grid-item{
+  float: left;
+  height: $grid-item-size;
+  width: $grid-item-size;
+}
+
+.grid-item img{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  transition: .5s;
+}
+
+.grid-item--large {
+  width: ($grid-item-size * 2) + 10;
+  height: ($grid-item-size * 2) + 10;
+}
+
+.grid-item--large img{
+  -webkit-filter: grayscale(0%);
+  filter: grayscale(0%);
+  transition: .5s;
+}
+
+h2{
+  position: absolute; 
+  text-align: center;
+  top: $grid-item-size / 3; 
+  left: 0; 
+  width: $grid-item-size; 
+}
+
+h2 span{ 
+   color: white; 
+   font: bold 24px Helvetica, Sans-Serif; 
+  -webkit-text-stroke: 1px black;
+  text-transform: uppercase;
+  -webkit-font-smoothing: antialiased;
+   padding: 5px; 
+}
+
+/**
+ * Artist info
+ **/
+
+.artistInfo{
+  color: #333; 
+  font: bold $font-size Helvetica, Sans-Serif; 
+  font-weight: 400;
+  letter-spacing: -.5px;  
+  background: rgba(255, 255, 255, 0.8);
+  padding: $grid-item-size/8;
+  vertical-align: bottom;
+  position: absolute; 
+  bottom: 0; 
+  left: 0; 
+  max-height: $grid-item-size * 2;
+}
+
+
+.artistInfo img{
+  width: auto;
+  height: $grid-item-size/5;
+  display: inline-block;
+  float: right;
+}
+
+.artistInfo div:first-child{
+	display: inline-block;
+}
+
+.artistInfo div>p{
+	font-weight:bold;
+}
+
+.artistInfo input{
+  float: right;
+}
+
+.artistInfo p, .artistInfo ul{
+  margin: 0;
+}
+
+.artistInfo input[type="button"]{
+  background: rgba(255, 255, 255, .6);
+  padding: 5px;
+  border: 2px solid black;
+  font-weight: bold;
+  font-size: $font-size / 1.5;
+  text-transform: uppercase;
+}
+
+.artistInfo input[type="button"]:hover{
+  background: rgba(255, 255, 255, 1);
+}
+
+.artistInfo h3
+{
+  text-transform: uppercase;
+  margin: 0;
+  color: #F26395;
+  font-size: $font-size * 2;
+}
+
+.artistInfo h4{
+  margin: 0;
+  text-transform: uppercase;
+  font-weight:bold;
+}
+
+.artifacts ul{
+    list-style:none;
+    padding: 0;
+    list-style-type: none;
+}
+
+.closeBtn{
+  color: #ccc; 
+  opacity: .7;
+  vertical-align: top;
+  text-align:right;
+  position: absolute; 
+  top: 0; 
+  right: 0; 
+  margin: 15px;
+  font-size: 18px;
+  -webkit-text-stroke: 1px #333;
+}
+
+/*Choose Screen*/
+
+.chooseScreen{
+	-webkit-filter: blur(1px);
+	height: 100%;
+	width: 100%;
+	transition:.5s;
+}
+
+.bubble{
+	color: black;
+	position: absolute;
+    width: 90%;
+    top: 22%;
+	margin: 0 auto;
+	font-size: 50px;
+	text-align: center;
+}
+
+.bubble p{
+	margin: -10px 0;
+	max-width: 350px;
+}
+
+.bubble span{
+    position: absolute;
+    left: 36%;
+    top: 100px;
+    width: 320px;
+    height: 220px;
+}
+
+.bubble i{
+	font-family: 'edoregular';
+	color: white;
+}
+
+.bubble input[type="button"]{
+  background: rgba(255, 255, 255, 0);
+  padding: 5px;
+  color: white;
+  border: 1px solid white;
+  font-weight: 400;
+  margin: 0 12px;
+  width: 110px;
+  font-size: $font-size;
+  text-transform: uppercase;
+  -webkit-font-smoothing: antialiased;
+}

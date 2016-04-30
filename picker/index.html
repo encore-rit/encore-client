@@ -12,29 +12,34 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
   <!-- Global CSS for the page and tiles -->
-  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 </head>
 
 <body>
 
-  <div id="container">
+  <div class="container">
 
-    <header>
-      <h1>Choose A Rock Icon</h1>
-      <p></p>
-    </header>
+    <div class="main" role="main">
+      <header>
+        <h1>Choose A Rock Icon</h1>
+      </header>
 
-    <div id="main" role="main">
-
-      <div id="loader">
-        <div id="loaderCircle"></div>
+      <div class="stageName">
+        <img src="css/images/background_circle.png" height='550' width='550'>
+        <span>
+          <h1>ENCORE</h1>
+          <p>ENTER YOUR NAME AND START REMEMBERING</p>
+          <input type="text" id="stageName">
+          <input type="button" value="Rock!" id="stageNameBtn">
+        </span> 
       </div>
 
-      <input type="text" id="stageName" placeholder="Stage Name Here">
-      <input type="button" id="stageNameBtn" value="Rock!">
-
       <div class="grid"></div>
+    </div>
 
+    <div class="bubble">
+      <img src="css/images/bubble.png" height='400' width='400'>
     </div>
 
   </div>
@@ -44,103 +49,7 @@
   <script src="./libs/packery.pkgd.min.js"></script>
 
   <!-- Once the page is loaded, initalize the plug-in. -->
-  <script type="text/javascript">
-    (function ($) {
-      var handler = null,
-          isLoading = false,
-          userData={};
-
-      /**
-       * Loads data from the API.
-       */
-      function loadData() {
-        isLoading = true;
-        $('#loaderCircle').show();
-
-        $.ajax({
-          // url: "data.json",
-          url: "http://localhost:1339/artists",
-          method: 'GET',
-          dataType: 'json',
-          success: function(result){
-            onLoadData(result);
-            fullData = result;
-          },
-          error: function(err) {
-            console.log('err', err)
-          }
-        });
-      };
-
-      /**
-       * Receives data from the API, creates HTML for images and updates the layout
-       */
-      function onLoadData(data) {
-        isLoading = false;
-        $('#loaderCircle').hide();
-
-        $.each(data, function(i, value) {
-          $('.grid').append($('<div>').attr('class','grid-item').attr('data-artist',value.name).append($('<img>').attr('src',value.photoUrl)).append($('<h2>').append($('<span>').text(value.name))).append($('<span>').attr('class','artistInfo').append($('<span>').append($('<h3>').text(value.name)).append($('<p>').text(value.dob +"-"+ value.dod))).append($('<img>').attr("src", value.sigUrl)).append($('<p>').text(value.bio)).append($('<div>').attr('class','artifacts').attr('id',value.name.replace(/\s/g, '')))));
-          
-          $.each(value.artifacts, function(i, v) {
-            $('#'+value.name.replace(/\s/g, '')+".artifacts").append($('<h4>').text("Rock Hall Artifacts:")).append($('<ul>').append($('<li>').text("Name: " + v.name)).append($('<li>').text("Description: " + v.description)).append($('<li>').text("Location: " + v.location))).append($('<input>').attr("type","button").attr("value","Choose Artist").attr("id","chooseBtn"));
-          });
-        });
-
-        $('.artistInfo').hide();
-
-        var $grid = $('.grid').packery({
-          itemSelector: '.grid-item',
-          gutter: 10
-        });
-      };
-
-      $('#stageNameBtn').on('click', function(){
-        userData.name = $('#stageName').val();
-      });
-
-      $('.grid').on('click', '.grid-item', function(event) {
-        isLoading = true;
-        $('#loaderCircle').show();
-
-        $('.artistInfo').not($(this).children('.artistInfo')).hide();
-        $($(this).children('.artistInfo')).fadeToggle(110);
-
-        $('.grid-item h2').not($(this).children('h2')).fadeIn(200);
-        $($(this).children('h2')).fadeToggle(200);
-
-        $('.grid-item').not(event.currentTarget).removeClass('grid-item--large');
-        $(event.currentTarget).toggleClass('grid-item--large');
-
-        $('.grid-item').css('zIndex',1);
-        $(this).css('zIndex', 9999);
-
-        var name = this.dataset.artist;
-
-        $('#chooseBtn').on('click', function(){
-            userData.artistId = name;
-
-            $.ajax({
-              url: "http://localhost:1339/users",
-              method: 'POST',
-              dataType: 'json',
-              data: userData,
-              success: showResult,
-              error: function(err) {
-                console.log('err', err)
-              }
-            });
-        });
-      });
-
-      function showResult(){
-
-      }
-
-      // Load first data from the API.
-      loadData();
-    })(jQuery);
-  </script>
+  <script type="text/javascript" src="script.js"></script>
 
 </body>
 </html>
