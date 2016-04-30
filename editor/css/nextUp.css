@@ -1,5 +1,7 @@
 .container{
 	padding-top:80px;
+	display: -webkit-flex;
+	-webkit-flex-wrap: wrap;
     display: flex;
     flex-wrap: wrap;
 

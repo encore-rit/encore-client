@@ -3,8 +3,11 @@
     top:calc(50% - 283px);
     left:calc(50% - 413px);
 
+	display: -webkit-flex;
+	-webkit-flex-wrap: wrap;
     display: flex;
     flex-wrap: wrap;
+
 
     justify-content: center;
 }
