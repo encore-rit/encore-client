@@ -1,5 +1,4 @@
 (function ($) {
-  var chosenArtist,
   userData = {};
 
   /**
@@ -26,7 +25,7 @@
     console.log(data);
     $.each(data, function(i, value) {
       $('.grid')
-      .append($('<div>').attr('class','grid-item').attr('data-artist', value.artistName)
+      .append($('<div>').attr('class','grid-item').attr('data-artistkey', value.artistKey).attr('data-artist', value.artistName)
                                 .append($('<img>').attr('src', 'imgs/' + value.artistKey + '.png'))
         .append($('<div>').attr('class','closeBtn fa fa-times'))
         .append($('<h2>')
@@ -37,6 +36,7 @@
           .append($('<br>'))
           .append($('<br>'))
           .append($('<div>').text(value.bio))
+          .append($('<br>'))
         .append($('<input>').attr("type","button").attr("value","Choose Artist").attr("class","chooseBtn"))
        ));
     });
@@ -55,7 +55,7 @@
 
   $('#stageNameBtn').on('click', function(){
     if($('#stageName').val() != ""){
-      userData.name = $('#stageName').val();
+      userData.username = $('#stageName').val();
       $(".stageName, .stageName>h1").fadeOut('slow').promise().done(function(){
         $("header, .grid").fadeIn(1400);
       });
@@ -86,14 +86,15 @@
       });
     }
 
-    chosenArtist = this.dataset.artist;
+    userData.artistKey = this.dataset.artistkey;
+    userData.artist = this.dataset.artist;
   });
 
   $(document).on('click','.chooseBtn', function(e){
     $('.main').addClass('chooseScreen');
     $('.bubble')
       .append($('<span>')
-        .append($('<p>').html('You chose<br>' + chosenArtist + '!'))
+        .append($('<p>').html('You chose<br>' + userData.artist + '!'))
         .append($('<input>').attr("type","button").attr("value","Go Back").attr("class","backBtn"))
         .append($('<input>').attr("type","button").attr("value","Continue").attr("class","contBtn")));
 
@@ -107,7 +108,6 @@
       });
 
       $('.contBtn').on('click', function(){
-        userData.artistId = chosenArtist;
         resetPage();
 
         console.log(userData);
@@ -115,8 +115,8 @@
         $.ajax({
           url: "http://localhost:1339/users",
           method: 'POST',
-          dataType: 'json',
-          data: userData,
+          contentType : 'application/json',
+          data: JSON.stringify(userData),
           success: resetPage,
           error: function(err) {
             console.log('err', err)
