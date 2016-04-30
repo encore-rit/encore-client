@@ -1,0 +1,71 @@
+.container{
+    position: absolute;
+    top:calc(50% - 283px);
+    left:calc(50% - 413px);
+
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: center;
+}
+
+#flex-item0, #flex-item1, #flex-item2{
+  padding-left: 5px;
+}
+
+#flex-item0{
+  padding-top: 0px;
+}
+#flex-item1{
+  padding-top: 80px;
+}
+#flex-item2{
+  padding-top: 160px;
+}
+
+label > input{ /* HIDE RADIO */
+  display: none;
+}
+label > input + img{ /* IMAGE STYLES */
+
+  border:10px solid transparent;
+}
+label > input:checked + img{ /* (CHECKED) IMAGE STYLES */
+  border:10px solid white;
+}
+
+img{
+    width: 250px;
+}
+
+h1, p{
+  text-align: center;
+}
+
+body{
+  background-image: url("../images/ipadBG2.jpg");
+  color:white;
+}
+
+#parent{
+  position: relative;
+}
+
+#back, #edit{
+  background: none;
+  border: 2px solid white;
+  padding: 10px;
+  color:white;
+}
+
+#back{
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+}
+
+#edit{
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+}

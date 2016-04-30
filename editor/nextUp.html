@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Next Up</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <link rel="stylesheet" href="css/nextUp.css">
+
+    <script>
+      window.onload = getData();
+
+      function getData(){
+        $.ajax({
+          dataType: "json",
+          url: "###########",
+          data:null,
+          success: jsonLoaded
+        });
+      }
+
+      function jsonLoaded(){
+        // if there's an error, print a message and return
+        if(obj.error){
+          var status = obj.status;
+          var description = obj.description;
+          document.querySelector("#dynamicContent").innerHTML = "<h3><b>Error!</b></h3>" + "<p><i>" + status + "</i></p>" + "<p><i>" + description + "</i></p>";
+          return; // Bail out
+        }
+
+        // if there are no results, print a message and return
+        if(obj.total_items == 0){
+          var status = "No results found";
+          document.querySelector("#dynamicContent").innerHTML = "<p>" + status + "</p>";
+          return; // Bail out
+        }
+
+        // TO DO
+        // if there is only one result, Eventful returns an object instead of an array
+        // create an array with the single object
+
+        // If there is an array of results, loop through them
+        var allPeople = obj.people;
+        console.log("allPeople.length = " + allPeople.length);
+        var bigString = "<p><b>There are " + allPeople.length + " people for Next Up flex-items </b></p>";
+        bigString += "<hr />";
+
+        // loop through events here
+        for (var i = 0; i <allPeople.length; i++){
+          var person = allPeople[i];
+
+          //create flex-items
+          if (person.name !=null){
+            bigString += "<div class='flex-item'>";
+              bigString += "<div class='image'>";
+                bigString += "<h3>" + person.User.name + "</h3>";
+                bigString += "<img src=" + person.Photo.url + " alt=" + person.User.name + " />";
+              bigString += "</div>";
+            bigString += "</div>";
+          }
+        }
+
+        document.querySelector("#dynamicContent").innerHTML = bigString;
+
+      }
+    </script>
+
+  </head>
+  <body>
+    <h1>NEXT UP IS...</h1>
+    <p>Remind me, what was your stage name again</p>
+    <div class = "container">
+      <div class="flex-item">
+        <div class="image">
+          <h3>Title</h3>
+          <img src="" alt="myimage" />
+        </div>
+      </div>
+      <div id="dynamicContent"></div>
+    </div>
+  </body>
+</html>
