@@ -5,21 +5,37 @@
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <link rel="stylesheet" href="css/nextUp.css">
 
+  </head>
+  <body>
+
+    <h1>NEXT UP IS...</h1>
+    <p>Remind me, what was your stage name again</p>
+
+    <div class = "container">
+      <div class="flex-item">
+        <div class="image">
+          <h3>Title</h3>
+          <img src="" alt="myimage" />
+        </div>
+      </div>
+      <div id="dynamicContent"></div>
+    </div>
+
     <script>
-      window.onload = getData();
+      // window.onload = getData();
 
       function getData(){
         $.ajax({
           dataType: "json",
           url: "###########",
-          data:null,
+          data: null,
           success: jsonLoaded
         });
       }
 
-      function jsonLoaded(){
+      function jsonLoaded(obj) {
         // if there's an error, print a message and return
-        if(obj.error){
+        if (obj.error){
           var status = obj.status;
           var description = obj.description;
           document.querySelector("#dynamicContent").innerHTML = "<h3><b>Error!</b></h3>" + "<p><i>" + status + "</i></p>" + "<p><i>" + description + "</i></p>";
@@ -27,7 +43,7 @@
         }
 
         // if there are no results, print a message and return
-        if(obj.total_items == 0){
+        if(obj.people.length == 0){
           var status = "No results found";
           document.querySelector("#dynamicContent").innerHTML = "<p>" + status + "</p>";
           return; // Bail out
@@ -39,42 +55,46 @@
 
         // If there is an array of results, loop through them
         var allPeople = obj.people;
-        console.log("allPeople.length = " + allPeople.length);
-        var bigString = "<p><b>There are " + allPeople.length + " people for Next Up flex-items </b></p>";
-        bigString += "<hr />";
+        // console.log("allPeople.length = " + allPeople.length);
+        // var bigString = "<p><b>There are " + allPeople.length + " people for Next Up flex-items </b></p>";
+        // bigString += "<hr />";
+        var bigString = ''
 
         // loop through events here
-        for (var i = 0; i <allPeople.length; i++){
+        for (var i = 0; i < allPeople.length; i++){
           var person = allPeople[i];
 
           //create flex-items
-          if (person.name !=null){
+          if (person.username !=null){
             bigString += "<div class='flex-item'>";
               bigString += "<div class='image'>";
-                bigString += "<h3>" + person.User.name + "</h3>";
-                bigString += "<img src=" + person.Photo.url + " alt=" + person.User.name + " />";
+                bigString += "<h3>" + person.username + "</h3>";
+                bigString += "<img src=" + person.photoSrc + " alt=" + person.username + " />";
               bigString += "</div>";
             bigString += "</div>";
           }
         }
 
         document.querySelector("#dynamicContent").innerHTML = bigString;
-
       }
-    </script>
 
-  </head>
-  <body>
-    <h1>NEXT UP IS...</h1>
-    <p>Remind me, what was your stage name again</p>
-    <div class = "container">
-      <div class="flex-item">
-        <div class="image">
-          <h3>Title</h3>
-          <img src="" alt="myimage" />
-        </div>
-      </div>
-      <div id="dynamicContent"></div>
-    </div>
+jsonLoaded({
+  description: '',
+  status: 200,
+  error: null,
+  people: [
+  { username: 'testl1', photoSrc: 'stuff' },
+  { username: 'testl1', photoSrc: 'stuff' },
+  { username: 'testl1', photoSrc: 'stuff' },
+  { username: 'testl1', photoSrc: 'stuff' },
+  { username: 'testl1', photoSrc: 'stuff' },
+  { username: 'testl1', photoSrc: 'stuff' },
+  { username: 'testl1', photoSrc: 'stuff' },
+  { username: 'testl1', photoSrc: 'stuff' },
+  { username: 'testl1', photoSrc: 'stuff' },
+  { username: 'testl1', photoSrc: 'stuff' },
+  ],
+})
+    </script>
   </body>
 </html>
