@@ -36,3 +36,7 @@
 h1, p{
   text-align: center;
 }
+
+body{
+  background-image: url("../images/ipadBG2.jpg");
+}
