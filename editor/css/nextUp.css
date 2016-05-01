@@ -1,9 +1,9 @@
 @import "fontStyle.css";
 
 .container{
-	padding-top:80px;
-	display: -webkit-flex;
-	-webkit-flex-wrap: wrap;
+		padding-top:80px;
+		display: -webkit-flex;
+		-webkit-flex-wrap: wrap;
     display: flex;
     flex-wrap: wrap;
 
@@ -12,6 +12,12 @@
 
 .flex-item{
     padding: 30px;
+}
+
+.flex-item button{
+		padding: 0px;
+		border: none;
+		background-color: transparent;
 }
 
 .image{
@@ -34,7 +40,6 @@
     z-index: 1;
     width: 100%;
     height: 100%;
-    position: absolute;
     background-color: purple;
 }
 

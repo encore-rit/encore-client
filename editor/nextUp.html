@@ -55,10 +55,12 @@
           //create flex-items
           if (person.username !=null){
             bigString += "<div class='flex-item'>";
-              bigString += "<div class='image'>";
-                bigString += "<h3>" + person.username + "</h3>";
-                bigString += "<img src=" + person.photoSrc + " alt=" + person.username + " />";
-              bigString += "</div>";
+              bigString += "<button type='button' id='" + i + "'>";
+                bigString += "<div class='image'>";
+                  bigString += "<h3>" + person.username + "</h3>";
+                  bigString += "<img src=" + person.photoSrc + " alt=" + person.username + " />";
+                bigString += "</div>";
+              bigString += "</button>"
             bigString += "</div>";
           }
         }
@@ -82,6 +84,7 @@ jsonLoaded({
   { username: 'testl1', photoSrc: 'stuff' },
   ],
 })
+
     </script>
   </body>
 </html>
