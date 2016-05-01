@@ -1,6 +1,13 @@
+@font-face {
+  font-family: 'edoregular';
+  src: url("fonts/edosz.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
-   background: pink;
-   font-family: tahoma, verdana, sans serif;
+   background: black;
+   font-family: edoregular;
    height: 100%;
    overflow: auto;
    -webkit-overflow-scrolling: touch;
@@ -87,4 +94,6 @@ input{
   background-color: transparent;
   border:none;
   color:white;
+  font-family: 'edoregular';
+  font-size: 50px;
 }
