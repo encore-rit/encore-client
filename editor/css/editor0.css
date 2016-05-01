@@ -1,13 +1,8 @@
-@font-face {
-  font-family: 'edoregular';
-  src: url("fonts/edosz.ttf");
-  font-weight: normal;
-  font-style: normal;
-}
+@import "fontStyle.css";
 
 body {
    background: black;
-   font-family: edoregular;
+   font-family: 'proximanovaregular';
    height: 100%;
    overflow: auto;
    -webkit-overflow-scrolling: touch;
@@ -50,24 +45,30 @@ body {
    z-index: 2;
    left: 0px;
    top: 0px;
-   background-color: rgba(0, 0, 0, 0.6);
+   background-color: rgba(97, 97, 97, 0.6);
    color:white;
+   width: 225px;
 }
 
 #controls ul{
-  padding-left: 20px;
+  padding-left: 0px;
 }
 #controls ul li{
+  padding-left: 20px;
   list-style: none;
 }
 label{
-  font-size: 12px;
+  font-size: 20px;
   margin-right:0.75em;
+}
+
+#lineWidthChooser, #lineWidthChooser option {
+  font-size: 15px;
 }
 
 #undoAndRedo{
   position: absolute;
-  bottom: 50px;
+  bottom: 20px;
   left: 25px;
 }
 #undoButton, #redoButton, #done{
@@ -87,13 +88,49 @@ label{
 #done{
   position: absolute;
   right: 25px;
-  bottom: 50px;
+  bottom: 20px;
 }
 
-input{
+li span input{
   background-color: transparent;
   border:none;
-  color:white;
-  font-family: 'edoregular';
-  font-size: 50px;
+  color:lightgrey;
+  font-size: 20px;
+  padding-top: 20px;
+}
+
+#clearButton{
+  float:right;
+  background-color: transparent;
+  border:none;
+  color:lightgrey;
+  font-size: 12px;
+}
+
+#filterMenu{
+  border-top: 1px solid darkgrey;
+  padding-top: 25px;
+  padding-left: 20px;
+}
+
+#filterWord{
+  color:darkgrey;
+  font-size: 16px;
+  margin: 0;
+}
+#strokeText{
+  font-size: 20px;
+  padding-left: 20px;
+}
+#slideMenu{
+background-color: transparent;
+border: none;
+display: block;
+margin-left: auto;
+margin-right: auto;
+padding: 5px;
+}
+#slideMenu img{
+  width:30px;
+  height: 10px;
 }

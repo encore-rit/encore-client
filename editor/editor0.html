@@ -37,10 +37,8 @@
 	<img id="img" src="images/ladyGaga.jpg">
 
 	<div id="controls">
-    <button type="button" id="slideMenuUp" >Up arrow</button>
-    <button type="button" id="slideMenuDown" >Down arrow</button>
 		<ul>
-			<p>Stroke</p>
+			<p id="strokeText">Stroke</p>
 
 			<li>
 				<label>Line Width:
@@ -61,7 +59,11 @@
 
 			<li><div id="coloredSlider"></div></li>
 
-    	<li><span><input id="clearButton" type="button" value="Clear"/></span></li>
+			<div id="filterMenu">
+				<span><input id="clearButton" type="button" value="Clear"/></span>
+				<p id= "filterWord">Filter</p>
+			</div>
+
     	<li><span><input id="exportButton" type="button" value="Export"/></span></li>
 			<li><span><input id="addPicture" type="button" value="Add Picture"/></span></li>
 			<li><span><input id="grayscaleFilter" type="button" value="Black and White"/></span></li>
@@ -71,6 +73,7 @@
 			<li><span><input id="greenFilter" type="button" value="Green"/></span></li>
 			<li><span><input id="noFilter" type="button" value="No Filter"/></span></li>
 		</ul>
+		<button type="button" id="slideMenu"><img src="images/downArrow.png"></button>
   </div>
 	<div id ="undoAndRedo">
 		<button type="button" id="undoButton"><img src="images/Undo_Thick.png" alt="UNDO"></button>
@@ -94,6 +97,8 @@
 		var tmpCanvas, tmpCtx;
 		var picCanvas, picCtx;
 		var img;
+
+		var slideMenuBoolean = true;
 
 		// Pencil Points
 		var ppts = [];
@@ -138,7 +143,6 @@
 	    document.querySelector('#lineWidthChooser').onchange = doLineWidthChange;
 			document.querySelector('#exportButton').onclick = doExport;
 			document.querySelector('#clearButton').onclick = doClear;
-			document.querySelector('#addPicture').onclick = addPicture;
 			document.querySelector('#undoButton').onclick = canvasUndo;
 			document.querySelector('#redoButton').onclick = canvasRedo;
 			document.querySelector('#invertFilter').onclick = invertFilter;
@@ -148,14 +152,20 @@
 			document.querySelector('#greenFilter').onclick = greenFilter;
 			document.querySelector('#noFilter').onclick = noFilter;
 
-			$("#slideMenuUp").click(function(){
-				$("ul").slideUp();
-			});
-			$("#slideMenuDown").click(function(){
-				$("ul").slideDown();
+			$("#slideMenu").click(function(){
+				if(slideMenuBoolean == false){
+					$("ul").slideDown();
+					slideMenuBoolean = true;
+				}
+				else{
+					$("ul").slideUp();
+					slideMenuBoolean = false
+				}
+
 			});
 
 			window.onresize = resizeCanvas;
+			addPicture();
 			//push a blank canvas
 			canvasPush();
 		}
