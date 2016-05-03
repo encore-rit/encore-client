@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'edoregular';
+  src: url("fonts/edosz.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'proximanovaregular';
+  src: url("fonts/proximanova-regular-webfont.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
