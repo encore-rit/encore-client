@@ -7,21 +7,25 @@ function invertFilter(){
   manipulatePixels();
 }
 function grayscaleFilter(){
+  noFilter();
   invert = tintRed = tintGreen = tintBlue = false;
   grayscale = true;
   manipulatePixels();
 }
 function redFilter(){
+  noFilter();
   invert = grayscale = tintGreen = tintBlue = false;
   tintRed = true;
   manipulatePixels();
 }
 function blueFilter(){
+  noFilter();
   invert = grayscale = tintRed = tintGreen = false;
   tintBlue = true
   manipulatePixels();
 }
 function greenFilter(){
+  noFilter();
   invert = grayscale = tintRed = tintBlue = false;
   tintGreen = true;
   manipulatePixels();

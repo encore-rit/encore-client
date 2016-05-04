@@ -1,11 +1,14 @@
+@import "fontStyle.css";
+
 body {
    background: black;
-   font-family: tahoma, verdana, sans serif;
+   font-family: 'proximanovaregular';
    height: 100%;
    overflow: auto;
    -webkit-overflow-scrolling: touch;
+   margin: 0;
 }
-img{
+#img{
   position: absolute;
   bottom: 10px;
   display: none;
@@ -13,40 +16,121 @@ img{
 #mainCanvas {
    position:absolute;
    z-index: 0;
-   left: 10px;
-   top: 10px;
+   margin-left: auto;
+   margin-right: auto;
+   left: 0;
+   right: 0;
    box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
 }
 #tmpCanvas {
    position:absolute;
    z-index: 1;
-   left: 10px;
-   top: 10px;
+   margin-left: auto;
+   margin-right: auto;
+   left: 0;
+   right: 0;
    cursor: pointer;
    pointer-events:none;
 }
 #pictureCanvas {
   position:absolute;
   z-index: -2;
-  left: 10px;
-  top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
 }
  #controls {
    position: absolute;
    z-index: 2;
-   left: 25px;
-   top: 25px;
+   left: 0px;
+   top: 0px;
+   background-color: rgba(97, 97, 97, 0.6);
+   color:white;
+   width: 225px;
+}
+
+#controls ul{
+  padding-left: 0px;
+}
+#controls ul li{
+  padding-left: 20px;
+  list-style: none;
 }
 label{
-  font-size: 12px;
+  font-size: 20px;
   margin-right:0.75em;
 }
-span{
-  background: white;
+
+#lineWidthChooser, #lineWidthChooser option {
+  font-size: 15px;
 }
 
 #undoAndRedo{
   position: absolute;
-  bottom: 50px;
-  left: 50px;
+  bottom: 20px;
+  left: 25px;
+}
+#undoButton, #redoButton, #done{
+  background: none;
+  border: 2px solid white;
+  padding: 10px;
+  color: white;
+  font-size: 25px;
+}
+
+
+#undoButton img, #redoButton img{
+  width: 26px;
+  height: 26px;
+}
+
+#done{
+  position: absolute;
+  right: 25px;
+  bottom: 20px;
+}
+
+li span input{
+  background-color: transparent;
+  border:none;
+  color:lightgrey;
+  font-size: 20px;
+  padding-top: 20px;
+}
+
+#clearButton{
+  float:right;
+  background-color: transparent;
+  border:none;
+  color:lightgrey;
+  font-size: 12px;
+}
+
+#filterMenu{
+  border-top: 1px solid darkgrey;
+  padding-top: 25px;
+  padding-left: 20px;
+}
+
+#filterWord{
+  color:darkgrey;
+  font-size: 16px;
+  margin: 0;
+}
+#strokeText{
+  font-size: 20px;
+  padding-left: 20px;
+}
+#slideMenu{
+background-color: transparent;
+border: none;
+display: block;
+margin-left: auto;
+margin-right: auto;
+padding: 5px;
+}
+#slideMenu img{
+  width:30px;
+  height: 10px;
 }

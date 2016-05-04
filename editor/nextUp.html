@@ -3,6 +3,8 @@
   <head>
     <title>Next Up</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="user-scalable=1.0,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
     <link rel="stylesheet" href="css/nextUp.css">
 
   </head>
@@ -53,10 +55,12 @@
           //create flex-items
           if (person.username !=null){
             bigString += "<div class='flex-item'>";
-              bigString += "<div class='image'>";
-                bigString += "<h3>" + person.username + "</h3>";
-                bigString += "<img src=" + person.photoSrc + " alt=" + person.username + " />";
-              bigString += "</div>";
+              bigString += "<button type='button' id='" + i + "'>";
+                bigString += "<div class='image'>";
+                  bigString += "<h3>" + person.username + "</h3>";
+                  bigString += "<img src=" + person.photoSrc + " alt=" + person.username + " />";
+                bigString += "</div>";
+              bigString += "</button>"
             bigString += "</div>";
           }
         }
@@ -78,9 +82,9 @@ jsonLoaded({
   { username: 'testl1', photoSrc: 'stuff' },
   { username: 'testl1', photoSrc: 'stuff' },
   { username: 'testl1', photoSrc: 'stuff' },
-  { username: 'testl1', photoSrc: 'stuff' },
   ],
 })
+
     </script>
   </body>
 </html>
