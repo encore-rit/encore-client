@@ -124,4 +124,6 @@ function resizeCanvas() {
   tmpCtx.canvas.width = window.innerWidth;
   picCtx.canvas.width  = window.innerWidth - 200;
   picCtx.canvas.height = window.innerHeight;
+  width = canvas.width;
+  height = canvas.height;
 }
