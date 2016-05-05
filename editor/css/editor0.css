@@ -1,19 +1,24 @@
 @import "fontStyle.css";
 
-body {
+#editor{
    background: black;
    font-family: 'proximanovaregular';
    height: 100%;
    overflow: auto;
    -webkit-overflow-scrolling: touch;
    margin: 0;
+   position: absolute;
+   top: 0px;
+   left: 0px;
+   width: 100%;
+   display:none;
 }
-#img{
+#editor #img{
   position: absolute;
   bottom: 10px;
   display: none;
 }
-#mainCanvas {
+#editor #mainCanvas {
    position:absolute;
    z-index: 0;
    margin-left: auto;
@@ -22,7 +27,7 @@ body {
    right: 0;
    box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
 }
-#tmpCanvas {
+#editor #tmpCanvas {
    position:absolute;
    z-index: 1;
    margin-left: auto;
@@ -32,7 +37,7 @@ body {
    cursor: pointer;
    pointer-events:none;
 }
-#pictureCanvas {
+#editor #pictureCanvas {
   position:absolute;
   z-index: -2;
   margin-left: auto;
@@ -40,7 +45,7 @@ body {
   left: 0;
   right: 0;
 }
- #controls {
+#editor #controls {
    position: absolute;
    z-index: 2;
    left: 0px;
@@ -50,28 +55,28 @@ body {
    width: 225px;
 }
 
-#controls ul{
+#editor #controls ul{
   padding-left: 0px;
 }
-#controls ul li{
+#editor #controls ul li{
   padding-left: 20px;
   list-style: none;
 }
-label{
+#editor label{
   font-size: 20px;
   margin-right:0.75em;
 }
 
-#lineWidthChooser, #lineWidthChooser option {
+#editor #lineWidthChooser, #editor #lineWidthChooser option {
   font-size: 15px;
 }
 
-#undoAndRedo{
+#editor #undoAndRedo{
   position: absolute;
   bottom: 20px;
   left: 25px;
 }
-#undoButton, #redoButton, #done{
+#editor #undoButton, #editor #redoButton, #editor #done{
   background: none;
   border: 2px solid white;
   padding: 10px;
@@ -80,18 +85,18 @@ label{
 }
 
 
-#undoButton img, #redoButton img{
+#editor #undoButton img, #editor #redoButton img{
   width: 26px;
   height: 26px;
 }
 
-#done{
+#editor #done{
   position: absolute;
   right: 25px;
   bottom: 20px;
 }
 
-li span input{
+#editor li span input{
   background-color: transparent;
   border:none;
   color:lightgrey;
@@ -99,7 +104,7 @@ li span input{
   padding-top: 20px;
 }
 
-#clearButton{
+#editor #clearButton{
   float:right;
   background-color: transparent;
   border:none;
@@ -107,22 +112,22 @@ li span input{
   font-size: 12px;
 }
 
-#filterMenu{
+#editor #filterMenu{
   border-top: 1px solid darkgrey;
   padding-top: 25px;
   padding-left: 20px;
 }
 
-#filterWord{
+#editor #filterWord{
   color:darkgrey;
   font-size: 16px;
   margin: 0;
 }
-#strokeText{
+#editor #strokeText{
   font-size: 20px;
   padding-left: 20px;
 }
-#slideMenu{
+#editor #slideMenu{
 background-color: transparent;
 border: none;
 display: block;
@@ -130,7 +135,7 @@ margin-left: auto;
 margin-right: auto;
 padding: 5px;
 }
-#slideMenu img{
+#editor #slideMenu img{
   width:30px;
   height: 10px;
 }

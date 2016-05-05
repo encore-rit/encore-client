@@ -1,74 +1,77 @@
 @import "fontStyle.css";
 
-.container{
-    padding-top: 73px;
-	  display: -webkit-flex;
-	  -webkit-flex-wrap: wrap;
-    display: flex;
-    flex-wrap: wrap;
-
-
-    justify-content: center;
-}
-
-#flex-item0, #flex-item1, #flex-item2{
-  padding-left: 5px;
-}
-
-#flex-item0{
-  padding-top: 0px;
-}
-#flex-item1{
-  padding-top: 80px;
-}
-#flex-item2{
-  padding-top: 160px;
-}
-
-h1{
-  font-family: "edoregular";
-  font-size: 71px;
-  margin-bottom: 0.3em;
-  margin-top: 0.6em;
-}
-
-p{
-  font-size: 22px;
-}
-
-label > input{ /* HIDE RADIO */
-  display: none;
-}
-label > input + img{ /* IMAGE STYLES */
-
-  border:10px solid transparent;
-}
-label > input:checked + img{ /* (CHECKED) IMAGE STYLES */
-  border:10px solid white;
-}
-
-img{
-    width: 225px;
-}
-
-h1, p{
-  text-align: center;
-}
-
-body{
+#greatShow {
   font-family: 'proximanovaregular';
   background-image: url("../images/ipadBG2.jpg");
   background-size: 100% 100%;
   height:100vh;
   margin: 0px;
   color: white;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  display:none;
 }
 
-#parent{
+#greatShow .container{
+    padding-top: 73px;
+	  display: -webkit-flex;
+	  -webkit-flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#greatShow #flex-item0, #flex-item1, #flex-item2{
+  padding-left: 5px;
+}
+
+#greatShow #flex-item0{
+  padding-top: 0px;
+}
+#greatShow #flex-item1{
+  padding-top: 80px;
+}
+#greatShow #flex-item2{
+  padding-top: 160px;
+}
+
+#greatShow h1{
+  font-family: "edoregular";
+  font-size: 71px;
+  margin-bottom: 0.3em;
+  margin-top: 0.6em;
+}
+
+#greatShow p{
+  font-size: 22px;
+}
+
+#greatShow label > input{ /* HIDE RADIO */
+  display: none;
+}
+#greatShow label > input + img{ /* IMAGE STYLES */
+
+  border:10px solid transparent;
+}
+#greatShow label > input:checked + img{ /* (CHECKED) IMAGE STYLES */
+  border:10px solid white;
+}
+
+#greatShow img{
+    width: 225px;
+}
+
+#greatShow h1, #greatShow p{
+  text-align: center;
+}
+
+#greatShow #parent{
   position: relative;
 }
 
-#back, #edit{
+#greatShow #back, #greatShow #edit{
   background: none;
   border: 2px solid white;
   padding: 10px;
@@ -76,13 +79,13 @@ body{
   font-size: 25px;
 }
 
-#back{
+#greatShow #back{
   position: absolute;
   bottom: 20px;
   left: 25px;
 }
 
-#edit{
+#greatShow #edit{
   position: absolute;
   bottom: 20px;
   right: 25px;
