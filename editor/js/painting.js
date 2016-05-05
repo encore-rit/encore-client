@@ -115,8 +115,8 @@ function getTouchCoords(e, canvas){
 
 function setPicture(src) {
   var editorImg = document.querySelector('#editor-img');
-  console.log(editorImg, src)
-  editorImg.src = "https://crossorigin.me/" + src;
+  editorImg.crossOrigin = "";
+  editorImg.src = src;
 }
 
 function addPicture(){

@@ -40,6 +40,7 @@ function manipulatePixels(){
   // https://developer.mozilla.org/en-US/docs/Web/API/ImageData
   addPicture();
   var imageData = picCtx.getImageData(0, 0, picCanvas.width, picCanvas.height);
+  console.log(imageData)
   //imageData.data is an 8-bit typed array - values range from 0-255
   var data = imageData.data;
   var length = data.length;
