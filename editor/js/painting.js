@@ -112,8 +112,8 @@ function getTouchCoords(e, canvas){
   touch.y = e.touches[0].pageY - canvas.offsetTop;
   return touch;
 }
-function addPicture(){
-  picCtx.drawImage(img,0,0,img.width,img.height, //source rectangle
+function addPicture(e){
+  picCtx.drawImage(e,0,0,img.width,img.height, //source rectangle
                        0,0,picCanvas.width,picCanvas.height); //destination rectangle
   console.log(img);
 }

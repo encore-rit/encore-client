@@ -14,7 +14,7 @@
   display:none;
 }
 
-#greatShow .container{
+#greatShow #containerGreatShow{
     padding-top: 73px;
 	  display: -webkit-flex;
 	  -webkit-flex-wrap: wrap;

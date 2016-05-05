@@ -1,4 +1,6 @@
 var allPeople = [];
+var whichPerson;
+var whichPicture;
 
 function getData(){
   $.ajax({
@@ -41,7 +43,7 @@ function loadUsername(){
     //create flex-items
     if (person.username !=null){
       bigString += "<div class='flex-item'>";
-        bigString += "<button type='button' id='" + i + "'>";
+        bigString += "<button type='button' id='User" + i + "'>";
           bigString += "<div class='image'>";
             bigString += "<h3>" + person.username + "</h3>";
             bigString += "<img src=" + person.photoSrc + " alt=" + person.username + " />";
@@ -52,7 +54,46 @@ function loadUsername(){
   }
 
   document.querySelector(".container").innerHTML = bigString;
-  console.log("call load");
+}
+
+function getThreePicture(e){
+  console.log(allPeople[e]);
+  whichPerson = e;
+  var bigString = ''
+  for (var i = 0; i < allPeople[whichPerson].photos.length; i++){
+    var picture = allPeople[whichPerson].photos[i];
+    //create flex-items
+    if (picture !=null){
+      bigString += "<div id='" + flex-item +  "'>";
+        bigString += "<lable>"
+          bigString += "<input type='radio' name='picture' value ='"+ i + "' />";
+          bigString += "<img src='" + picture + "' alt=" + allPicture[whichPerson].username + " />";
+        bigString += "<lable>"
+      bigString += "</div>";
+    }
+  }
+  document.querySelector("#containerGreatShow").innerHTML = bigString;
+
+  document.querySelector("#nextUp").style.display = "none";
+  document.querySelector("#greatShow").style.display = "block";
+}
+
+function addPictureToEditor(){
+  if(document.querySelector('input[name="picture"]:checked').value !=null){
+    whichPicture = document.querySelector('input[name="picture"]:checked').value;
+    console.log(whichPicture);
+    addPicture(allPeople[e].photos[whichPicture]);
+    document.querySelector("#greatShow").style.display = "none";
+    document.querySelector("#editor").style.display = "block";
+  }
+  else {
+    alert("please pick the picture");
+  }
+}
+
+function backToNextUp(){
+  document.querySelector("#greatShow").style.display = "none";
+  document.querySelector("#nextUp").style.display = "block";
 }
 
 jsonLoaded({
@@ -61,13 +102,13 @@ status: 200,
 error: null,
 people: [
 { username: 'testl1', photoSrc: 'stuff' },
-{ username: 'testl1', photoSrc: 'stuff' },
-{ username: 'testl1', photoSrc: 'stuff' },
-{ username: 'testl1', photoSrc: 'stuff' },
-{ username: 'testl1', photoSrc: 'stuff' },
-{ username: 'testl1', photoSrc: 'stuff' },
-{ username: 'testl1', photoSrc: 'stuff' },
-{ username: 'testl1', photoSrc: 'stuff' },
-{ username: 'testl1', photoSrc: 'stuff' },
+{ username: 'testl2', photoSrc: 'stuff' },
+{ username: 'testl3', photoSrc: 'stuff' },
+{ username: 'testl4', photoSrc: 'stuff' },
+{ username: 'testl5', photoSrc: 'stuff' },
+{ username: 'testl6', photoSrc: 'stuff' },
+{ username: 'testl7', photoSrc: 'stuff' },
+{ username: 'testl8', photoSrc: 'stuff' },
+{ username: 'testl9', photoSrc: 'stuff' },
 ],
 })
