@@ -14,13 +14,13 @@
   display:none;
 }
 
-#greatShow .container{
-    padding-top: 73px;
-	  display: -webkit-flex;
-	  -webkit-flex-wrap: wrap;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+#greatShow #containerGreatShow{
+  padding-top: 73px;
+  display: -webkit-flex;
+  -webkit-flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 #greatShow #flex-item0, #flex-item1, #flex-item2{
@@ -48,22 +48,27 @@
   font-size: 22px;
 }
 
-#greatShow label > input{ /* HIDE RADIO */
+/* HIDE RADIO */
+#greatShow label > input {
   display: none;
 }
-#greatShow label > input + img{ /* IMAGE STYLES */
 
+/* IMAGE STYLES */
+#greatShow label > input + img{
   border:10px solid transparent;
 }
-#greatShow label > input:checked + img{ /* (CHECKED) IMAGE STYLES */
+
+/* (CHECKED) IMAGE STYLES */
+#greatShow label > input:checked + img{
   border:10px solid white;
 }
 
-#greatShow img{
-    width: 225px;
+#greatShow img {
+  width: 225px;
 }
 
-#greatShow h1, #greatShow p{
+#greatShow h1,
+#greatShow p {
   text-align: center;
 }
 
@@ -71,7 +76,8 @@
   position: relative;
 }
 
-#greatShow #back, #greatShow #edit{
+#greatShow #back,
+#greatShow #edit {
   background: none;
   border: 2px solid white;
   padding: 10px;

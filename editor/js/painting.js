@@ -1,6 +1,6 @@
 // EVENT CALLBACK FUNCTIONS
 function doLineWidthChange(e){
-lineWidth = e.target.value;
+  lineWidth = e.target.value;
 }
 function doTouchdown(e){
   console.log(e.type);
@@ -92,12 +92,12 @@ function doExport(){
   picCtx.drawImage(canvas,0,0);
   var data = picCanvas.toDataURL();
   //add code here to sent final picture to the server
-  console.log(data);
   var windowName = "canvasImage";
   var windowOptions = "left=0,top=0,width=" + canvas.width + ",height=" + canvas.height +",toolbar=0,resizable=0";
   var myWindow = window.open(data,windowName,windowOptions);
   myWindow.resizeTo(canvas.width,canvas.height); // needed so Chrome would display image
 }
+
 // UTILITY FUNCTIONS
 // returns touch position in local coordinate system of element
 function getTouch(e){
@@ -112,10 +112,19 @@ function getTouchCoords(e, canvas){
   touch.y = e.touches[0].pageY - canvas.offsetTop;
   return touch;
 }
+
+function setPicture(src) {
+  var editorImg = document.querySelector('#editor-img');
+  console.log(editorImg, src)
+  editorImg.src = "https://crossorigin.me/" + src;
+}
+
 function addPicture(){
-  picCtx.drawImage(img,0,0,img.width,img.height, //source rectangle
-                       0,0,picCanvas.width,picCanvas.height); //destination rectangle
-  console.log(img);
+  picCtx.drawImage(editorImg,
+                   //source rectangle
+                   0, 0, editorImg.width, editorImg.height,
+                   //destination rectangle
+                   0, 0, picCanvas.width, picCanvas.height);
 }
 function resizeCanvas() {
   ctx.canvas.width  = window.innerWidth;
