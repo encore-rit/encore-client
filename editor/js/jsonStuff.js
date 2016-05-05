@@ -1,6 +1,7 @@
 var allPeople = [];
 var whichPerson = null;
-
+var whichPicture = null;
+var getEditorPic;
 // Request what's available currently on page load
 // window.fetch('http://localhost:1339/editors')
 window.fetch('http://encore-api.herokuapp.com/editors')
@@ -84,10 +85,12 @@ function getThreePicture(index) {
 
 function addPictureToEditor() {
   if(document.querySelector('input[name="picture"]:checked').value != null){
-    var whichPicture =
+     whichPicture =
       document.querySelector('input[name="picture"]:checked').value;
+      getEditorPic = allPeople[whichPerson].photos[whichPicture];
+    setPicture(getEditorPic);
 
-    setPicture(allPeople[whichPerson].photos[whichPicture]);
+    //addPicture();
     document.querySelector("#greatShow").style.display = "none";
     document.querySelector("#editor").style.display = "block";
   }

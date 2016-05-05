@@ -18,6 +18,9 @@
   bottom: 10px;
   display: none;
 }
+#editorImg{
+  display: none;
+}
 #editor #mainCanvas {
    position:absolute;
    z-index: 0;

@@ -58,7 +58,7 @@
 
     <!-- EDITOR PART START-->
     <div id="editor">
-      <img id="editor-img">
+      <img id="editorImg">
 
       <canvas id="mainCanvas" width="700" height="500">
         Get a real browser!
@@ -142,6 +142,7 @@
       var picCanvas, picCtx;
 
       var slideMenuBoolean = true;
+      var editorImg;
 
       // Pencil Points
       var ppts = [];
@@ -162,7 +163,7 @@
         tmpCtx = tmpCanvas.getContext('2d');
         picCanvas = document.querySelector('#pictureCanvas');
         picCtx = picCanvas.getContext('2d');
-        editorImg = document.querySelector('#editor-img');
+        editorImg = document.querySelector('#editorImg');
         lineWidth = DEFAULT_LINE_WIDTH;
         strokeStyle = DEFAULT_STROKE_STYLE;
         //set initial properties of the graphics context
@@ -186,12 +187,12 @@
         document.querySelector('#lineWidthChooser').onchange = doLineWidthChange;
         document.querySelector('#undoButton').onclick = canvasUndo;
         document.querySelector('#redoButton').onclick = canvasRedo;
-        document.querySelector('#invertFilter').onclick = invertFilter;
-        document.querySelector('#grayscaleFilter').onclick = grayscaleFilter;
-        document.querySelector('#redFilter').onclick = redFilter;
-        document.querySelector('#blueFilter').onclick = blueFilter;
-        document.querySelector('#greenFilter').onclick = greenFilter;
-        document.querySelector('#noFilter').onclick = noFilter;
+        document.querySelector('#invertFilter').onclick = function(){invertFilter();};
+        document.querySelector('#grayscaleFilter').onclick = function(){grayscaleFilter();};
+        document.querySelector('#redFilter').onclick = function(){redFilter();};
+        document.querySelector('#blueFilter').onclick = function(){blueFilter();};
+        document.querySelector('#greenFilter').onclick = function(){greenFilter();};
+        document.querySelector('#noFilter').onclick = function(){noFilter();};
 
         $("#slideMenu").click(function(){
           if(slideMenuBoolean == false){
@@ -209,5 +210,7 @@
         canvasPush();
       }
     </script>
+
+
   </body>
 </html>

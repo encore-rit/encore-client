@@ -114,13 +114,17 @@ function getTouchCoords(e, canvas){
 }
 
 function setPicture(src) {
-  var editorImg = document.querySelector('#editor-img');
   editorImg.crossOrigin = "";
   editorImg.src = src;
+  addPicture();
 }
 
 function addPicture(){
-  picCtx.drawImage(editorImg,
+  console.log("addPicture");
+  console.log(editorImg);
+  var getEditorPic = document.querySelector("#editorImg");
+
+  ctx.drawImage(editorImg,
                    //source rectangle
                    0, 0, editorImg.width, editorImg.height,
                    //destination rectangle
