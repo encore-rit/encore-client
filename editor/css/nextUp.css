@@ -1,58 +1,60 @@
 @import "fontStyle.css";
 
 #nextUp{
-	font-family: 'proximanovaregular';
-	background-image: url("../images/ipadBG2.jpg");
-	background-size: 100% 100%;
-	height:100vh;
-	margin: 0px;
-	color: white;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	width: 100%;
+  font-family: 'proximanovaregular';
+  background-image: url("../images/ipadBG2.jpg");
+  background-size: cover;
+  height:100vh;
+  margin: 0px;
+  color: white;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
 }
 #nextUp .container{
-		padding-top:80px;
-		display: -webkit-flex;
-		-webkit-flex-wrap: wrap;
-    display: flex;
-    flex-wrap: wrap;
+  padding-top:80px;
+  display: -webkit-flex;
+  -webkit-flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 
-    justify-content: center;
+  justify-content: center;
 }
 
 #nextUp .flex-item{
-    padding: 30px;
+  padding: 30px;
 }
 
 #nextUp .flex-item button{
-		padding: 0px;
-		border: none;
-		background-color: transparent;
+  padding: 0px;
+  border: none;
+  background-color: transparent;
 }
 
 #nextUp .image{
-    position: relative;
-    background: green; /* IE */
-    width: 170px;
-    height: 170px;
+  position: relative;
+  background: green; /* IE */
+  width: 170px;
+  height: 170px;
 }
 #nextUp .image h3{
-    z-index: 2;
-    position: absolute;
-    font-size: 32px;
-    top: calc(50% - 16px);
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    text-align: center;
+  z-index: 2;
+  position: absolute;
+  font-size: 32px;
+  top: calc(50% - 16px);
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  color: white;
+  word-wrap: break-word;
 }
 #nextUp .image img{
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    background-color: purple;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: purple;
 }
 
 #nextUp h1, #nextUp p{
@@ -61,11 +63,11 @@
 
 
 #nextUp h1{
-	font-family: "edoregular";
+  font-family: "edoregular";
   font-size: 71px;
   margin-bottom: 0.3em;
   margin-top: 0.6em;
 }
 #nextUp p{
-	font-size: 22px;
+  font-size: 22px;
 }
