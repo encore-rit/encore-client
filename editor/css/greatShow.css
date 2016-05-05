@@ -3,7 +3,7 @@
 #greatShow {
   font-family: 'proximanovaregular';
   background-image: url("../images/ipadBG2.jpg");
-  background-size: 100% 100%;
+  background-size: cover;
   height:100vh;
   margin: 0px;
   color: white;
