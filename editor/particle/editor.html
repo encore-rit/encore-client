@@ -1,0 +1,59 @@
+<div id="editor">
+	<canvas id="mainCanvas" width="700" height="500">
+	Get a real browser!
+	</canvas>
+	<canvas id="tmpCanvas" width="700" height="500">
+	Get a real browser!
+	</canvas>
+
+	<canvas id="pictureCanvas">
+		Get a real browser!
+	</canvas>
+
+	<img id="img" src="images/ladyGaga.jpg">
+
+	<div id="controls">
+		<ul>
+			<p id="strokeText">Stroke</p>
+
+			<li>
+				<label>Line Width:
+					<select id="lineWidthChooser">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3" selected>3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+					</select>
+				</label>
+			</li>
+
+			<li><div id="coloredSlider"></div></li>
+
+			<div id="filterMenu">
+				<span><input id="clearButton" type="button" value="Clear"/></span>
+				<p id= "filterWord">Filter</p>
+			</div>
+
+    	<li><span><input id="exportButton" type="button" value="Export"/></span></li>
+			<li><span><input id="addPicture" type="button" value="Add Picture"/></span></li>
+			<li><span><input id="grayscaleFilter" type="button" value="Black and White"/></span></li>
+			<li><span><input id="invertFilter" type="button" value="Invert"/></span></li>
+			<li><span><input id="redFilter" type="button" value="Red"/></span></li>
+			<li><span><input id="blueFilter" type="button" value="Blue"/></span></li>
+			<li><span><input id="greenFilter" type="button" value="Green"/></span></li>
+			<li><span><input id="noFilter" type="button" value="No Filter"/></span></li>
+		</ul>
+		<button type="button" id="slideMenu"><img src="images/downArrow.png"></button>
+  </div>
+	<div id ="undoAndRedo">
+		<button type="button" id="undoButton"><img src="images/Undo_Thick.png" alt="UNDO"></button>
+		<button type="button" id="redoButton"><img src="images/Redo_Thick.png" alt="REDO"></button>
+	</div>
+	<span><input id="done" type="button" value="DONE"/></span>
+</div>

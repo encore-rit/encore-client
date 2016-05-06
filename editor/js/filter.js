@@ -4,34 +4,40 @@ var invert = false, grayscale = false, tintRed = false, tintBlue = false; tintGr
 function invertFilter(){
   grayscale = tintRed = tintGreen = tintBlue = false;
   invert = true;
+  console.log("invertFilter");
   manipulatePixels();
 }
 function grayscaleFilter(){
   noFilter();
   invert = tintRed = tintGreen = tintBlue = false;
   grayscale = true;
+  console.log("grayscaleFilter");
   manipulatePixels();
 }
 function redFilter(){
   noFilter();
   invert = grayscale = tintGreen = tintBlue = false;
   tintRed = true;
+  console.log("redFilter");
   manipulatePixels();
 }
 function blueFilter(){
   noFilter();
   invert = grayscale = tintRed = tintGreen = false;
   tintBlue = true
+  console.log("blueFilter");
   manipulatePixels();
 }
 function greenFilter(){
   noFilter();
   invert = grayscale = tintRed = tintBlue = false;
   tintGreen = true;
+  console.log("greenFilter");
   manipulatePixels();
 }
 function noFilter(){
   invert = grayscale = tintRed = tintGreen = tintBlue = false;
+  console.log("noFilter");
   manipulatePixels();
 }
 
@@ -40,6 +46,7 @@ function manipulatePixels(){
   // https://developer.mozilla.org/en-US/docs/Web/API/ImageData
   addPicture();
   var imageData = picCtx.getImageData(0, 0, picCanvas.width, picCanvas.height);
+  console.log(imageData)
   //imageData.data is an 8-bit typed array - values range from 0-255
   var data = imageData.data;
   var length = data.length;

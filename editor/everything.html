@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Photo Paint</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="user-scalable=1.0,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="stylesheet" href="css/nextUp.css">
+    <link rel="stylesheet" href="css/greatShow.css">
+    <link href='css/editor0.css' rel='stylesheet' type='text/css'>
+    <link href='../colorSlider/colorSlider.css' rel='stylesheet' type='text/css'>
+    <link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css' rel='stylesheet' type='text/css'>
+
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.6/socket.io.min.js"></script>
+
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="../colorSlider/colorSlider.js"></script>
+    <script src="js/filter.js"></script>
+    <script src="js/painting.js"></script>
+    <script src="js/undoRedo.js"></script>
+    <script>
+      $('.ui-widget-content').draggable();
+    </script>
+  </head>
+
+  <body>
+    <!-- NEXT UP PART START -->
+    <div id="nextUp">
+        <h1>NEXT UP IS...</h1>
+        <p>Remind me, what was your stage name again</p>
+
+        <div class = "container"></div>
+    </div>
+    <!-- NEXT UP PART END -->
+
+    <!-- GREAT SHOW PART START -->
+    <div id="greatShow">
+        <h1>Great Show</h1>
+        <p>Chose <b>one</b> stage debut picture</p>
+        <div id=#parent>
+          <div id = "containerGreatShow">
+            <div id="dynamicContent"></div>
+          </div>
+        </div>
+        <button id="back" type="button">Back</button>
+        <button id="edit" type="button">Edit</button>
+    </div>
+    <!-- GREAT SHOW PART END -->
+
+    <!-- EDITOR PART START-->
+    <div id="editor">
+      <img id="editorImg">
+
+      <canvas id="mainCanvas" width="700" height="500">
+        Get a real browser!
+      </canvas>
+      <canvas id="tmpCanvas" width="700" height="500">
+        Get a real browser!
+      </canvas>
+
+      <canvas id="pictureCanvas">
+        Get a real browser!
+      </canvas>
+
+      <div id="controls">
+        <ul>
+          <p id="strokeText">Stroke</p>
+
+          <li>
+            <label>Line Width:
+              <select id="lineWidthChooser">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3" selected>3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </label>
+          </li>
+
+          <li><div id="coloredSlider"></div></li>
+
+          <div id="filterMenu">
+            <span><input id="clearButton" type="button" value="Clear"/></span>
+            <p id= "filterWord">Filter</p>
+          </div>
+
+          <li><span><input id="grayscaleFilter" type="button" value="Black and White"/></span></li>
+          <li><span><input id="invertFilter" type="button" value="Invert"/></span></li>
+          <li><span><input id="redFilter" type="button" value="Red"/></span></li>
+          <li><span><input id="blueFilter" type="button" value="Blue"/></span></li>
+          <li><span><input id="greenFilter" type="button" value="Green"/></span></li>
+          <li><span><input id="noFilter" type="button" value="No Filter"/></span></li>
+        </ul>
+
+        <button type="button" id="slideMenu"><img src="images/downArrow.png" alt="down arrow"></button>
+
+      </div>
+      <div id ="undoAndRedo">
+        <button type="button" id="undoButton"><img src="images/Undo_Thick.png" alt="UNDO"></button>
+        <button type="button" id="redoButton"><img src="images/Redo_Thick.png" alt="REDO"></button>
+      </div>
+
+      <span><input id="done" type="button" value="DONE"/></span>
+
+    </div>
+    <!-- EDITOR PART END -->
+
+    <script src="js/jsonStuff.js"></script>
+    <script>
+      document.querySelector("#back").onclick = function(){backToNextUp();};
+      document.querySelector("#edit").onclick = function(){addPictureToEditor();};
+
+      //editor stuff below
+
+      // Enable fastclick library
+      // @XXX seems to mess up radio button selection
+      // if ('addEventListener' in document) {
+      //     document.addEventListener('DOMContentLoaded', function() {
+      //         FastClick.attach(document.body);
+      //     }, false);
+      // }
+
+      window.onload = init;
+      // GLOBALS
+      var canvas,ctx,dragging=false,lineWidth,strokeStyle;
+      var tmpCanvas, tmpCtx;
+      var picCanvas, picCtx;
+
+      var slideMenuBoolean = true;
+      var editorImg;
+
+      // Pencil Points
+      var ppts = [];
+
+      //making array for undo button. Picture the canvas everytime when the touch is release.
+      var canvasPushArray = new Array();
+      var canvasStep = -1;
+      // CONSTANTS
+      var DEFAULT_LINE_WIDTH = 3;
+      var DEFAULT_STROKE_STYLE = "red";
+
+      // FUNCTIONS
+      function init(){
+        // initialize some globals
+        canvas = document.querySelector('#mainCanvas');
+        ctx = canvas.getContext('2d');
+        tmpCanvas = document.querySelector('#tmpCanvas');
+        tmpCtx = tmpCanvas.getContext('2d');
+        picCanvas = document.querySelector('#pictureCanvas');
+        picCtx = picCanvas.getContext('2d');
+        editorImg = document.querySelector('#editorImg');
+        lineWidth = DEFAULT_LINE_WIDTH;
+        strokeStyle = DEFAULT_STROKE_STYLE;
+        //set initial properties of the graphics context
+        ctx.lineWidth = lineWidth;
+        ctx.strokeStyle = strokeStyle;
+        ctx.lineCap = "round"; // "butt", "round", "square" (default "butt")
+        ctx.lineJoin = "round"; // "round", "bevel", "miter" (default "miter")
+
+        //FIX THIS PAINTING COLOR
+        tmpCtx.lineWidth = lineWidth;
+        tmpCtx.lineJoin = 'round';
+        tmpCtx.lineCap = 'round';
+        tmpCtx.strokeStyle = strokeStyle;
+
+        resizeCanvas();
+        // Hook up event listeners
+        canvas.addEventListener('touchstart', doTouchdown);
+        canvas.addEventListener('touchmove', doTouchmove);
+        canvas.addEventListener('touchend', doTouchup);
+        canvas.addEventListener('touchcancel', doTouchout);
+        document.querySelector('#lineWidthChooser').onchange = doLineWidthChange;
+        document.querySelector('#undoButton').onclick = canvasUndo;
+        document.querySelector('#redoButton').onclick = canvasRedo;
+        document.querySelector('#invertFilter').onclick = function(){invertFilter();};
+        document.querySelector('#grayscaleFilter').onclick = function(){grayscaleFilter();};
+        document.querySelector('#redFilter').onclick = function(){redFilter();};
+        document.querySelector('#blueFilter').onclick = function(){blueFilter();};
+        document.querySelector('#greenFilter').onclick = function(){greenFilter();};
+        document.querySelector('#noFilter').onclick = function(){noFilter();};
+
+        $("#slideMenu").click(function(){
+          if(slideMenuBoolean == false){
+            $("ul").slideDown();
+            slideMenuBoolean = true;
+          }
+          else{
+            $("ul").slideUp();
+            slideMenuBoolean = false
+          }
+        });
+
+        window.onresize = resizeCanvas;
+        //push a blank canvas
+        canvasPush();
+      }
+    </script>
+
+
+  </body>
+</html>
