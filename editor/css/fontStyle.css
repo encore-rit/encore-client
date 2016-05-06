@@ -1,8 +1,9 @@
 @font-face {
   font-family: 'edoregular';
-  src: url("fonts/edosz.ttf");
+  src: url("css/fonts/edo-webfont.eot");
+  src: url("css/fonts/edo-webfont.eot?#iefix") format("embedded-opentype"), url("css/fonts/edo-webfont.woff") format("woff"), url("fonts/edo-webfont.ttf") format("truetype"), url("fonts/edo-webfont.svg#edoregular") format("svg");
   font-weight: normal;
-  font-style: normal;
+  font-style: normal; }
 }
 @font-face {
   font-family: 'proximanovaregular';

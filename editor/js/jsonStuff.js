@@ -103,3 +103,24 @@ function backToNextUp(){
   document.querySelector("#greatShow").style.display = "none";
   document.querySelector("#nextUp").style.display = "block";
 }
+
+function popUpShareMemory(){
+  document.querySelector("#editor").style.opacity = "0.7";
+  document.querySelector("#memory").style.display = "block";
+}
+function shareMemoryToMemory(){
+  document.querySelector("#editor").style.opacity = "1.0";
+  document.querySelector("#editor").style.display = "none;";
+  document.querySelector("#memory").style.display = "block";
+}
+function memoryToFinalCheck(){
+  document.querySelector("#memory").style.display = "none;";
+  document.querySelector("#finalCheck").style.display = "block";
+}
+function popUpBeFamous(){
+  document.querySelector("#finalCheck").style.opacity = "0.7";
+  document.querySelector("#beFamous").style.display = "block";
+}
+function finish(){
+  document.querySelector('#scram').style.display = "block";
+}

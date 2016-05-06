@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="css/nextUp.css">
     <link rel="stylesheet" href="css/greatShow.css">
     <link href='css/editor0.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/shareMemory.css">
+    <link rel="stylesheet" href="css/memory.css">
+    <link rel="stylesheet" href="css/export.css">
     <link href='../colorSlider/colorSlider.css' rel='stylesheet' type='text/css'>
     <link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css' rel='stylesheet' type='text/css'>
 
@@ -58,7 +61,7 @@
 
     <!-- EDITOR PART START-->
     <div id="editor">
-      <img id="editorImg">
+      <img id="editorImg" src="https://lh5.ggpht.com/kvswWeqQPJYFZbHQlQPswxIeAOZ-U6JQR5YQ1OYjobK9oT8bvNmptVXJbfwVZS1xnQeg=h900" alt="editorPicture">
 
       <canvas id="mainCanvas" width="700" height="500">
         Get a real browser!
@@ -73,7 +76,7 @@
 
       <div id="controls">
         <ul>
-          <p id="strokeText">Stroke</p>
+          <li><p id="strokeText">Stroke</p><li>
 
           <li>
             <label>Line Width:
@@ -94,10 +97,10 @@
 
           <li><div id="coloredSlider"></div></li>
 
-          <div id="filterMenu">
+          <li><div id="filterMenu">
             <span><input id="clearButton" type="button" value="Clear"/></span>
             <p id= "filterWord">Filter</p>
-          </div>
+          </div></li>
 
           <li><span><input id="grayscaleFilter" type="button" value="Black and White"/></span></li>
           <li><span><input id="invertFilter" type="button" value="Invert"/></span></li>
@@ -115,10 +118,46 @@
         <button type="button" id="redoButton"><img src="images/Redo_Thick.png" alt="REDO"></button>
       </div>
 
-      <span><input id="done" type="button" value="DONE"/></span>
+      <span><input id="done" type="button" value="done"/></span>
 
     </div>
     <!-- EDITOR PART END -->
+
+    <!--POP-UP SHARE MEMORY START -->
+    <div id = "shareMemory">
+      <div id = "shareMemoryBox">
+        <h1>THIS IS YOUR STORY</h1>
+        <P>These artists are nothing without their fans.</P>
+        <P>Share your favorite experience, cherished memory or less than legal adventure that comes to mind from your influence</P>
+        <button type="button" id="continue">CONTINUE</button>
+      </div>
+    </div>
+    <!--POP-UP SHARE MEMORY END -->
+    <!-- MEMORY PART START -->
+    <div id = "memory">
+      <h1>TELL YOUR STORY</h1>
+
+      <textarea id="inputText" maxlength="500"></textarea>
+
+      <button id="backToEditor" type="button">Back</button>
+      <span><input id="doneMemory" type="button" value="DONE" /></span>
+    </div>
+    <!-- MEMORY PART END -->
+
+    <!-- EXPORT PART START -->
+    <div class="export">
+      <h1>BE FAMOUS</h1>
+      <section>
+        <p>SAVE AND SHARE</p>
+        <input type="text" placeholder="email"><br>
+        <label><input type="checkbox">PUT IT ON THE BIG SCREEN</label>
+      </section>
+      <section>
+        <input type="button" value="BACK" class="backBtn">
+        <input type="button" value="FINISH" class="finishBtn">
+      </section>
+    </div>
+    <!-- EXPORT PART END -->
 
     <script src="js/jsonStuff.js"></script>
     <script>
@@ -185,6 +224,8 @@
         canvas.addEventListener('touchend', doTouchup);
         canvas.addEventListener('touchcancel', doTouchout);
         document.querySelector('#lineWidthChooser').onchange = doLineWidthChange;
+        //document.querySelector('#done').onclick = functionCALL;
+        document.querySelector('#done').onclick = popUpShareMemory;
         document.querySelector('#undoButton').onclick = canvasUndo;
         document.querySelector('#redoButton').onclick = canvasRedo;
         document.querySelector('#invertFilter').onclick = function(){invertFilter();};

@@ -87,15 +87,40 @@ function doClear(){
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 }
 function doExport(){
-  // open a new window and load the image in it
-  // http://www.w3schools.com/jsref/met_win_open.asp
-  picCtx.drawImage(canvas,0,0);
-  var data = picCanvas.toDataURL();
-  //add code here to sent final picture to the server
-  var windowName = "canvasImage";
-  var windowOptions = "left=0,top=0,width=" + canvas.width + ",height=" + canvas.height +",toolbar=0,resizable=0";
-  var myWindow = window.open(data,windowName,windowOptions);
-  myWindow.resizeTo(canvas.width,canvas.height); // needed so Chrome would display image
+  $('.export input:text').val() == "";
+  $('.export input:checkbox').attr('checked', false);
+
+  $('canvas').hide();
+  $('.export').show();
+
+  $('.backBtn').on('click',function(){
+    $('canvas').show();
+    $('.export').hide();
+  });
+
+  $('.finishBtn').on('click',function(){
+    if($('.export input:text').val() != ""){
+          var pic = picCanvas.toDataURL();
+
+      var data = new Object();
+      data.imageData = pic
+      data.email = $('.export input:text').val();
+      data.bigScreen = $('.export input:checkbox').prop("checked");
+
+       $.ajax({
+              url: "http://localhost:1339/photos",
+              method: 'POST',
+              dataType: 'json',
+              data: data,
+              error: function(err) {
+                console.log('err', err)
+              }
+          });
+      }
+      else{
+          $('.export input:text').css("border-color", "#D43131");
+      }
+  });
 }
 
 // UTILITY FUNCTIONS
