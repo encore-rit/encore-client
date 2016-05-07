@@ -1,0 +1,57 @@
+@import "fontStyle.css";
+
+#memory{
+  color:white;
+  background-color: black;
+  height: 100vh;
+  position: absolute;
+  top:0px;
+  left:0px;
+  display: none;
+  width: 100%;
+}
+
+#memory h1{
+  font-family: "edoregular";
+  font-size: 71px;
+  margin-bottom: 0.3em;
+  margin-top: 0.6em;
+  text-align: center;
+}
+
+#memory textarea{
+  font-family: 'Open Sans';
+  margin-top: 100px;
+  width: 500px;
+  height: 400px;;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px;
+  display: block;
+  font-size: 25px;
+}
+
+#memory #controls{
+  position: absolute;
+  bottom: 0;
+  left:0;
+}
+
+
+#memory #backToEditor, #memory #doneMemory {
+  background: none;
+  border: 2px solid white;
+  padding: 10px;
+  color: white;
+  font-size: 25px;
+  position: absolute;
+  bottom: 20px;
+}
+
+#memory  #backToEditor{
+  left: 25px;
+}
+
+#memory #doneMemory{
+  right: 25px;
+}

@@ -9,11 +9,18 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
 
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/nextUp.css">
     <link rel="stylesheet" href="css/greatShow.css">
     <link href='css/editor0.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/shareMemory.css">
+    <link rel="stylesheet" href="css/memory.css">
+    <link rel="stylesheet" href="css/export.css">
+    <link rel="stylesheet" href="css/finalCheck.css">
+    <link rel="stylesheet" href="css/scam.css">
     <link href='../colorSlider/colorSlider.css' rel='stylesheet' type='text/css'>
     <link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css' rel='stylesheet' type='text/css'>
+
 
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -45,8 +52,8 @@
     <!-- GREAT SHOW PART START -->
     <div id="greatShow">
         <h1>Great Show</h1>
-        <p>Chose <b>one</b> stage debut picture</p>
-        <div id=#parent>
+        <p>Choose <b>one</b> stage debut picture</p>
+        <div id="parent">
           <div id = "containerGreatShow">
             <div id="dynamicContent"></div>
           </div>
@@ -58,7 +65,7 @@
 
     <!-- EDITOR PART START-->
     <div id="editor">
-      <img id="editorImg">
+      <img id="editorImg" src="https://lh5.ggpht.com/kvswWeqQPJYFZbHQlQPswxIeAOZ-U6JQR5YQ1OYjobK9oT8bvNmptVXJbfwVZS1xnQeg=h900" alt="editorPicture">
 
       <canvas id="mainCanvas" width="700" height="500">
         Get a real browser!
@@ -73,7 +80,7 @@
 
       <div id="controls">
         <ul>
-          <p id="strokeText">Stroke</p>
+          <li><p id="strokeText">Stroke</p><li>
 
           <li>
             <label>Line Width:
@@ -94,10 +101,10 @@
 
           <li><div id="coloredSlider"></div></li>
 
-          <div id="filterMenu">
+          <li><div id="filterMenu">
             <span><input id="clearButton" type="button" value="Clear"/></span>
             <p id= "filterWord">Filter</p>
-          </div>
+          </div></li>
 
           <li><span><input id="grayscaleFilter" type="button" value="Black and White"/></span></li>
           <li><span><input id="invertFilter" type="button" value="Invert"/></span></li>
@@ -120,6 +127,72 @@
     </div>
     <!-- EDITOR PART END -->
 
+    <!--POP-UP SHARE MEMORY START -->
+    <div id = "shareMemory">
+      <div id = "shareMemoryBox">
+        <h1>THIS IS YOUR STORY</h1>
+        <P>These artists are nothing without their fans.</P>
+        <P>Share your favorite experience, cherished memory or less than legal adventure that comes to mind from your influence</P>
+        <button type="button" id="continue">CONTINUE</button>
+      </div>
+    </div>
+    <!--POP-UP SHARE MEMORY END -->
+    
+    <!-- MEMORY PART START -->
+    <div id = "memory">
+      <h1>TELL YOUR STORY</h1>
+
+      <textarea id="inputText" maxlength="500"></textarea>
+
+      <span><input id="doneMemory" type="button" value="DONE" /></span>
+      <button id="backToEditor" type="button">Back</button>
+    </div>
+    <!-- MEMORY PART END -->
+
+    <!-- FINAL CHECK PART START -->
+    <div id="finalCheck">
+      <canvas id="finalCanvas">
+        Get a real browser!
+      </canvas>
+      <button id="backToMemory" type="button">Back</button>
+     <!--  <div id="memButtons">
+        <input id="save" type="button" value="SAVE" />
+      </div> -->
+      <div id="textWrapper">
+        <p id = "memoryText"></p>
+      </div>
+      <!-- <div id="block">
+        <p id = "memoryText"></p>
+      </div> -->
+      <span><input id="save" type="button" value="SAVE" /></span>
+      <button id="backToMemory" type="button">Back</button>
+    </div>
+    <!-- FINAL CHECK PART END -->
+
+    <!-- EXPORT PART START -->
+    <div id="beFamous" class="export">
+      <h1>BE FAMOUS</h1>
+      <section>
+        <p>SAVE AND SHARE</p>
+        <input type="text" placeholder="email"><br>
+        <label><input type="checkbox">PUT IT ON THE BIG SCREEN</label>
+      </section>
+      <section>
+        <input type="button" id="skip" value="SKIP" class="backBtn">
+        <input type="button" id="finish" value="FINISH" class="finishBtn">
+      </section>
+    </div>
+    <!-- EXPORT PART END -->
+
+    <!-- SCRAM PART START -->
+    <div id="scram">
+      <div id="middleBlock">
+        <h1>Thanks for rocking!</h1>
+        <h1>NOW SCRAM.</h1>
+      </div>
+    </div>
+    <!-- SCRAM PART END -->
+
     <script src="js/jsonStuff.js"></script>
     <script>
       document.querySelector("#back").onclick = function(){backToNextUp();};
@@ -140,6 +213,7 @@
       var canvas,ctx,dragging=false,lineWidth,strokeStyle;
       var tmpCanvas, tmpCtx;
       var picCanvas, picCtx;
+      var finalCanvas, finalCtx;
 
       var slideMenuBoolean = true;
       var editorImg;
@@ -163,6 +237,8 @@
         tmpCtx = tmpCanvas.getContext('2d');
         picCanvas = document.querySelector('#pictureCanvas');
         picCtx = picCanvas.getContext('2d');
+        finalCanvas = document.querySelector('#finalCanvas');
+        finalCtx = finalCanvas.getContext('2d');
         editorImg = document.querySelector('#editorImg');
         lineWidth = DEFAULT_LINE_WIDTH;
         strokeStyle = DEFAULT_STROKE_STYLE;
@@ -185,6 +261,15 @@
         canvas.addEventListener('touchend', doTouchup);
         canvas.addEventListener('touchcancel', doTouchout);
         document.querySelector('#lineWidthChooser').onchange = doLineWidthChange;
+        //document.querySelector('#done').onclick = functionCALL;
+        document.querySelector('#done').onclick = popUpShareMemory;
+        document.querySelector('#continue').onclick = shareMemoryToMemory;
+        document.querySelector('#backToEditor').onclick = backToEditor;
+        document.querySelector('#doneMemory').onclick = memoryToFinalCheck;
+        document.querySelector('#backToMemory').onclick = backToMemory;
+        document.querySelector('#save').onclick = popUpBeFamous;
+        document.querySelector('#finish').onclick = finish;
+        document.querySelector('#clearButton').onclick = doClear;
         document.querySelector('#undoButton').onclick = canvasUndo;
         document.querySelector('#redoButton').onclick = canvasRedo;
         document.querySelector('#invertFilter').onclick = function(){invertFilter();};

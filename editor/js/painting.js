@@ -87,15 +87,29 @@ function doClear(){
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 }
 function doExport(){
-  // open a new window and load the image in it
-  // http://www.w3schools.com/jsref/met_win_open.asp
-  picCtx.drawImage(canvas,0,0);
-  var data = picCanvas.toDataURL();
-  //add code here to sent final picture to the server
-  var windowName = "canvasImage";
-  var windowOptions = "left=0,top=0,width=" + canvas.width + ",height=" + canvas.height +",toolbar=0,resizable=0";
-  var myWindow = window.open(data,windowName,windowOptions);
-  myWindow.resizeTo(canvas.width,canvas.height); // needed so Chrome would display image
+  $('.export input:text').val() == "";
+  $('.export input:checkbox').attr('checked', false);
+
+      var pic = finalCanvas.toDataURL();
+
+      var data = new Object();
+      data.imageData = pic;
+      data.email = $('.export input:text').val();
+      data.memory = memoryTextResult;
+      data.bigScreen = $('.export input:checkbox').prop("checked");
+
+       $.ajax({
+              url: "http://localhost:1339/users/"+allPeople[whichPerson]+"/editedPhoto",
+              method: 'POST',
+              dataType: 'json',
+              data: data,
+              error: function(err) {
+                console.log('err', err)
+              }
+          });
+      
+      
+
 }
 
 // UTILITY FUNCTIONS
@@ -116,20 +130,18 @@ function getTouchCoords(e, canvas){
 function setPicture(src) {
   editorImg.crossOrigin = "";
   editorImg.src = src;
-  addPicture();
 }
 
 function addPicture(){
   console.log("addPicture");
-  console.log(editorImg);
-  var getEditorPic = document.querySelector("#editorImg");
 
-  ctx.drawImage(editorImg,
+  picCtx.drawImage(editorImg,
                    //source rectangle
                    0, 0, editorImg.width, editorImg.height,
                    //destination rectangle
                    0, 0, picCanvas.width, picCanvas.height);
 }
+
 function resizeCanvas() {
   ctx.canvas.width  = window.innerWidth;
   ctx.canvas.height = window.innerHeight;
@@ -137,6 +149,10 @@ function resizeCanvas() {
   tmpCtx.canvas.width = window.innerWidth;
   picCtx.canvas.width  = window.innerWidth - 200;
   picCtx.canvas.height = window.innerHeight;
+  finalCtx.canvas.width  = window.innerWidth;
+  finalCtx.canvas.height = window.innerHeight;
   width = canvas.width;
   height = canvas.height;
+  editorImg.width = window.innerHeight-200;
+  editorImg.height = window.innerHeight;
 }

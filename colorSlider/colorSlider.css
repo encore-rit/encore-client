@@ -20,3 +20,9 @@
   background-color: rgb(255,0,0);
   width:10px;
 }
+
+.ui-slider-horizontal .ui-slider-handle{
+  margin-left: 0px !important;
+  height:30px;
+  top:-0.15em !important;
+}

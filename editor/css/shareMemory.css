@@ -1,0 +1,37 @@
+#shareMemory{
+    width: 450px;
+    height: 400px;
+    background-color: white;
+    display: none;
+    margin: 180px auto;
+    z-index: 5;
+    position: relative;
+}
+#shareMemory #shareMemoryBox{
+  text-align: center;
+  margin: auto;
+}
+
+#shareMemory h1{
+  	font-family: 'edoregular';
+  	font-size: 40px;
+  	color: white;
+  	padding: 30px;
+  	background-image: url("../images/modalBGiPad.jpg");
+    background-size: cover;
+  	margin-bottom: 56px;
+}
+
+#shareMemory p{
+  	font-size: 18px;
+  	font-weight: 400;
+  	margin-bottom: 40px;
+    padding: 0 20px;
+}
+
+#shareMemory #continue{
+  padding: 5px 7px;
+	border: 2px solid black;
+	font-weight: bold;
+  background-color: white;
+}

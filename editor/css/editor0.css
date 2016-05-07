@@ -1,10 +1,10 @@
 @import "fontStyle.css";
 
 #editor{
-   background: black;
-   font-family: 'proximanovaregular';
+  overflow: hidden;
+   background-color: black;
+   font-family: 'Open Sans', sans-serif;
    height: 100%;
-   overflow: auto;
    -webkit-overflow-scrolling: touch;
    margin: 0;
    position: absolute;
@@ -23,16 +23,17 @@
 }
 #editor #mainCanvas {
    position:absolute;
-   z-index: 0;
+   z-index: 2;
    margin-left: auto;
    margin-right: auto;
    left: 0;
    right: 0;
    box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
 }
+
 #editor #tmpCanvas {
    position:absolute;
-   z-index: 1;
+   z-index: 3;
    margin-left: auto;
    margin-right: auto;
    left: 0;
@@ -42,15 +43,21 @@
 }
 #editor #pictureCanvas {
   position:absolute;
-  z-index: -2;
-  margin-left: auto;
-  margin-right: auto;
+  z-index: 0;
+  width: 1031px;
+  height: 1182px;
   left: 0;
   right: 0;
 }
+
+#finalCanvas{
+  width: 1395px;
+  height: 1182px;
+}
+
 #editor #controls {
    position: absolute;
-   z-index: 2;
+   z-index: 4;
    left: 0px;
    top: 0px;
    background-color: rgba(97, 97, 97, 0.6);
@@ -78,6 +85,7 @@
   position: absolute;
   bottom: 20px;
   left: 25px;
+  z-index: 8;
 }
 #editor #undoButton, #editor #redoButton, #editor #done{
   background: none;
@@ -85,6 +93,7 @@
   padding: 10px;
   color: white;
   font-size: 25px;
+
 }
 
 
@@ -97,6 +106,7 @@
   position: absolute;
   right: 25px;
   bottom: 20px;
+  z-index: 8;
 }
 
 #editor li span input{
