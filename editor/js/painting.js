@@ -90,25 +90,16 @@ function doExport(){
   $('.export input:text').val() == "";
   $('.export input:checkbox').attr('checked', false);
 
-  $('canvas').hide();
-  $('.export').show();
-
-  $('.backBtn').on('click',function(){
-    $('canvas').show();
-    $('.export').hide();
-  });
-
-  $('.finishBtn').on('click',function(){
-    if($('.export input:text').val() != ""){
-          var pic = finalCanvas.toDataURL();
+      var pic = finalCanvas.toDataURL();
 
       var data = new Object();
-      data.imageData = pic
+      data.imageData = pic;
       data.email = $('.export input:text').val();
+      data.memory = memoryTextResult;
       data.bigScreen = $('.export input:checkbox').prop("checked");
 
        $.ajax({
-              url: "http://encore-api.herokuapp.com/photos",
+              url: "http://localhost:1339/users/"+allPeople[whichPerson]+"/editedPhoto",
               method: 'POST',
               dataType: 'json',
               data: data,
@@ -116,11 +107,9 @@ function doExport(){
                 console.log('err', err)
               }
           });
-      }
-      else{
-          $('.export input:text').css("border-color", "#D43131");
-      }
-  });
+      
+      
+
 }
 
 // UTILITY FUNCTIONS

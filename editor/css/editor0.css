@@ -1,10 +1,10 @@
 @import "fontStyle.css";
 
 #editor{
+  overflow: hidden;
    background-color: black;
    font-family: 'Open Sans', sans-serif;
    height: 100%;
-   overflow: auto;
    -webkit-overflow-scrolling: touch;
    margin: 0;
    position: absolute;
@@ -30,6 +30,7 @@
    right: 0;
    box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
 }
+
 #editor #tmpCanvas {
    position:absolute;
    z-index: 3;
@@ -43,11 +44,17 @@
 #editor #pictureCanvas {
   position:absolute;
   z-index: 0;
-  margin-left: auto;
-  margin-right: auto;
+  width: 1031px;
+  height: 1182px;
   left: 0;
   right: 0;
 }
+
+#finalCanvas{
+  width: 1395px;
+  height: 1182px;
+}
+
 #editor #controls {
    position: absolute;
    z-index: 4;
