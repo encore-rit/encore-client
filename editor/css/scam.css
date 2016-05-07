@@ -16,13 +16,10 @@
   font-size: 71px;
   font-family: 'edoregular';
   text-align: center;
-  margin: 0px;
 
 }
 #scram #middleBlock{
   position: absolute;
-  top: 50%;
+  top: 33%;
   width: 100%;
-  margin-top: 90px;
-  margin-top: -5em;
 }

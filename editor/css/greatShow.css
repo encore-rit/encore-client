@@ -1,7 +1,7 @@
 @import "fontStyle.css";
 
 #greatShow {
-  font-family: 'proximanovaregular';
+  font-family: 'Open Sans';
   background-image: url("../images/ipadBG2.jpg");
   background-size: cover;
   height:100vh;

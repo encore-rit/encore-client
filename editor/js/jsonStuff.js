@@ -147,17 +147,17 @@ function skip(){
   document.querySelector('#scram').style.display = "block";
   doExport();
 
-  setTimeout(function(){
-    location.reload();
-  }, 8000);
+  // setTimeout(function(){
+  //   location.reload();
+  // }, 8000);
 }
 function finish(){
   document.querySelector("#finalCheck").style.display = "none";
   document.querySelector('#scram').style.display = "block";
   doExport();
 
-  setTimeout(function(){
-    location.reload();
-  }, 8000);
+  // setTimeout(function(){
+  //   location.reload();
+  // }, 8000);
 
 }
