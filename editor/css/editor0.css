@@ -1,7 +1,7 @@
 @import "fontStyle.css";
 
 #editor{
-   background: black;
+   background-color: black;
    font-family: 'proximanovaregular';
    height: 100%;
    overflow: auto;
@@ -23,7 +23,7 @@
 }
 #editor #mainCanvas {
    position:absolute;
-   z-index: 0;
+   z-index: 2;
    margin-left: auto;
    margin-right: auto;
    left: 0;
@@ -32,7 +32,7 @@
 }
 #editor #tmpCanvas {
    position:absolute;
-   z-index: 1;
+   z-index: 3;
    margin-left: auto;
    margin-right: auto;
    left: 0;
@@ -42,7 +42,7 @@
 }
 #editor #pictureCanvas {
   position:absolute;
-  z-index: -2;
+  z-index: 0;
   margin-left: auto;
   margin-right: auto;
   left: 0;
@@ -50,7 +50,7 @@
 }
 #editor #controls {
    position: absolute;
-   z-index: 2;
+   z-index: 4;
    left: 0px;
    top: 0px;
    background-color: rgba(97, 97, 97, 0.6);
@@ -78,6 +78,7 @@
   position: absolute;
   bottom: 20px;
   left: 25px;
+  z-index: 8;
 }
 #editor #undoButton, #editor #redoButton, #editor #done{
   background: none;
@@ -85,6 +86,7 @@
   padding: 10px;
   color: white;
   font-size: 25px;
+
 }
 
 
@@ -97,6 +99,7 @@
   position: absolute;
   right: 25px;
   bottom: 20px;
+  z-index: 8;
 }
 
 #editor li span input{
