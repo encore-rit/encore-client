@@ -1,7 +1,7 @@
 @import "fontStyle.css";
 
 #editor{
-  overflow: hidden;
+  -webkit-overflow-scrolling: touch
    background-color: black;
    font-family: 'Open Sans', sans-serif;
    height: 100%;

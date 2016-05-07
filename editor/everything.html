@@ -37,6 +37,7 @@
     <script>
       $('.ui-widget-content').draggable();
     </script>
+    <script src="libs/inobounce.min.js"></script>
   </head>
 
   <body>
@@ -102,13 +103,6 @@
             <span><input id="clearButton" type="button" value="Clear"/></span>
             <p id= "filterWord">Filter</p>
           </div></li>
-
-          <li><span><input id="grayscaleFilter" type="button" value="Black and White"/></span></li>
-          <li><span><input id="invertFilter" type="button" value="Invert"/></span></li>
-          <li><span><input id="redFilter" type="button" value="Red"/></span></li>
-          <li><span><input id="blueFilter" type="button" value="Blue"/></span></li>
-          <li><span><input id="greenFilter" type="button" value="Green"/></span></li>
-          <li><span><input id="noFilter" type="button" value="No Filter"/></span></li>
         </ul>
 
         <button type="button" id="slideMenu"><img src="images/downArrow.png" alt="down arrow"></button>
@@ -276,12 +270,6 @@
         document.querySelector('#clearButton').onclick = doClear;
         document.querySelector('#undoButton').onclick = canvasUndo;
         document.querySelector('#redoButton').onclick = canvasRedo;
-        document.querySelector('#invertFilter').onclick = function(){invertFilter();};
-        document.querySelector('#grayscaleFilter').onclick = function(){grayscaleFilter();};
-        document.querySelector('#redFilter').onclick = function(){redFilter();};
-        document.querySelector('#blueFilter').onclick = function(){blueFilter();};
-        document.querySelector('#greenFilter').onclick = function(){greenFilter();};
-        document.querySelector('#noFilter').onclick = function(){noFilter();};
 
         $("#slideMenu").click(function(){
           if(slideMenuBoolean == false){
