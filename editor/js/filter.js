@@ -1,5 +1,9 @@
 //booleans for filter
-var invert = false, grayscale = false, tintRed = false, tintBlue = false; tintGreen = false;
+var invert = false;
+var grayscale = false;
+var tintRed = false;
+var tintBlue = false;
+var tintGreen = false;
 
 function invertFilter(){
   grayscale = tintRed = tintGreen = tintBlue = false;
@@ -7,6 +11,7 @@ function invertFilter(){
   console.log("invertFilter");
   manipulatePixels();
 }
+
 function grayscaleFilter(){
   noFilter();
   invert = tintRed = tintGreen = tintBlue = false;
@@ -14,6 +19,7 @@ function grayscaleFilter(){
   console.log("grayscaleFilter");
   manipulatePixels();
 }
+
 function redFilter(){
   noFilter();
   invert = grayscale = tintGreen = tintBlue = false;
@@ -21,6 +27,7 @@ function redFilter(){
   console.log("redFilter");
   manipulatePixels();
 }
+
 function blueFilter(){
   noFilter();
   invert = grayscale = tintRed = tintGreen = false;
@@ -28,6 +35,7 @@ function blueFilter(){
   console.log("blueFilter");
   manipulatePixels();
 }
+
 function greenFilter(){
   noFilter();
   invert = grayscale = tintRed = tintBlue = false;
@@ -35,6 +43,7 @@ function greenFilter(){
   console.log("greenFilter");
   manipulatePixels();
 }
+
 function noFilter(){
   invert = grayscale = tintRed = tintGreen = tintBlue = false;
   console.log("noFilter");

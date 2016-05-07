@@ -93,11 +93,6 @@ function addPictureToEditor() {
 
     document.querySelector("#greatShow").style.display = "none";
     document.querySelector("#editor").style.display = "block";
-
-    setTimeout(function(){
-     addPicture();
-    }, 100);
-
   }
   else {
     alert("please pick the picture");

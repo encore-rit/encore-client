@@ -4,6 +4,7 @@ var API = 'http://encore-api.herokuapp.com'
 function doLineWidthChange(e){
   lineWidth = e.target.value;
 }
+
 function doTouchdown(e){
   console.log(e.type);
   dragging = true;
@@ -13,6 +14,7 @@ function doTouchdown(e){
   console.log(ppts);
   onPaint(e);
 }
+
 function doTouchmove(e) {
   // bail out if the touch button is not down
   if(!dragging) return;
@@ -22,6 +24,7 @@ function doTouchmove(e) {
   console.log(ppts);
   onPaint(e);
 }
+
 //when the touch is up, push the canvas to the canvasPushArray and stop dragging
 function doTouchup(e) {
   console.log(e.type);
@@ -35,6 +38,7 @@ function doTouchup(e) {
   dragging = false;
   canvasPush();
 }
+
 // if the user drags out of the canvas
 function doTouchout(e) {
   console.log(e.type);
@@ -128,8 +132,10 @@ function getTouchCoords(e, canvas){
 }
 
 function setPicture(src) {
+  console.log('setPicture ', src);
   editorImg.crossOrigin = "";
   editorImg.src = src;
+  editorImg.onload = addPicture;
 }
 
 function addPicture(){
@@ -151,8 +157,6 @@ function resizeCanvas() {
   picCtx.canvas.height = window.innerHeight;
   finalCtx.canvas.width  = window.innerWidth;
   finalCtx.canvas.height = window.innerHeight;
-  width = canvas.width;
-  height = canvas.height;
-  editorImg.width = width;
-  editorImg.height = height;
+  editorImg.width = canvas.width;
+  editorImg.height = canvas.height;
 }
