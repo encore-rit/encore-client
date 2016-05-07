@@ -1,4 +1,5 @@
 (function ($) {
+  var API = 'http://encore-api.herokuapp.com'
   userData = {};
 
   /**
@@ -113,7 +114,7 @@
         resetPage();
 
         $.ajax({
-          url: "http://localhost:1339/users",
+          url: API+"/users",
           method: 'POST',
           contentType : 'application/json',
           data: JSON.stringify(userData),

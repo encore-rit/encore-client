@@ -1,3 +1,5 @@
+var API = 'http://encore-api.herokuapp.com'
+
 // EVENT CALLBACK FUNCTIONS
 function doLineWidthChange(e){
   lineWidth = e.target.value;
@@ -99,7 +101,7 @@ function doExport(){
       data.bigScreen = $('.export input:checkbox').prop("checked");
 
        $.ajax({
-              url: "http://localhost:1339/users/"+allPeople[whichPerson]+"/editedPhoto",
+              url: API+"/users/"+allPeople[whichPerson]+"/editedPhoto",
               method: 'POST',
               dataType: 'json',
               data: data,
