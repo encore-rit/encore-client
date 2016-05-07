@@ -44,15 +44,15 @@
 #editor #pictureCanvas {
   position:absolute;
   z-index: 0;
-  width: 1031px;
-  height: 1182px;
+  width: 1946px;
+  height: 2103px;
   left: 0;
   right: 0;
 }
 
 #finalCanvas{
-  width: 1395px;
-  height: 1182px;
+  width: 2123px;
+    height: 2103px;
 }
 
 #editor #controls {

@@ -1,9 +1,9 @@
 #shareMemory{
-    width: 450px;
-    height: 400px;
+    width: 550px;
+    height: 500px;
     background-color: white;
     display: none;
-    margin: 180px auto;
+    margin: 250px auto;
     z-index: 5;
     position: relative;
 }
@@ -14,22 +14,23 @@
 
 #shareMemory h1{
   	font-family: 'edoregular';
-  	font-size: 40px;
+  	font-size: 50px;
   	color: white;
   	padding: 30px;
   	background-image: url("../images/modalBGiPad.jpg");
     background-size: cover;
-  	margin-bottom: 56px;
+  	margin-bottom: 76px;
 }
 
 #shareMemory p{
-  	font-size: 18px;
-  	font-weight: 400;
-  	margin-bottom: 40px;
-    padding: 0 20px;
+  	font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 40px;
+    padding: 0px 35px;
 }
 
 #shareMemory #continue{
+  font-size: 12px;
   padding: 5px 7px;
 	border: 2px solid black;
 	font-weight: bold;
