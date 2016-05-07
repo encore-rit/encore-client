@@ -122,9 +122,7 @@ function memoryToFinalCheck(){
   document.querySelector("#memory").style.display = "none";
   memoryTextResult = document.querySelector("#inputText").value;
   document.querySelector("#memoryText").innerHTML = memoryTextResult;
-  finalCtx.drawImage(picCanvas,
-                    0,0
-  );
+  finalCtx.drawImage(picCanvas, 0,0);
 
   finalCtx.drawImage(mainCanvas,0,0);
   document.querySelector("#finalCheck").style.display = "block";

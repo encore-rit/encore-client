@@ -95,24 +95,24 @@ function doClear(){
 
 function doExport(){
   $('.export input:text').val() == "";
-  $('.export input:checkbox').attr('checked', false);
-
   var pic = finalCanvas.toDataURL();
 
-  var data = new Object();
-  data.imageData = pic;
-  data.email = $('.export input:text').val();
-  data.memory = memoryTextResult;
-  data.bigScreen = $('.export input:checkbox').prop("checked");
+  var data = {
+    imageData: pic,
+    email:  $('.export input:text').val(),
+    memory: memoryTextResult,
+    bigScreen: $('.export input:checkbox').prop("checked"),
+  }
 
-  $.ajax({
-    url: API+"/users/"+allPeople[whichPerson]+"/editedPhoto",
+  console.log(data.bigScreen, data.email);
+
+  return fetch(API+'/users/'+allPeople[parseInt(whichPerson)]._id+'/editedPhoto', {
     method: 'POST',
-    dataType: 'json',
-    data: data,
-    error: function(err) {
-      console.log('err', err)
-    }
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data),
   });
 }
 
@@ -138,14 +138,18 @@ function setPicture(src) {
   editorImg.onload = addPicture;
 }
 
-function addPicture(){
-  console.log("addPicture");
-
+function addPicture() {
   picCtx.drawImage(editorImg,
-                   //source rectangle
-                   0, 0, editorImg.width, editorImg.height,
-                   //destination rectangle
-                   0, 0, picCanvas.width, picCanvas.height);
+                   // source rectangle
+                   0, 0, 2448, 3696,
+                   // destination rectangle
+                   0, 0, 1366 * 0.66, 1366);
+
+  // picCtx.drawImage(editorImg,
+  //                  // source rectangle
+  //                  0, 0, editorImg.width, editorImg.height,
+  //                  // destination rectangle
+  //                  0, 0, picCanvas.width, picCanvas.height);
 }
 
 function resizeCanvas() {
@@ -153,7 +157,7 @@ function resizeCanvas() {
   ctx.canvas.height = window.innerHeight;
   tmpCtx.canvas.height = window.innerHeight;
   tmpCtx.canvas.width = window.innerWidth;
-  picCtx.canvas.width  = window.innerWidth - 200;
+  picCtx.canvas.width  = window.innerWidth - 120;
   picCtx.canvas.height = window.innerHeight;
   finalCtx.canvas.width  = window.innerWidth;
   finalCtx.canvas.height = window.innerHeight;

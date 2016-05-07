@@ -44,15 +44,12 @@
 #editor #pictureCanvas {
   position:absolute;
   z-index: 0;
-  width: 1946px;
-  height: 2103px;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%)
 }
 
 #finalCanvas{
-  width: 2123px;
-    height: 2103px;
+  margin-left: 60px;
 }
 
 #editor #controls {
@@ -96,8 +93,8 @@
 
 }
 
-
-#editor #undoButton img, #editor #redoButton img{
+#editor #undoButton img,
+#editor #redoButton img {
   width: 26px;
   height: 26px;
 }
