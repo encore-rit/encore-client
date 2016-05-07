@@ -158,7 +158,7 @@
     </div>
     <!-- FINAL CHECK PART END -->
     <!-- EXPORT PART START -->
-    <div class="export">
+    <div id="beFamous" class="export">
       <h1>BE FAMOUS</h1>
       <section>
         <p>SAVE AND SHARE</p>
@@ -173,7 +173,7 @@
     <!-- EXPORT PART END -->
     <!-- SCRAM PART START -->
     <!-- SCRAM PART END -->
-    <div id="scam">
+    <div id="scram">
       <h1>thanks for rocking!</h1>
       <h1>NOW SCRAM.</h1>
     </div>
@@ -254,6 +254,7 @@
         document.querySelector('#backToMemory').onclick = backToMemory;
         document.querySelector('#save').onclick = popUpBeFamous;
         document.querySelector('#finish').onclick = finish;
+        document.querySelector('#clearButton').onclick = doClear;
         document.querySelector('#undoButton').onclick = canvasUndo;
         document.querySelector('#redoButton').onclick = canvasRedo;
         document.querySelector('#invertFilter').onclick = function(){invertFilter();};

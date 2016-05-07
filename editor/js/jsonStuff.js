@@ -141,8 +141,11 @@ function popUpBeFamous(){
 function skip(){
   document.querySelector("#finalCheck").style.display = "none";
   document.querySelector('#scram').style.display = "block";
+  doExport();
 }
 function finish(){
   document.querySelector("#finalCheck").style.display = "none";
   document.querySelector('#scram').style.display = "block";
+  doExport();
+
 }

@@ -100,7 +100,7 @@ function doExport(){
 
   $('.finishBtn').on('click',function(){
     if($('.export input:text').val() != ""){
-          var pic = picCanvas.toDataURL();
+          var pic = finalCanvas.toDataURL();
 
       var data = new Object();
       data.imageData = pic
@@ -108,7 +108,7 @@ function doExport(){
       data.bigScreen = $('.export input:checkbox').prop("checked");
 
        $.ajax({
-              url: "http://localhost:1339/photos",
+              url: "http://encore-api.herokuapp.com/photos",
               method: 'POST',
               dataType: 'json',
               data: data,
