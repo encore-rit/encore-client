@@ -88,30 +88,28 @@ var onPaint = function(e) {
 function doClear(){
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 }
+
 function doExport(){
   $('.export input:text').val() == "";
   $('.export input:checkbox').attr('checked', false);
 
-      var pic = finalCanvas.toDataURL();
+  var pic = finalCanvas.toDataURL();
 
-      var data = new Object();
-      data.imageData = pic;
-      data.email = $('.export input:text').val();
-      data.memory = memoryTextResult;
-      data.bigScreen = $('.export input:checkbox').prop("checked");
+  var data = new Object();
+  data.imageData = pic;
+  data.email = $('.export input:text').val();
+  data.memory = memoryTextResult;
+  data.bigScreen = $('.export input:checkbox').prop("checked");
 
-       $.ajax({
-              url: API+"/users/"+allPeople[whichPerson]+"/editedPhoto",
-              method: 'POST',
-              dataType: 'json',
-              data: data,
-              error: function(err) {
-                console.log('err', err)
-              }
-          });
-      
-      
-
+  $.ajax({
+    url: API+"/users/"+allPeople[whichPerson]+"/editedPhoto",
+    method: 'POST',
+    dataType: 'json',
+    data: data,
+    error: function(err) {
+      console.log('err', err)
+    }
+  });
 }
 
 // UTILITY FUNCTIONS
