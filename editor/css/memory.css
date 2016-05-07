@@ -20,15 +20,15 @@
 }
 
 #memory textarea{
-  font-family: 'Open Sans', sans-serif;
-  margin-top: 60px;
-  width: 395px;
-  height: 270px;
+  font-family: 'proximanovaregular';
+  margin-top: 100px;
+  width: 500px;
+  height: 400px;;
   margin-left: auto;
   margin-right: auto;
   padding: 30px;
   display: block;
-  font-size: 17;
+  font-size: 25px;
 }
 
 #memory #controls{
