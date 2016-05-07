@@ -1,18 +1,24 @@
 #scram{
   color:white;
-  background-image: url("../images/ipadBG1.jpg");
+  background-image: url("../images/ipadLastscreenBG.jpg");
   height: 100vh;
   position: absolute;
   top:0px;
   left:0px;
   display: none;
   width: 100%;
-  line-height: 100%;
-  display: none;
 }
 #scram h1{
   font-size: 71px;
   font-family: 'edoregular';
   text-align: center;
-  vertical-align: middle;
+  margin: 0px;
+
+}
+#scram #middleBlock{
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  margin-top: 90px;
+  margin-top: -5em;
 }
