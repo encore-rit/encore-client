@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="css/shareMemory.css">
     <link rel="stylesheet" href="css/memory.css">
     <link rel="stylesheet" href="css/export.css">
+    <link rel="stylesheet" href="css/finalCheck.css">
+    <link rel="stylesheet" href="css/scam.css">
     <link href='../colorSlider/colorSlider.css' rel='stylesheet' type='text/css'>
     <link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css' rel='stylesheet' type='text/css'>
 
@@ -118,7 +120,7 @@
         <button type="button" id="redoButton"><img src="images/Redo_Thick.png" alt="REDO"></button>
       </div>
 
-      <span><input id="done" type="button" value="done"/></span>
+      <span><input id="done" type="button" value="DONE"/></span>
 
     </div>
     <!-- EDITOR PART END -->
@@ -139,11 +141,20 @@
 
       <textarea id="inputText" maxlength="500"></textarea>
 
-      <button id="backToEditor" type="button">Back</button>
       <span><input id="doneMemory" type="button" value="DONE" /></span>
+      <button id="backToEditor" type="button">Back</button>
     </div>
     <!-- MEMORY PART END -->
-
+    <!-- FINAL CHECK PART START -->
+    <div id="finalCheck">
+      <canvas id="finalCanvas">
+        Get a real browser!
+      </canvas>
+      <button id="backToMemory" type="button">Back</button>
+      <span><input id="save" type="button" value="SAVE" /></span>
+      <p id = "memoryText"></p>
+    </div>
+    <!-- FINAL CHECK PART END -->
     <!-- EXPORT PART START -->
     <div class="export">
       <h1>BE FAMOUS</h1>
@@ -153,11 +164,17 @@
         <label><input type="checkbox">PUT IT ON THE BIG SCREEN</label>
       </section>
       <section>
-        <input type="button" value="BACK" class="backBtn">
-        <input type="button" value="FINISH" class="finishBtn">
+        <input type="button" id="skip" value="SKIP" class="backBtn">
+        <input type="button" id="finish" value="FINISH" class="finishBtn">
       </section>
     </div>
     <!-- EXPORT PART END -->
+    <!-- SCRAM PART START -->
+    <!-- SCRAM PART END -->
+    <div id="scam">
+      <h1>thanks for rocking!</h1>
+      <h1>NOW SCRAM.</h1>
+    </div>
 
     <script src="js/jsonStuff.js"></script>
     <script>
@@ -179,6 +196,7 @@
       var canvas,ctx,dragging=false,lineWidth,strokeStyle;
       var tmpCanvas, tmpCtx;
       var picCanvas, picCtx;
+      var finalCanvas, finalCtx;
 
       var slideMenuBoolean = true;
       var editorImg;
@@ -202,6 +220,8 @@
         tmpCtx = tmpCanvas.getContext('2d');
         picCanvas = document.querySelector('#pictureCanvas');
         picCtx = picCanvas.getContext('2d');
+        finalCanvas = document.querySelector('#finalCanvas');
+        finalCtx = finalCanvas.getContext('2d');
         editorImg = document.querySelector('#editorImg');
         lineWidth = DEFAULT_LINE_WIDTH;
         strokeStyle = DEFAULT_STROKE_STYLE;
@@ -226,6 +246,12 @@
         document.querySelector('#lineWidthChooser').onchange = doLineWidthChange;
         //document.querySelector('#done').onclick = functionCALL;
         document.querySelector('#done').onclick = popUpShareMemory;
+        document.querySelector('#continue').onclick = shareMemoryToMemory;
+        document.querySelector('#backToEditor').onclick = backToEditor;
+        document.querySelector('#doneMemory').onclick = memoryToFinalCheck;
+        document.querySelector('#backToMemory').onclick = backToMemory;
+        document.querySelector('#save').onclick = popUpBeFamous;
+        document.querySelector('#finish').onclick = finish;
         document.querySelector('#undoButton').onclick = canvasUndo;
         document.querySelector('#redoButton').onclick = canvasRedo;
         document.querySelector('#invertFilter').onclick = function(){invertFilter();};

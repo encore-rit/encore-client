@@ -149,7 +149,7 @@ function addPicture(){
   console.log(editorImg);
   var getEditorPic = document.querySelector("#editorImg");
 
-  ctx.drawImage(editorImg,
+  picCtx.drawImage(getEditorPic,
                    //source rectangle
                    0, 0, editorImg.width, editorImg.height,
                    //destination rectangle
@@ -162,6 +162,8 @@ function resizeCanvas() {
   tmpCtx.canvas.width = window.innerWidth;
   picCtx.canvas.width  = window.innerWidth - 200;
   picCtx.canvas.height = window.innerHeight;
+  finalCtx.canvas.width  = window.innerWidth;
+  finalCtx.canvas.height = window.innerHeight;
   width = canvas.width;
   height = canvas.height;
 }

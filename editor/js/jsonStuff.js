@@ -2,14 +2,15 @@ var allPeople = [];
 var whichPerson = null;
 var whichPicture = null;
 var getEditorPic;
+var memoryTextResult;
 // Request what's available currently on page load
 // window.fetch('http://localhost:1339/editors')
 window.fetch('http://encore-api.herokuapp.com/editors')
 .then(function(res) { return res.json(); })
 .then(jsonLoaded);
 
-var socket = io.connect('http://localhost:1339');
-// var socket = io.connect('http://encore-api.herokuapp.com');
+//var socket = io.connect('http://localhost:1339');
+var socket = io.connect('http://encore-api.herokuapp.com');
 
 // Get updated results as they are created
 socket.on('EDITORS', function (data) {
@@ -105,22 +106,39 @@ function backToNextUp(){
 }
 
 function popUpShareMemory(){
-  document.querySelector("#editor").style.opacity = "0.7";
-  document.querySelector("#memory").style.display = "block";
+  document.querySelector("#editor").style.display = "none";
+  document.querySelector("#shareMemory").style.display = "block";
 }
 function shareMemoryToMemory(){
   document.querySelector("#editor").style.opacity = "1.0";
-  document.querySelector("#editor").style.display = "none;";
+  document.querySelector("#shareMemory").style.display = "none";
   document.querySelector("#memory").style.display = "block";
 }
+function backToEditor(){
+  document.querySelector("#memory").style.display = "none";
+  document.querySelector("#editor").style.display = "block";
+}
 function memoryToFinalCheck(){
-  document.querySelector("#memory").style.display = "none;";
+  document.querySelector("#memory").style.display = "none";
+  memoryTextResult = document.querySelector("#inputText").value;
+  document.querySelector("#memoryText").innerHTML = "memoryText";
+  finalCtx.drawImage(picCanvas,0,0);
+  finalCtx.drawImage(mainCanvas,0,0);
   document.querySelector("#finalCheck").style.display = "block";
 }
+function backToMemory(){
+  document.querySelector("#finalCheck").style.display = "none";
+  document.querySelector("#memory").style.display = "block";
+}
 function popUpBeFamous(){
-  document.querySelector("#finalCheck").style.opacity = "0.7";
+  document.querySelector("#finalCheck").style.display = "none";
   document.querySelector("#beFamous").style.display = "block";
 }
+function skip(){
+  document.querySelector("#finalCheck").style.display = "none";
+  document.querySelector('#scram').style.display = "block";
+}
 function finish(){
+  document.querySelector("#finalCheck").style.display = "none";
   document.querySelector('#scram').style.display = "block";
 }
