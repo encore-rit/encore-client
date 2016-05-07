@@ -1,4 +1,6 @@
 #finalCheck{
+  overflow: hidden;
+  font-family: 'Open Sans';
   color: white;
   background-color: black;
   position: absolute;
@@ -7,9 +9,47 @@
   margin-left: 0;
   margin-right: 0;
   display: none;
+  height: 100%;
+  width: 100%;
 }
+
 #finalCheck p{
+  margin: auto;
+  padding: 30px;
+  word-wrap: break-word;
+  text-align: center;
+
+}
+
+#finalCheck #backToMemory, #finalCheck #save {
+  background: none;
+  border: 2px solid white;
+  padding: 10px;
+  color: white;
+  font-size: 25px;
+  position: absolute;
+  bottom: 20px;
+}
+
+#finalCheck  #backToMemory{
+  left: 25px;
+}
+
+#finalCheck #save{
+  right: 25px;
+}
+
+
+#textWrapper{
+  color: #333;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 14px;
+  vertical-align: bottom;
   position: absolute;
   bottom: 0;
-  background-color: grey;
+  left: 0;
+  height: 300px; 
+  width: 100%;
+  padding: 20px;
+  font-size: 35px;
 }

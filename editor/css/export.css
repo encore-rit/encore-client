@@ -1,7 +1,7 @@
 .export{
-  	width: 450px;
-  	height: 400px;
-  	margin: 60px auto;
+  	width: 550px;
+  	height: 500px;
+  	margin: 250px auto;
   	background-color: white;
   	text-align: center;
   	display: none;
@@ -18,7 +18,8 @@
   	font-family: 'edoregular';
   	font-size: 60px;
   	color: white;
-  	padding: 30px;
+
+  	padding: 40px;
   	background-image: url("../images/modalBGiPad.jpg");
     background-size: cover;
   	margin-bottom: 56px;
@@ -62,10 +63,11 @@
 }
 
 .export section:last-of-type{
-  width: 430px;
-  margin: 10px;
-	position: absolute;
-	bottom: 0;
+  width: 440px;
+    margin: 30px;
+    padding-left: 30px;
+    position: absolute;
+    bottom: 0;
 }
 
 .export input[type="button"]:first-of-type{

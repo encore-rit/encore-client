@@ -91,7 +91,6 @@ function addPictureToEditor() {
       getEditorPic = allPeople[whichPerson].photos[whichPicture];
     setPicture(getEditorPic);
 
-    //addPicture();
     document.querySelector("#greatShow").style.display = "none";
     document.querySelector("#editor").style.display = "block";
   }
@@ -106,11 +105,12 @@ function backToNextUp(){
 }
 
 function popUpShareMemory(){
-  document.querySelector("#editor").style.display = "none";
   document.querySelector("#shareMemory").style.display = "block";
 }
 function shareMemoryToMemory(){
-  document.querySelector("#editor").style.opacity = "1.0";
+    document.querySelector("#editor").style.display = "none";
+    addPicture();
+  // document.querySelector("#editor").style.opacity = "1.0";
   document.querySelector("#shareMemory").style.display = "none";
   document.querySelector("#memory").style.display = "block";
 }
@@ -122,10 +122,7 @@ function memoryToFinalCheck(){
   document.querySelector("#memory").style.display = "none";
   memoryTextResult = document.querySelector("#inputText").value;
   document.querySelector("#memoryText").innerHTML = memoryTextResult;
-  finalCtx.drawImage(picCanvas,
-                    finalCanvas.width/2 - picCanvas.width/2,
-                    finalCanvas.height/2 - picCanvas.height/2
-  );
+  finalCtx.drawImage(picCanvas, 0,0);
 
   finalCtx.drawImage(mainCanvas,0,0);
   document.querySelector("#finalCheck").style.display = "block";
@@ -135,14 +132,25 @@ function backToMemory(){
   document.querySelector("#memory").style.display = "block";
 }
 function popUpBeFamous(){
-  document.querySelector("#finalCheck").style.display = "none";
+  // document.querySelector("#finalCheck").style.display = "none";
   document.querySelector("#beFamous").style.display = "block";
 }
 function skip(){
   document.querySelector("#finalCheck").style.display = "none";
   document.querySelector('#scram').style.display = "block";
+  doExport();
+
+  setTimeout(function(){
+    location.reload();
+  }, 8000);
 }
 function finish(){
   document.querySelector("#finalCheck").style.display = "none";
   document.querySelector('#scram').style.display = "block";
+  doExport();
+
+  setTimeout(function(){
+    location.reload();
+  }, 8000);
+
 }

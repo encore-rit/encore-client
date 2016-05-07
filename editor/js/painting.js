@@ -1,7 +1,10 @@
+var API = 'http://encore-api.herokuapp.com'
+
 // EVENT CALLBACK FUNCTIONS
 function doLineWidthChange(e){
   lineWidth = e.target.value;
 }
+
 function doTouchdown(e){
   console.log(e.type);
   dragging = true;
@@ -11,6 +14,7 @@ function doTouchdown(e){
   console.log(ppts);
   onPaint(e);
 }
+
 function doTouchmove(e) {
   // bail out if the touch button is not down
   if(!dragging) return;
@@ -20,6 +24,7 @@ function doTouchmove(e) {
   console.log(ppts);
   onPaint(e);
 }
+
 //when the touch is up, push the canvas to the canvasPushArray and stop dragging
 function doTouchup(e) {
   console.log(e.type);
@@ -33,6 +38,7 @@ function doTouchup(e) {
   dragging = false;
   canvasPush();
 }
+
 // if the user drags out of the canvas
 function doTouchout(e) {
   console.log(e.type);
@@ -86,40 +92,27 @@ var onPaint = function(e) {
 function doClear(){
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 }
+
 function doExport(){
   $('.export input:text').val() == "";
-  $('.export input:checkbox').attr('checked', false);
+  var pic = finalCanvas.toDataURL();
 
-  $('canvas').hide();
-  $('.export').show();
+  var data = {
+    imageData: pic,
+    email:  $('.export input:text').val(),
+    memory: memoryTextResult,
+    bigScreen: $('.export input:checkbox').prop("checked"),
+  }
 
-  $('.backBtn').on('click',function(){
-    $('canvas').show();
-    $('.export').hide();
-  });
+  console.log(data.bigScreen, data.email);
 
-  $('.finishBtn').on('click',function(){
-    if($('.export input:text').val() != ""){
-          var pic = picCanvas.toDataURL();
-
-      var data = new Object();
-      data.imageData = pic
-      data.email = $('.export input:text').val();
-      data.bigScreen = $('.export input:checkbox').prop("checked");
-
-       $.ajax({
-              url: "http://localhost:1339/photos",
-              method: 'POST',
-              dataType: 'json',
-              data: data,
-              error: function(err) {
-                console.log('err', err)
-              }
-          });
-      }
-      else{
-          $('.export input:text').css("border-color", "#D43131");
-      }
+  return fetch(API+'/users/'+allPeople[parseInt(whichPerson)]._id+'/editedPhoto', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data),
   });
 }
 
@@ -139,18 +132,24 @@ function getTouchCoords(e, canvas){
 }
 
 function setPicture(src) {
+  console.log('setPicture ', src);
   editorImg.crossOrigin = "";
   editorImg.src = src;
+  editorImg.onload = addPicture;
 }
 
-function addPicture(){
-  console.log("addPicture");
-
+function addPicture() {
   picCtx.drawImage(editorImg,
-                   //source rectangle
-                   0, 0, editorImg.width, editorImg.height,
-                   //destination rectangle
-                   0, 0, picCanvas.width, picCanvas.height);
+                   // source rectangle
+                   0, 0, 2448, 3696,
+                   // destination rectangle
+                   0, 0, 1366 * 0.66, 1366);
+
+  // picCtx.drawImage(editorImg,
+  //                  // source rectangle
+  //                  0, 0, editorImg.width, editorImg.height,
+  //                  // destination rectangle
+  //                  0, 0, picCanvas.width, picCanvas.height);
 }
 
 function resizeCanvas() {
@@ -158,10 +157,10 @@ function resizeCanvas() {
   ctx.canvas.height = window.innerHeight;
   tmpCtx.canvas.height = window.innerHeight;
   tmpCtx.canvas.width = window.innerWidth;
-  picCtx.canvas.width  = window.innerWidth - 200;
+  picCtx.canvas.width  = window.innerWidth - 120;
   picCtx.canvas.height = window.innerHeight;
   finalCtx.canvas.width  = window.innerWidth;
   finalCtx.canvas.height = window.innerHeight;
-  width = canvas.width;
-  height = canvas.height;
+  editorImg.width = canvas.width;
+  editorImg.height = canvas.height;
 }
