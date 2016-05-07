@@ -164,4 +164,6 @@ function resizeCanvas() {
   finalCtx.canvas.height = window.innerHeight;
   width = canvas.width;
   height = canvas.height;
+  editorImg.width = window.innerHeight-200;
+  editorImg.height = window.innerHeight;
 }

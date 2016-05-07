@@ -9,6 +9,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
 
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/nextUp.css">
     <link rel="stylesheet" href="css/greatShow.css">
     <link href='css/editor0.css' rel='stylesheet' type='text/css'>
@@ -19,6 +20,7 @@
     <link rel="stylesheet" href="css/scam.css">
     <link href='../colorSlider/colorSlider.css' rel='stylesheet' type='text/css'>
     <link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css' rel='stylesheet' type='text/css'>
+
 
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -50,8 +52,8 @@
     <!-- GREAT SHOW PART START -->
     <div id="greatShow">
         <h1>Great Show</h1>
-        <p>Chose <b>one</b> stage debut picture</p>
-        <div id=#parent>
+        <p>Choose <b>one</b> stage debut picture</p>
+        <div id="parent">
           <div id = "containerGreatShow">
             <div id="dynamicContent"></div>
           </div>
@@ -151,8 +153,12 @@
         Get a real browser!
       </canvas>
       <button id="backToMemory" type="button">Back</button>
-      <span><input id="save" type="button" value="SAVE" /></span>
-      <p id = "memoryText"></p>
+      <div id="memButtons">
+        <input id="save" type="button" value="SAVE" />
+      </div>
+      <div id="textWrapper">
+        <p id = "memoryText"></p>
+      </div>
     </div>
     <!-- FINAL CHECK PART END -->
     <!-- EXPORT PART START -->

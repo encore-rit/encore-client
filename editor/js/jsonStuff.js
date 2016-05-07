@@ -91,9 +91,11 @@ function addPictureToEditor() {
       getEditorPic = allPeople[whichPerson].photos[whichPicture];
     setPicture(getEditorPic);
 
-    //addPicture();
+    addPicture();
     document.querySelector("#greatShow").style.display = "none";
     document.querySelector("#editor").style.display = "block";
+
+    $('#editorImg').show();
   }
   else {
     alert("please pick the picture");
@@ -106,11 +108,12 @@ function backToNextUp(){
 }
 
 function popUpShareMemory(){
-  document.querySelector("#editor").style.display = "none";
   document.querySelector("#shareMemory").style.display = "block";
 }
 function shareMemoryToMemory(){
-  document.querySelector("#editor").style.opacity = "1.0";
+    document.querySelector("#editor").style.display = "none";
+    addPicture();
+  // document.querySelector("#editor").style.opacity = "1.0";
   document.querySelector("#shareMemory").style.display = "none";
   document.querySelector("#memory").style.display = "block";
 }

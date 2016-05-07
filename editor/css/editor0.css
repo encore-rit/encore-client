@@ -2,7 +2,7 @@
 
 #editor{
    background-color: black;
-   font-family: 'proximanovaregular';
+   font-family: 'Open Sans', sans-serif;
    height: 100%;
    overflow: auto;
    -webkit-overflow-scrolling: touch;
