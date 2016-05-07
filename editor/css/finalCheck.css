@@ -7,9 +7,39 @@
   margin-left: 0;
   margin-right: 0;
   display: none;
+  width: 100%;
+
 }
 #finalCheck p{
+  margin: auto;
+  padding: 30px;
+  word-wrap: break-word;
+  text-align: center;
+
+}
+
+#finalCheck #backToMemory, #finalCheck #save {
+  background: none;
+  border: 2px solid white;
+  padding: 10px;
+  color: white;
+  font-size: 25px;
   position: absolute;
-  bottom: 0;
+  bottom: 20px;
+}
+
+#finalCheck  #backToMemory{
+  left: 25px;
+}
+
+#finalCheck #save{
+  right: 25px;
+}
+
+#finalCheck #block{
+  position: absolute;
+  bottom: 80px;
+  width: 100%;
   background-color: grey;
+  opacity: 0.7;
 }
