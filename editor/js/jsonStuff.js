@@ -121,8 +121,12 @@ function backToEditor(){
 function memoryToFinalCheck(){
   document.querySelector("#memory").style.display = "none";
   memoryTextResult = document.querySelector("#inputText").value;
-  document.querySelector("#memoryText").innerHTML = "memoryText";
-  finalCtx.drawImage(picCanvas,0,0);
+  document.querySelector("#memoryText").innerHTML = memoryTextResult;
+  finalCtx.drawImage(picCanvas,
+                    finalCanvas.width/2 - picCanvas.width/2,
+                    finalCanvas.height/2 - picCanvas.height/2
+  );
+
   finalCtx.drawImage(mainCanvas,0,0);
   document.querySelector("#finalCheck").style.display = "block";
 }

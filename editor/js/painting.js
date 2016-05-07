@@ -141,20 +141,18 @@ function getTouchCoords(e, canvas){
 function setPicture(src) {
   editorImg.crossOrigin = "";
   editorImg.src = src;
-  addPicture();
 }
 
 function addPicture(){
   console.log("addPicture");
-  console.log(editorImg);
-  var getEditorPic = document.querySelector("#editorImg");
 
-  picCtx.drawImage(getEditorPic,
+  picCtx.drawImage(editorImg,
                    //source rectangle
                    0, 0, editorImg.width, editorImg.height,
                    //destination rectangle
                    0, 0, picCanvas.width, picCanvas.height);
 }
+
 function resizeCanvas() {
   ctx.canvas.width  = window.innerWidth;
   ctx.canvas.height = window.innerHeight;

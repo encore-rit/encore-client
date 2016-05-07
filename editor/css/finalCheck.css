@@ -1,6 +1,15 @@
 #finalCheck{
+  color: white;
+  background-color: black;
   position: absolute;
   left:0px;
   top:0px;
+  margin-left: 0;
+  margin-right: 0;
   display: none;
+}
+#finalCheck p{
+  position: absolute;
+  bottom: 0;
+  background-color: grey;
 }
