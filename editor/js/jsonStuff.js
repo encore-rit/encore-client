@@ -73,7 +73,7 @@ function getThreePicture(index) {
       bigString += "<div id='flex-item" + i + "'>";
         bigString += "<label>"
           bigString += "<input class='great-show--label-input' type='radio' name='picture' value ='"+ i + "' />";
-          bigString += "<img class='great-show--img' src='" + picture + "' alt=" + allPeople[index].username + " />";
+          bigString += "<img class='great-show--img' src='" + picture + "?v=1' alt=" + allPeople[index].username + " />";
         bigString += "<label>"
       bigString += "</div>";
     }
