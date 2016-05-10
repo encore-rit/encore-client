@@ -1,4 +1,5 @@
 (function ($) {
+  var API = 'http://encore-api.herokuapp.com'
   userData = {};
 
   /**
@@ -49,7 +50,7 @@
     });
 
     $('header').hide();
-    $('.bubble').hide();
+    $('.wrapper').hide();
     $grid.hide();
   };
 
@@ -92,28 +93,28 @@
 
   $(document).on('click','.chooseBtn', function(e){
     $('.main').addClass('chooseScreen');
-    $('.bubble')
-      .append($('<span>')
-        .append($('<p>').html('You chose<br>' + userData.artist + '!'))
+    $('.wrapper')
+      .append($('<img>').attr('src', 'imgs/' + userData.artist.replace(/\s+/g, '-').toLowerCase() + '.png'))
+      .append($('<div>')
+        .append($('<p>').html('You chose<br>' + userData.artist.toUpperCase() + '!'))
         .append($('<input>').attr("type","button").attr("value","Go Back").attr("class","backBtn"))
         .append($('<input>').attr("type","button").attr("value","Continue").attr("class","contBtn")));
 
-      $('.bubble').show();
+      $('.wrapper').show();
 
       $('.backBtn').on('click',function(){
         $('.main').removeClass('chooseScreen');
-        $('.bubble').fadeOut(600).promise().done(function(){
-          $('.bubble>span').remove();
+        $('.wrapper').fadeOut(600).promise().done(function(){
+          $('.wrapper>img').remove();
+          $('.wrapper>div').remove();
         });
       });
 
       $('.contBtn').on('click', function(){
         resetPage();
 
-        console.log(userData);
-
         $.ajax({
-          url: "http://localhost:1339/users",
+          url: API+"/users",
           method: 'POST',
           contentType : 'application/json',
           data: JSON.stringify(userData),
@@ -126,10 +127,20 @@
   });
 
   function resetPage(){
-    $('.bubble>span').remove();
-    $('.bubble')
-      .append($('<span>')
-        .append($('<p>').html('Head into the <br><i>recording studio</i><br> to take your photo')));
+    $('.wrapper>div').remove();
+    $('.wrapper')
+      .append($('<div>')
+        .append($('<p>').attr('class','last').html("<section>It's time to shine!</section><br> Enter the booth to take your photo"))
+        .append($('<p>').attr('class','restarting').html('Resetting in <span id="time">5</span>')));
+
+      var seconds =5;
+      setInterval(function(){ 
+        if(seconds>0){
+          seconds--;
+          $('#time').html(seconds);
+        }
+      }, 1000);
+
 
     setTimeout(function(){
       location.reload();

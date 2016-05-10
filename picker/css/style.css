@@ -11,7 +11,7 @@ html {
   font-family: "Helvetica Neue Light", "Helvetica Neue", Arial, sans-serif;
   font-weight: 200;
   color: #fff;
-  background: url("images/background.png") no-repeat center top fixed;
+  background: url("../imgs/splashscreen.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -26,11 +26,9 @@ body {
   position: relative; }
 
 .stageName {
-  width: 650px;
-  height: 400px;
-  margin: 0 auto;
-  margin-top: 140px;
-  text-align: center; }
+    width: 100%;
+    margin: 200px auto;
+    text-align: center; }
 
 .stageName p:first-of-type {
   margin: -7px;
@@ -39,11 +37,6 @@ body {
 .stageName p {
   margin: 110px 0 10px 0; }
 
-/*.stageName span{
-  position: absolute;
-  left: 32%;
-  top: 140px;
-}*/
 .stageName h1 {
   font-family: 'edoregular';
   font-weight: 100;
@@ -90,12 +83,18 @@ header p {
   margin: 0;
   font-weight: 200; }
 
+.container {
+  margin: 0 auto;
+}
+
 /**
  * Grid container
  **/
 .grid {
-  max-width: 1400px;
-  margin-top: 30px; }
+  /* margin-top: 30px; */
+  width: 100%;
+  margin: 30px auto;
+}
 
 .grid:after {
   content: '';
@@ -128,14 +127,14 @@ header p {
 h2 {
   position: absolute;
   text-align: center;
-  top: 56.66667px;
+  top: 55px;
   left: 0;
-  width: 170px; }
+  width: 100%; }
 
 h2 span {
   color: white;
-  font: bold 24px Helvetica, Sans-Serif;
-  -webkit-text-stroke: 1px black;
+  font: bold 20px Helvetica, Sans-Serif;
+  /* -webkit-text-stroke: 1px black; */
   text-transform: uppercase;
   -webkit-font-smoothing: antialiased;
   padding: 5px; }
@@ -179,7 +178,7 @@ h2 span {
   padding: 5px;
   border: 2px solid black;
   font-weight: bold;
-  font-size: 6.66667px;
+  font-size: 8px;
   text-transform: uppercase; }
 
 .artistInfo input[type="button"]:hover {
@@ -220,40 +219,67 @@ h2 span {
   width: 100%;
   transition: .5s; }
 
-.bubble {
-  color: black;
+.wrapper {
+    color: black;
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: 156px;
+    left: 255px;
+    margin: 0 auto;
+    text-align: center; 
+  }
+
+.wrapper div {
+  vertical-align: bottom;
   position: absolute;
-  width: 90%;
-  top: 15%;
+  bottom: 0;
+  left: 0;
+  width: 100%; 
+  height: 320px;
+  background-color: #fefefe;
+}
+
+.wrapper img {
+  position: relative;
+  width: 100%;
+  height: 100%;
   margin: 0 auto;
+ }
+
+.wrapper p{
+  font-size: 38px;
+  font-weight: 600;
+  margin-top: 70px;
+  margin-bottom: 50px;
+}
+
+.wrapper p.last{
+  margin-top: 90px;
+  font-weight: 200;
+  font-size: 20px;
+}
+
+.wrapper p.last section{
+  text-transform: uppercase;
   font-size: 40px;
-  text-align: center; }
+  font-weight: bold;
+}
 
-.bubble p {
-  margin: -10px 0;
-  max-width: 325px; }
+.wrapper p.restarting{
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin: 100px 0 0 0;
+}
 
-.bubble span {
-  position: absolute;
-  left: 33%;
-  top: 105px;
-  width: 320px;
-  height: 220px; }
-
-.bubble i {
-  font-family: 'edoregular';
-  color: white; }
-
-.bubble input[type="button"] {
+.wrapper input[type="button"] {
   background: rgba(255, 255, 255, 0);
   padding: 5px;
-  color: white;
-  border: 1px solid white;
+  border: 1px solid black;
   font-weight: 400;
-  margin: 0 12px;
-  width: 110px;
+  margin: 0 14px;
+  width: 80px;
   font-size: 10px;
   text-transform: uppercase;
   -webkit-font-smoothing: antialiased; }
-
-/*# sourceMappingURL=style.css.map */

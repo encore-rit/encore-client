@@ -1,52 +1,151 @@
-body {
-   background: black;
-   font-family: tahoma, verdana, sans serif;
+@import "fontStyle.css";
+
+#editor{
+  -webkit-overflow-scrolling: touch
+   background-color: black;
+   font-family: 'Open Sans', sans-serif;
    height: 100%;
-   overflow: auto;
    -webkit-overflow-scrolling: touch;
+   margin: 0;
+   position: absolute;
+   top: 0px;
+   left: 0px;
+   width: 100%;
+   display:none;
 }
-img{
+#editor #img{
   position: absolute;
   bottom: 10px;
   display: none;
 }
-#mainCanvas {
+#editorImg{
+  display: none;
+}
+#editor #mainCanvas {
    position:absolute;
-   z-index: 0;
-   left: 10px;
-   top: 10px;
+   z-index: 2;
+   margin-left: auto;
+   margin-right: auto;
+   left: 0;
+   right: 0;
    box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
 }
-#tmpCanvas {
+
+#editor #tmpCanvas {
    position:absolute;
-   z-index: 1;
-   left: 10px;
-   top: 10px;
+   z-index: 3;
+   margin-left: auto;
+   margin-right: auto;
+   left: 0;
+   right: 0;
    cursor: pointer;
    pointer-events:none;
 }
-#pictureCanvas {
+#editor #pictureCanvas {
   position:absolute;
-  z-index: -2;
-  left: 10px;
-  top: 10px;
-}
- #controls {
-   position: absolute;
-   z-index: 2;
-   left: 25px;
-   top: 25px;
-}
-label{
-  font-size: 12px;
-  margin-right:0.75em;
-}
-span{
-  background: white;
+  z-index: 0;
+  left: 50%;
+  transform: translateX(-50%)
 }
 
-#undoAndRedo{
+#finalCanvas{
+  margin-left: 60px;
+}
+
+#editor #controls {
+   position: absolute;
+   z-index: 4;
+   left: 0px;
+   top: 0px;
+   background-color: rgba(97, 97, 97, 0.6);
+   color:white;
+   width: 225px;
+}
+
+#editor #controls ul{
+  padding-left: 0px;
+}
+#editor #controls ul li{
+  padding-left: 20px;
+  list-style: none;
+}
+#editor label{
+  font-size: 20px;
+  margin-right:0.75em;
+}
+
+#editor #lineWidthChooser, #editor #lineWidthChooser option {
+  font-size: 15px;
+}
+
+#editor #undoAndRedo{
   position: absolute;
-  bottom: 50px;
-  left: 50px;
+  bottom: 20px;
+  left: 25px;
+  z-index: 8;
+}
+#editor #undoButton, #editor #redoButton, #editor #done{
+  background: none;
+  border: 2px solid white;
+  padding: 10px;
+  color: white;
+  font-size: 25px;
+
+}
+
+#editor #undoButton img,
+#editor #redoButton img {
+  width: 26px;
+  height: 26px;
+}
+
+#editor #done{
+  position: absolute;
+  right: 25px;
+  bottom: 20px;
+  z-index: 8;
+}
+
+#editor li span input{
+  background-color: transparent;
+  border:none;
+  color:lightgrey;
+  font-size: 20px;
+  padding-top: 20px;
+}
+
+#editor #clearButton{
+  float:right;
+  background-color: transparent;
+  border:none;
+  color:lightgrey;
+  font-size: 12px;
+}
+
+#editor #filterMenu{
+  border-top: 1px solid darkgrey;
+  padding-top: 25px;
+  padding-left: 20px;
+}
+
+#editor #filterWord{
+  color:darkgrey;
+  font-size: 16px;
+  margin: 0;
+}
+#editor #strokeText{
+  font-size: 20px;
+  padding-left: 20px;
+}
+#editor #slideMenu{
+background-color: transparent;
+border: none;
+display: block;
+margin-left: auto;
+margin-right: auto;
+padding: 5px;
+}
+#editor #slideMenu img{
+  width:30px;
+  height: 10px;
 }

@@ -1,71 +1,96 @@
-.container{
-    position: absolute;
-    top:calc(50% - 283px);
-    left:calc(50% - 413px);
+@import "fontStyle.css";
 
-    display: flex;
-    flex-wrap: wrap;
-
-    justify-content: center;
+#greatShow {
+  font-family: 'Open Sans';
+  background-image: url("../images/ipadBG2.jpg");
+  background-size: cover;
+  height:100vh;
+  margin: 0px;
+  color: white;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  display:none;
 }
 
-#flex-item0, #flex-item1, #flex-item2{
+#greatShow #containerGreatShow{
+  padding-top: 73px;
+  display: -webkit-flex;
+  -webkit-flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#greatShow #flex-item0, #flex-item1, #flex-item2{
   padding-left: 5px;
 }
 
-#flex-item0{
+#greatShow #flex-item0{
   padding-top: 0px;
 }
-#flex-item1{
-  padding-top: 80px;
+#greatShow #flex-item1{
+  padding-top: 250px;
 }
-#flex-item2{
-  padding-top: 160px;
+#greatShow #flex-item2{
+  padding-top: 500px;
 }
 
-label > input{ /* HIDE RADIO */
+#greatShow h1{
+  font-family: "edoregular";
+  font-size: 71px;
+  margin-bottom: 0.3em;
+  margin-top: 0.6em;
+}
+
+#greatShow p{
+  font-size: 22px;
+}
+
+/* HIDE RADIO */
+#greatShow label > input {
   display: none;
 }
-label > input + img{ /* IMAGE STYLES */
 
+/* IMAGE STYLES */
+#greatShow label > input + img{
   border:10px solid transparent;
 }
-label > input:checked + img{ /* (CHECKED) IMAGE STYLES */
+
+/* (CHECKED) IMAGE STYLES */
+#greatShow label > input:checked + img{
   border:10px solid white;
 }
 
-img{
-    width: 250px;
+#greatShow img {
+  width: 275px;
 }
 
-h1, p{
+#greatShow h1,
+#greatShow p {
   text-align: center;
 }
 
-body{
-  background-image: url("../images/ipadBG2.jpg");
-  color:white;
-}
-
-#parent{
+#greatShow #parent{
   position: relative;
 }
 
-#back, #edit{
+#greatShow #back,
+#greatShow #edit {
   background: none;
   border: 2px solid white;
   padding: 10px;
-  color:white;
+  color: white;
+  font-size: 25px;
+  position: absolute;
+  bottom: 20px;
 }
 
-#back{
-  position: absolute;
-  bottom: 50px;
-  left: 50px;
+#greatShow #back{
+  left: 25px;
 }
 
-#edit{
-  position: absolute;
-  bottom: 50px;
-  right: 50px;
+#greatShow #edit{
+  right: 25px;
 }
