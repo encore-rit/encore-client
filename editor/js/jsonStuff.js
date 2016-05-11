@@ -73,7 +73,7 @@ function getThreePicture(index) {
       bigString += "<div id='flex-item" + i + "'>";
         bigString += "<label>"
           bigString += "<input class='great-show--label-input' type='radio' name='picture' value ='"+ i + "' />";
-          bigString += "<img class='great-show--img' src='" + picture + "' alt=" + allPeople[index].username + " />";
+          bigString += "<img class='great-show--img' src='" + picture + "?v=1' alt=" + allPeople[index].username + " />";
         bigString += "<label>"
       bigString += "</div>";
     }
@@ -109,7 +109,6 @@ function popUpShareMemory(){
 }
 function shareMemoryToMemory(){
     document.querySelector("#editor").style.display = "none";
-    addPicture();
   // document.querySelector("#editor").style.opacity = "1.0";
   document.querySelector("#shareMemory").style.display = "none";
   document.querySelector("#memory").style.display = "block";
@@ -122,7 +121,10 @@ function memoryToFinalCheck(){
   document.querySelector("#memory").style.display = "none";
   memoryTextResult = document.querySelector("#inputText").value;
   document.querySelector("#memoryText").innerHTML = memoryTextResult;
-  finalCtx.drawImage(picCanvas, 0,0);
+  finalCtx.drawImage(picCanvas,
+                finalCanvas.width/2 - picCanvas.width/2,
+                finalCanvas.height/2 - picCanvas.height/2
+  );
 
   finalCtx.drawImage(mainCanvas,0,0);
   document.querySelector("#finalCheck").style.display = "block";
