@@ -12,7 +12,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/nextUp.css">
     <link rel="stylesheet" href="css/greatShow.css">
-    <link href='css/editor0.css' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' href='css/editor.css'>
     <link rel="stylesheet" href="css/shareMemory.css">
     <link rel="stylesheet" href="css/memory.css">
     <link rel="stylesheet" href="css/export.css">
@@ -25,7 +25,6 @@
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.6/socket.io.min.js"></script>
 
@@ -100,7 +99,7 @@
           <li><div id="coloredSlider"></div></li>
 
           <li><div id="filterMenu">
-            <span><input id="clearButton" type="button" value="Clear"/></span>
+            <input id="clearButton" type="button" value="Clear"/>
             <p id= "filterWord">Filter</p>
           </div></li>
 
@@ -153,16 +152,9 @@
       <canvas id="finalCanvas" width="1024">
         Get a real browser!
       </canvas>
-      <button id="backToMemory" type="button">Back</button>
-     <!--  <div id="memButtons">
-        <input id="save" type="button" value="SAVE" />
-      </div> -->
       <div id="textWrapper">
         <p id = "memoryText"></p>
       </div>
-      <!-- <div id="block">
-        <p id = "memoryText"></p>
-      </div> -->
       <span><input id="save" type="button" value="SAVE" /></span>
       <button id="backToMemory" type="button">Back</button>
     </div>
@@ -198,15 +190,6 @@
       document.querySelector("#edit").onclick = function(){addPictureToEditor();};
 
       //editor stuff below
-
-      // Enable fastclick library
-      // @XXX seems to mess up radio button selection
-      // if ('addEventListener' in document) {
-      //     document.addEventListener('DOMContentLoaded', function() {
-      //         FastClick.attach(document.body);
-      //     }, false);
-      // }
-
       window.onload = init;
       // GLOBALS
       var canvas;
@@ -234,7 +217,7 @@
       var DEFAULT_LINE_WIDTH = 3;
       var DEFAULT_STROKE_STYLE = "red";
 
-      // FUNCTIONS
+      // FUNCTIONS init()
       function init(){
         // initialize some globals
         canvas = document.querySelector('#mainCanvas');
@@ -248,13 +231,8 @@
         editorImg = document.querySelector('#editorImg');
         lineWidth = DEFAULT_LINE_WIDTH;
         strokeStyle = DEFAULT_STROKE_STYLE;
-        //set initial properties of the graphics context
-        ctx.lineWidth = lineWidth;
-        ctx.strokeStyle = strokeStyle;
-        ctx.lineCap = "round"; // "butt", "round", "square" (default "butt")
-        ctx.lineJoin = "round"; // "round", "bevel", "miter" (default "miter")
 
-        //FIX THIS PAINTING COLOR
+        //set initial properties of the graphics context
         tmpCtx.lineWidth = lineWidth;
         tmpCtx.lineJoin = 'round';
         tmpCtx.lineCap = 'round';
@@ -267,7 +245,6 @@
         canvas.addEventListener('touchend', doTouchup);
         canvas.addEventListener('touchcancel', doTouchout);
         document.querySelector('#lineWidthChooser').onchange = doLineWidthChange;
-        //document.querySelector('#done').onclick = functionCALL;
         document.querySelector('#done').onclick = popUpShareMemory;
         document.querySelector('#continue').onclick = shareMemoryToMemory;
         document.querySelector('#backToEditor').onclick = backToEditor;
@@ -285,7 +262,7 @@
         document.querySelector('#greenFilter').onclick = function(){greenFilter();};
         document.querySelector('#noFilter').onclick = function(){noFilter();};
 
-
+        //make menu slide down and up
         $("#slideMenu").click(function(){
           if(slideMenuBoolean == false){
             $("ul").slideDown();
@@ -296,7 +273,7 @@
             slideMenuBoolean = false
           }
         });
-
+        //resize the canvas to the current device
         window.onresize = resizeCanvas;
         //push a blank canvas
         canvasPush();
